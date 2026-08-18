@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bárbara Cabral Paschoalin | Portfólio de Análise de Dados</title>
+    <meta name="description" content="Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.">
+    <meta name="keywords" content="Data Analyst, Power BI, Business Intelligence, Indicadores Estratégicos, Portfólio">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @layer theme {
+        :root {
+            --bg-color: #0b1121;
+            --surface-color: rgba(30, 41, 59, 0.4);
+            --surface-border: rgba(255, 255, 255, 0.1);
+            --primary-color: #0ea5e9;
+            --primary-hover: #0284c7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+    }
+
+    @layer base {
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        ::selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    }
+
+    @layer components {
+        .glass-panel {
+            background-color: var(--surface-color);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--surface-border);
+            border-radius: 1rem;
+        }
+        .btn-primary {
+            @apply px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_14px_0_rgba(14,165,233,0.39)];
+        }
+        .btn-outline {
+            @apply px-6 py-3 border border-[var(--surface-border)] hover:border-[var(--primary-color)] text-white font-medium rounded-lg transition-all duration-300 backdrop-blur-md;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-[var(--text-muted)];
+        }
+        .nav-link {
+            @apply text-sm text-[var(--text-muted)] hover:text-white transition-colors cursor-pointer;
+        }
+    }
+
+    @layer utilities {
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, rgba(11,17,33,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
+    }
+    </style>
+
+    <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
+    <meta property="og:title" content="Bárbara Cabral Paschoalin | Portfólio de Análise de Dados">
+    <meta property="og:description" content="Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.">
+    <meta property="og:image" content="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/8b9a4e85-f999-4c76-a7e1-f65aaa5ea75a.png">
+    <meta name="twitter:title" content="Bárbara Cabral Paschoalin | Portfólio de Análise de Dados">
+    <meta name="twitter:description" content="Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.">
+    <meta name="twitter:image" content="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/8b9a4e85-f999-4c76-a7e1-f65aaa5ea75a.png">
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/Hero.js"></script>
+    <script type="text/babel" src="components/About.js"></script>
+    <script type="text/babel" src="components/Skills.js"></script>
+    <script type="text/babel" src="components/Projects.js"></script>
+    <script type="text/babel" src="components/Experience.js"></script>
+    <script type="text/babel" src="components/Contact.js"></script>
+    <script type="text/babel" src="components/Footer.js"></script>
+    <script type="text/babel" src="app.js"></script>
+
+
+</body>
+
+</html>
