@@ -69,6 +69,45 @@ function Projects() {
                     "Classificação dinâmica de produtos e clientes (ABC).",
                     "Melhor priorização de atendimento e foco comercial."
                 ]
+            },
+            {
+                id: "delivery-map",
+                title: "Mapa de Entregas",
+                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Mapa+de+Entregas",
+                description: "Sistema web para planejamento e acompanhamento de rotas de entrega, com visualização geográfica em tempo real.",
+                tags: ["JavaScript", "Leaflet.js", "Google Apps Script", "Logística"],
+                details: [
+                    "Entregas e rotas eram controladas manualmente, sem visão geográfica consolidada.",
+                    "Desenvolvimento de mapa interativo (Leaflet.js/MapLibre) para planejamento de rotas.",
+                    "Interfaces dedicadas para coordenador, motorista e painel somente leitura para vendas.",
+                    "Memória de endereço por cliente e otimizações de performance no backend."
+                ]
+            },
+            {
+                id: "sheet-control",
+                title: "Controle de Chapas",
+                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Controle+de+Chapas",
+                description: "Sistema de rastreamento de chapas metálicas, do estoque até a produção, com totem, painel de TV e conferência.",
+                tags: ["Google Apps Script", "Google Sheets", "QR Code", "PCP"],
+                details: [
+                    "Falta de rastreabilidade da movimentação de chapas metálicas entre estoque e produção.",
+                    "Totem (kiosk) para registro das movimentações no chão de fábrica.",
+                    "Painel de TV com status em tempo real e página de conferência para o PCP.",
+                    "Estrutura em Google Sheets + Apps Script para atualização automática dos dados."
+                ]
+            },
+            {
+                id: "stock-request",
+                title: "Solicitação de Estoque",
+                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Solicita%C3%A7%C3%A3o+de+Estoque",
+                description: "Controle de estoque de peças com geração de etiquetas térmicas e leitura por QR Code.",
+                tags: ["Google Apps Script", "Google Sheets", "QR Code", "GitHub Pages"],
+                details: [
+                    "Dificuldade em rastrear a movimentação e a localização de peças em estoque.",
+                    "Arquitetura em Google Sheets + Apps Script + GitHub Pages para controle centralizado.",
+                    "Impressão de etiquetas térmicas para identificação dos itens (Argox OS-214 Plus, 203 dpi).",
+                    "Leitura via QR Code para agilizar consultas e solicitações de peças."
+                ]
             }
         ];
 
