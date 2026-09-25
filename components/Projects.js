@@ -73,7 +73,7 @@ function Projects() {
             {
                 id: "delivery-map",
                 title: "Mapa de Entregas",
-                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Mapa+de+Entregas",
+                image: "images/delivery-map.jpg",
                 description: "Sistema web para planejamento e acompanhamento de rotas de entrega, com visualização geográfica em tempo real.",
                 tags: ["JavaScript", "Leaflet.js", "Google Apps Script", "Logística"],
                 details: [
@@ -86,7 +86,7 @@ function Projects() {
             {
                 id: "sheet-control",
                 title: "Controle de Chapas",
-                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Controle+de+Chapas",
+                image: "images/sheet-control.jpg",
                 description: "Sistema de rastreamento de chapas metálicas, do estoque até a produção, com totem, painel de TV e conferência.",
                 tags: ["Google Apps Script", "Google Sheets", "QR Code", "PCP"],
                 details: [
@@ -99,7 +99,7 @@ function Projects() {
             {
                 id: "stock-request",
                 title: "Solicitação de Estoque",
-                image: "https://placehold.co/800x500/0b1121/0ea5e9?text=Solicita%C3%A7%C3%A3o+de+Estoque",
+                image: "images/stock-request.jpg",
                 description: "Controle de estoque de peças com geração de etiquetas térmicas e leitura por QR Code.",
                 tags: ["Google Apps Script", "Google Sheets", "QR Code", "GitHub Pages"],
                 details: [
