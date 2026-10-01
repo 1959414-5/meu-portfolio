@@ -16,8 +16,8 @@ function Experience() {
                                 <div className="relative pl-6 md:pl-8">
                                     <div className="absolute w-4 h-4 rounded-full bg-[var(--primary-color)] -left-[9px] top-1 shadow-[0_0_10px_var(--primary-color)]"></div>
                                     <div className="glass-panel p-5 md:p-6 hover:border-[var(--primary-color)] transition-colors">
-                                        <h3 className="text-xl font-bold text-white">Assistente Administrativo de Vendas</h3>
-                                        <div className="text-sm text-[var(--primary-color)] font-medium mb-4">Indústria</div>
+                                        <h3 className="text-xl font-bold text-white">Auxiliar Administrativa de Vendas</h3>
+                                        <div className="text-sm text-[var(--primary-color)] font-medium mb-4">Perfinorte Indústria e Comércio de Chapas (2021 – Atual)</div>
                                         <ul className="space-y-2 text-sm text-[var(--text-muted)] list-none">
                                             <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Uso diário de sistemas ERP para gestão de processos comerciais.</li>
                                             <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Organização de grandes volumes de dados e planilhas.</li>
@@ -31,7 +31,7 @@ function Experience() {
                                     <div className="absolute w-4 h-4 rounded-full bg-[var(--surface-border)] -left-[9px] top-1 border-2 border-[var(--bg-color)]"></div>
                                     <div className="glass-panel p-6 hover:border-[var(--primary-color)] transition-colors">
                                         <h3 className="text-xl font-bold text-white">Programadora CNC</h3>
-                                        <div className="text-sm text-[var(--text-muted)] font-medium mb-4">Indústria de Manufatura</div>
+                                        <div className="text-sm text-[var(--text-muted)] font-medium mb-4">Perfinorte Indústria e Comércio de Chapas (2020 – 2021)</div>
                                         <ul className="space-y-2 text-sm text-[var(--text-muted)] list-none">
                                             <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Programação e acomodação de chapas metálicas para processos de corte CNC.</li>
                                             <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Análise de aproveitamento de material visando melhor eficiência produtiva e redução de desperdícios.</li>
