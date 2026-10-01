@@ -41,7 +41,7 @@ function Projects() {
                     "Dificuldade em identificar pedidos atrasados em tempo real.",
                     "Necessidade de monitoramento operacional contínuo.",
                     "Criação de painel para rastreamento de status de pedidos.",
-                    "Melhoria significativa na gestão operacional e comunicação."
+                    "Centralização dos dados de produção em um único painel."
                 ]
             },
             {
