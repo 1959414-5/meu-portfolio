@@ -248,7 +248,7 @@ function Hero() {
                                             <div>
                                                 <h3 className="text-white font-bold text-lg tracking-wide flex items-center gap-2">
                                                     {currentView.title}
-                                                    <span className="px-2 py-0.5 rounded text-[8px] bg-green-500/20 text-green-400 border border-green-500/30 uppercase tracking-widest animate-pulse">Live</span>
+                                                    <span className="px-2 py-0.5 rounded text-[8px] bg-green-500/20 text-green-400 border border-green-500/30 uppercase tracking-widest animate-pulse">Mockup de dashboard</span>
                                                 </h3>
                                                 <p className="text-xs text-[var(--text-muted)] mt-1">{currentView.subtitle}</p>
                                             </div>
