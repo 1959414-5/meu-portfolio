@@ -60,7 +60,7 @@ function Projects() {
             {
                 id: "abc-dash",
                 title: "Curva ABC Estratégica",
-                image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/73461f75-28ed-499d-8553-a9795eb94d04.Curva ABC Estratégica",
+                image: "images/curva-abc.png",
                 description: "Análise comercial estratégica para priorização de clientes e concentração de receita.",
                 tags: ["Power BI", "Comercial", "Estratégia"],
                 details: [
