@@ -265,27 +265,30 @@ function Skills() {
         }, [selectedSkill]);
 
         const getLevelClasses = (level) => {
-            if (level === "Avançado") {
-                return "text-emerald-300 bg-emerald-400/10 border-emerald-400/20";
-            }
-
-            if (level === "Intermediário") {
-                return "text-sky-300 bg-sky-400/10 border-sky-400/20";
-            }
-
-            return "text-amber-300 bg-amber-400/10 border-amber-400/20";
+            if (level === "Avançado") return "skill-level-advanced";
+            if (level === "Intermediário") return "skill-level-intermediate";
+            return "skill-level-basic";
         };
 
         return (
             <section
                 id="habilidades"
-                className="py-24 relative bg-[var(--bg-color)]"
+                className="py-20 lg:py-24 relative bg-[var(--bg-color)]"
                 data-name="skills"
                 data-file="components/Skills.js"
             >
+                <style>{`
+                    .skill-card-icon { color: var(--primary-color); }
+                    .skill-level-advanced { color: #047857; background: rgba(16,185,129,.09); border-color: rgba(16,185,129,.24); }
+                    .skill-level-intermediate { color: #0369a1; background: rgba(14,165,233,.09); border-color: rgba(14,165,233,.24); }
+                    .skill-level-basic { color: #92400e; background: rgba(245,158,11,.10); border-color: rgba(245,158,11,.25); }
+                    html[data-theme="dark"] .skill-level-advanced { color: #6ee7b7; background: rgba(16,185,129,.10); border-color: rgba(110,231,183,.22); }
+                    html[data-theme="dark"] .skill-level-intermediate { color: #7dd3fc; background: rgba(14,165,233,.10); border-color: rgba(125,211,252,.22); }
+                    html[data-theme="dark"] .skill-level-basic { color: #fcd34d; background: rgba(245,158,11,.10); border-color: rgba(252,211,77,.22); }
+                `}</style>
                 <div className="container mx-auto px-6">
 
-                    <div className="text-center mb-12">
+                    <div className="text-center mb-10">
                         <h2 className="section-title mb-4">
                             Habilidades Técnicas
                         </h2>
@@ -297,26 +300,26 @@ function Skills() {
                         </p>
                     </div>
 
-                    <div className="space-y-14">
+                    <div className="space-y-10">
 
                         {skillGroups.map((group, groupIndex) => (
                             <div key={group.title}>
 
-                                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+                                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-4">
 
                                     <div>
 
                                         <div className="flex items-center gap-3">
 
-                                            <div className="w-2 h-8 rounded-full bg-[var(--primary-color)]"></div>
+                                            <div className="w-1.5 h-6 rounded-full bg-[var(--primary-color)]"></div>
 
-                                            <h3 className="text-2xl font-bold text-white">
+                                            <h3 className="text-xl font-bold text-[var(--text-main)]">
                                                 {group.title}
                                             </h3>
 
                                         </div>
 
-                                        <p className="text-sm text-[var(--text-muted)] mt-3 md:ml-5 max-w-3xl">
+                                        <p className="text-sm text-[var(--text-muted)] mt-2 md:ml-4 max-w-3xl">
                                             {group.description}
                                         </p>
 
@@ -331,51 +334,31 @@ function Skills() {
 
                                 </div>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                                     {group.skills.map((skill, index) => (
-                                        <div
+                                        <button
+                                            type="button"
                                             key={groupIndex + "-" + index}
                                             onClick={() => setSelectedSkill(skill)}
-                                            className="glass-panel p-5 md:p-6 flex flex-col items-center justify-center text-center gap-2 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(14,165,233,0.15)] hover:border-[var(--primary-color)] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                                            aria-label={"Ver competências de " + skill.name}
+                                            className="skill-card glass-panel w-full min-h-[76px] p-3 sm:p-3.5 flex items-center gap-3 text-left hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(14,165,233,0.12)] hover:border-[var(--primary-color)] transition-all duration-200 cursor-pointer group relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]"
                                         >
-
-                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--primary-color)] opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none"></div>
-
-                                            <div className="p-4 rounded-full bg-[var(--surface-color)] group-hover:bg-opacity-80 transition-colors z-10 mb-2">
-                                                <div
-                                                    className={
-                                                        skill.icon +
-                                                        " text-3xl " +
-                                                        skill.color +
-                                                        " group-hover:scale-110 transition-transform duration-300"
-                                                    }
-                                                ></div>
-                                            </div>
-
-                                            <span className="font-semibold text-sm md:text-base text-[var(--text-main)] group-hover:text-white z-10 transition-colors">
-                                                {skill.name}
+                                            <span className="w-10 h-10 shrink-0 rounded-xl bg-[var(--primary-color)]/10 border border-[var(--primary-color)]/15 flex items-center justify-center">
+                                                <span className={skill.icon + " skill-card-icon text-2xl transition-transform duration-200 group-hover:scale-110"}></span>
                                             </span>
-
-                                            <span
-                                                className={
-                                                    "text-[11px] px-2.5 py-1 rounded-full border z-10 " +
-                                                    getLevelClasses(skill.level)
-                                                }
-                                            >
-                                                {skill.level}
-                                            </span>
-
-                                            <div className="h-4 overflow-hidden mt-1 z-10 w-full flex justify-center">
-                                                <span className="text-xs text-[var(--primary-color)] font-medium opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-1">
-                                                    Ver competências
-                                                    <div className="icon-arrow-right text-[10px]"></div>
+                                            <span className="min-w-0 flex-1 flex flex-col items-start gap-1.5">
+                                                <span className="font-semibold text-[13px] sm:text-sm leading-snug text-[var(--text-main)] group-hover:text-[var(--primary-color)] transition-colors">
+                                                    {skill.name}
                                                 </span>
-                                            </div>
-
-                                        </div>
+                                                <span className={"skill-level text-[10px] font-medium px-2 py-0.5 rounded-full border " + getLevelClasses(skill.level)}>
+                                                    {skill.level}
+                                                </span>
+                                            </span>
+                                            <span className="shrink-0 text-[var(--text-muted)] group-hover:text-[var(--primary-color)] transition-colors">
+                                                <span className="icon-arrow-up-right text-sm"></span>
+                                            </span>
+                                        </button>
                                     ))}
-
                                 </div>
 
                             </div>
@@ -383,7 +366,7 @@ function Skills() {
 
                     </div>
 
-                    <div className="mt-12 text-center">
+                    <div className="mt-9 text-center">
                         <span className="text-xs text-[var(--text-muted)] opacity-80">
                             {totalSkills} competências apresentadas • Clique em uma
                             habilidade para ver os conhecimentos associados.
@@ -409,7 +392,7 @@ function Skills() {
 
                                 <button
                                     onClick={() => setSelectedSkill(null)}
-                                    className="p-2 rounded-full hover:bg-[var(--surface-color)] text-[var(--text-muted)] hover:text-white transition-colors"
+                                    className="p-2 rounded-full hover:bg-[var(--surface-color)] text-[var(--text-muted)] hover:text-[var(--primary-color)] transition-colors"
                                     aria-label="Fechar detalhes"
                                 >
                                     <div className="icon-x text-xl"></div>
@@ -425,15 +408,14 @@ function Skills() {
                                         <div
                                             className={
                                                 selectedSkill.icon +
-                                                " text-4xl " +
-                                                selectedSkill.color
+                                                " text-3xl text-[var(--primary-color)]"
                                             }
                                         ></div>
                                     </div>
 
                                     <div>
 
-                                        <h3 className="text-2xl font-bold text-white mb-2">
+                                        <h3 className="text-2xl font-bold text-[var(--text-main)] mb-2">
                                             {selectedSkill.name}
                                         </h3>
 
