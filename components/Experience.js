@@ -1,69 +1,104 @@
 function Experience() {
     try {
+        const experiences = [
+            {
+                role: "Auxiliar Administrativa de Vendas",
+                period: "2021 – Atual",
+                current: true,
+                description: [
+                    "Registro e acompanhamento de pedidos e elaboração de orçamentos para a equipe de vendas.",
+                    "Utilização diária do ERP industrial para consulta e atualização de informações comerciais.",
+                    "Organização de informações e suporte às rotinas administrativas da área de vendas."
+                ]
+            },
+            {
+                role: "Programadora CNC",
+                period: "2020 – 2021",
+                current: false,
+                description: [
+                    "Programação CNC e aproveitamento de chapas metálicas para processos de corte.",
+                    "Análise de encaixe e aproveitamento de material conforme as necessidades de produção.",
+                    "Interpretação de desenhos técnicos e contato direto com processos industriais."
+                ]
+            },
+            {
+                role: "Jovem Aprendiz",
+                period: "2018 – 2020",
+                current: false,
+                description: [
+                    "Apoio às rotinas administrativas e à organização de informações.",
+                    "Contato inicial com processos de pedidos e atividades de suporte à operação."
+                ]
+            }
+        ];
+
         return (
             <section id="experiencia" className="py-24 relative bg-[var(--bg-color)]" data-name="experience" data-file="components/Experience.js">
                 <div className="container mx-auto px-6">
-                    <div className="grid lg:grid-cols-2 gap-16">
-                        {/* Experience Column */}
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
                         <div>
-                            <div className="flex items-center gap-3 mb-10">
+                            <div className="flex items-center gap-3 mb-3">
                                 <div className="icon-briefcase text-3xl text-[var(--primary-color)]"></div>
-                                <h2 className="text-3xl font-bold text-white">Experiência Profissional</h2>
+                                <h2 className="text-3xl font-bold text-[var(--text-main)]">Experiência Profissional</h2>
                             </div>
-                            
-                            <div className="relative border-l-2 border-[var(--surface-border)] ml-3 md:ml-4 space-y-8 md:space-y-12 pb-4">
-                                {/* Experience 1 */}
-                                <div className="relative pl-6 md:pl-8">
-                                    <div className="absolute w-4 h-4 rounded-full bg-[var(--primary-color)] -left-[9px] top-1 shadow-[0_0_10px_var(--primary-color)]"></div>
-                                    <div className="glass-panel p-5 md:p-6 hover:border-[var(--primary-color)] transition-colors">
-                                        <h3 className="text-xl font-bold text-white">Auxiliar Administrativa de Vendas</h3>
-                                        <div className="text-sm text-[var(--primary-color)] font-medium mb-4">Perfinorte Indústria e Comércio de Chapas (2021 – Atual)</div>
-                                        <ul className="space-y-2 text-sm text-[var(--text-muted)] list-none">
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Uso diário de sistemas ERP para gestão de processos comerciais.</li>
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Organização de grandes volumes de dados e planilhas.</li>
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Análise de indicadores comerciais para suporte à equipe de vendas.</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <p className="text-sm text-[var(--text-muted)] mb-9 ml-10">Trajetória na indústria · 2018 – Atual</p>
 
-                                {/* Experience 2 */}
-                                <div className="relative pl-8">
-                                    <div className="absolute w-4 h-4 rounded-full bg-[var(--surface-border)] -left-[9px] top-1 border-2 border-[var(--bg-color)]"></div>
-                                    <div className="glass-panel p-6 hover:border-[var(--primary-color)] transition-colors">
-                                        <h3 className="text-xl font-bold text-white">Programadora CNC</h3>
-                                        <div className="text-sm text-[var(--text-muted)] font-medium mb-4">Perfinorte Indústria e Comércio de Chapas (2020 – 2021)</div>
-                                        <ul className="space-y-2 text-sm text-[var(--text-muted)] list-none">
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Programação e acomodação de chapas metálicas para processos de corte CNC.</li>
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Análise de aproveitamento de material visando melhor eficiência produtiva e redução de desperdícios.</li>
-                                            <li className="flex gap-2"><div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>Interpretação de desenhos técnicos e atuação em processos industriais com foco em precisão operacional.</li>
-                                        </ul>
+                            <div className="relative border-l-2 border-[var(--surface-border)] ml-3 md:ml-4 space-y-7 pb-4">
+                                {experiences.map((experience, index) => (
+                                    <div className="relative pl-6 md:pl-8" key={experience.role}>
+                                        <div className={"absolute w-4 h-4 rounded-full -left-[9px] top-1 border-2 border-[var(--bg-color)] " + (experience.current ? "bg-[var(--primary-color)] shadow-[0_0_10px_var(--primary-color)]" : "bg-[var(--surface-border)]")}></div>
+                                        <article className="glass-panel p-5 md:p-6 hover:border-[var(--primary-color)] transition-colors">
+                                            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                                <h3 className="text-lg md:text-xl font-bold text-[var(--text-main)]">{experience.role}</h3>
+                                                {experience.current && (
+                                                    <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2.5 py-1">Cargo atual</span>
+                                                )}
+                                            </div>
+                                            <div className="text-sm text-[var(--primary-color)] font-medium mb-4">Perfinorte Indústria e Comércio de Chapas · {experience.period}</div>
+                                            <ul className="space-y-2 text-sm text-[var(--text-muted)] list-none">
+                                                {experience.description.map((item, itemIndex) => (
+                                                    <li key={itemIndex} className="flex gap-2 items-start">
+                                                        <div className="icon-chevron-right text-[var(--primary-color)] flex-shrink-0 mt-0.5 w-4 h-4"></div>
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </article>
                                     </div>
+                                ))}
+                            </div>
+
+                            <div className="glass-panel p-5 md:p-6 mt-2 border border-[var(--primary-color)]/20">
+                                <div className="flex items-center gap-2 text-[var(--primary-color)] font-semibold text-sm mb-2">
+                                    <div className="icon-chart-no-axes-combined text-lg"></div>
+                                    Projetos de análise de dados
                                 </div>
+                                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                                    A partir da experiência com dados operacionais do ERP, desenvolvi por iniciativa própria dashboards e indicadores em Power BI, utilizando relatórios exportados do sistema como fonte.
+                                </p>
                             </div>
                         </div>
 
-                        {/* Education Column */}
                         <div>
                             <div className="flex items-center gap-3 mb-10">
                                 <div className="icon-graduation-cap text-3xl text-[var(--primary-color)]"></div>
-                                <h2 className="text-3xl font-bold text-white">Formação Acadêmica</h2>
+                                <h2 className="text-3xl font-bold text-[var(--text-main)]">Formação Acadêmica</h2>
                             </div>
-                            
+
                             <div className="relative border-l-2 border-[var(--surface-border)] ml-4 space-y-12 pb-4">
-                                {/* Education 1 */}
                                 <div className="relative pl-8">
                                     <div className="absolute w-4 h-4 rounded-full bg-[var(--primary-color)] -left-[9px] top-1 shadow-[0_0_10px_var(--primary-color)]"></div>
-                                    <div className="glass-panel p-6 hover:border-[var(--primary-color)] transition-colors">
-                                        <h3 className="text-xl font-bold text-white">Análise e Desenvolvimento de Sistemas</h3>
-                                        <div className="text-sm text-[var(--primary-color)] font-medium mb-2">Unicesumar</div>
+                                    <article className="glass-panel p-6 hover:border-[var(--primary-color)] transition-colors">
+                                        <h3 className="text-xl font-bold text-[var(--text-main)]">Análise e Desenvolvimento de Sistemas</h3>
+                                        <div className="text-sm text-[var(--primary-color)] font-medium mb-2">UniCesumar</div>
                                         <div className="text-xs text-[var(--text-muted)] mb-4 flex items-center gap-2">
                                             <div className="icon-calendar w-3 h-3"></div>
                                             Concluído em 2024
                                         </div>
                                         <p className="text-sm text-[var(--text-muted)]">
-                                            Formação sólida em lógica de programação, modelagem de banco de dados, engenharia de software e análise de requisitos, fundamentais para estruturação de projetos em BI.
+                                            Formação em lógica de programação, banco de dados, desenvolvimento de sistemas e análise de requisitos.
                                         </p>
-                                    </div>
+                                    </article>
                                 </div>
                             </div>
                         </div>
