@@ -23,6 +23,7 @@ function Projects() {
                 title: "Dashboard de Produção",
                 image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg",
                 description: "Solução para descentralização de dados entre ERP e planilhas, melhorando a visibilidade operacional.",
+                outcome: "Centralizei informações antes dispersas em diversos relatórios do ERP em uma única solução de BI. Com dashboards interativos para pedidos, produção, prazos e análise comercial, ficou mais fácil consultar os indicadores sem precisar localizar e cruzar os relatórios manualmente.",
                 tags: ["Power BI", "ERP", "Eficiência"],
                 details: [
                     "A empresa possuía dados descentralizados entre ERP e planilhas.",
@@ -146,6 +147,12 @@ function Projects() {
                                 <div className="w-full lg:w-1/2 space-y-5 md:space-y-6 text-center lg:text-left">
                                     <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
                                     <p className="text-base md:text-lg text-[var(--text-muted)]">{project.description}</p>
+                                    {project.outcome && (
+                                        <div className="glass-panel p-5 border-l-4 border-[var(--primary-color)] text-left">
+                                            <div className="text-xs font-semibold uppercase tracking-wider text-[var(--primary-color)] mb-2">Resultado</div>
+                                            <p className="text-sm md:text-base text-[var(--text-main)] leading-relaxed">{project.outcome}</p>
+                                        </div>
+                                    )}
                                     
                                     <div className="space-y-3">
                                         {project.details.map((detail, idx) => (
