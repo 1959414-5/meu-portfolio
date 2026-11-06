@@ -47,7 +47,7 @@ function Hero() {
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="glass-panel rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-database text-lg"></div></div>
+                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]" style={{ color: "var(--primary-color)" }}><div className="icon-database text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">01</span>
                                         </div>
                                         <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Fontes de dados</h3>
@@ -55,7 +55,7 @@ function Hero() {
                                     </div>
                                     <div className="glass-panel rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-filter text-lg"></div></div>
+                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-settings text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">02</span>
                                         </div>
                                         <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Preparação</h3>
