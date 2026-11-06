@@ -18,6 +18,10 @@ function Header() {
 
         React.useEffect(() => {
             document.documentElement.setAttribute('data-theme', theme);
+            const themeColor = document.querySelector('meta[name="theme-color"]');
+            if (themeColor) {
+                themeColor.setAttribute('content', theme === 'light' ? '#f4f7fb' : '#0b1121');
+            }
             try {
                 localStorage.setItem('portfolio-theme', theme);
             } catch (error) {}
