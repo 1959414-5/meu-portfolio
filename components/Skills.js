@@ -137,7 +137,7 @@ function Skills() {
                     {
                         name: "DAX",
                         level: "Intermediário",
-                        icon: "icon-function-square",
+                        icon: "icon-square-function",
                         color: "text-amber-300",
                         details: [
                             "Criação de medidas",
@@ -278,7 +278,7 @@ function Skills() {
                 data-file="components/Skills.js"
             >
                 <style>{`
-                    .skill-card-icon { color: var(--primary-color); }
+                    .skill-card-icon, .skill-card-icon::before { color: var(--primary-color) !important; }
                     .skill-level-advanced { color: #047857; background: rgba(16,185,129,.09); border-color: rgba(16,185,129,.24); }
                     .skill-level-intermediate { color: #0369a1; background: rgba(14,165,233,.09); border-color: rgba(14,165,233,.24); }
                     .skill-level-basic { color: #92400e; background: rgba(245,158,11,.10); border-color: rgba(245,158,11,.25); }
