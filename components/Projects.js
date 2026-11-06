@@ -218,7 +218,8 @@ function Projects() {
                     </div>
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {additionalProjects.map(renderProjectCard)}
-                    </div>                    </div>
+                    </div>
+                    </div>
                 </div>
 
                 {/* Fullscreen Image Modal */}
