@@ -22,11 +22,10 @@ function Projects() {
                 id: "prod-dash",
                 title: "Dashboard de Produção",
                 image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg",
-                description: "Solução para descentralização de dados entre ERP e planilhas, melhorando a visibilidade operacional.",
-                outcome: "Centralizei informações antes dispersas em diversos relatórios do ERP em uma única solução de BI. Com dashboards interativos para pedidos, produção, prazos e análise comercial, ficou mais fácil consultar os indicadores sem precisar localizar e cruzar os relatórios manualmente.",
+                description: "Consolidação de informações de produção antes dispersas em relatórios do ERP, com acompanhamento operacional em uma única fonte.",
                 tags: ["Power BI", "ERP", "Eficiência"],
                 details: [
-                    "A empresa possuía dados descentralizados entre ERP e planilhas.",
+                    "As informações de produção e os indicadores estavam distribuídos em relatórios diferentes do ERP.",
                     "Dificuldade em monitorar produção e eficiência operacional.",
                     "Criação de um modelo de dados unificado no Power BI.",
                     "Rastreamento de KPIs e suporte à tomada de decisão."
@@ -112,67 +111,114 @@ function Projects() {
             }
         ];
 
+        const dashboardProjects = projects.slice(0, 4);
+        const additionalProjects = projects.slice(4);
+
+        const renderProjectCard = (project) => (
+            <article key={project.id} className="glass-panel overflow-hidden flex flex-col group hover:-translate-y-1 transition-transform duration-300">
+                <button
+                    type="button"
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100/70 p-2 text-left"
+                    onClick={() => setSelectedImage(project.image)}
+                    aria-label={`Ampliar imagem de ${project.title}`}
+                >
+                    <img src={project.image} alt={project.title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.02]" />
+                    <span className="absolute bottom-4 right-4 inline-flex items-center justify-center rounded-full bg-white/90 text-slate-800 p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                        <div className="icon-maximize text-lg"></div>
+                    </span>
+                </button>
+
+                <div className="p-5 md:p-6 flex flex-col flex-1 gap-4">
+                    <div>
+                        <h4 className="text-xl font-bold text-[var(--text-main)] mb-2">{project.title}</h4>
+                        <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed">{project.description}</p>
+                    </div>
+
+                    <details className="project-details border-t border-[var(--surface-border)] pt-3">
+                        <summary className="list-none flex items-center justify-between gap-3 cursor-pointer text-sm font-semibold text-[var(--text-main)] hover:text-[var(--primary-color)]">
+                            <span>Ver solução e detalhes</span>
+                            <span className="project-details-icon icon-plus text-[var(--primary-color)] transition-transform" aria-hidden="true"></span>
+                        </summary>
+                        <ul className="space-y-2 mt-4">
+                            {project.details.map((detail, idx) => (
+                                <li key={idx} className="flex gap-2 items-start text-sm text-[var(--text-muted)] leading-relaxed">
+                                    <div className="icon-circle-check text-[var(--primary-color)] mt-1 flex-shrink-0"></div>
+                                    <span>{detail}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
+
+                    <div className="flex flex-wrap gap-2 pt-1 mt-auto">
+                        {project.tags.map((tag, idx) => (
+                            <span key={idx} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </article>
+        );
+
         return (
             <section id="projetos" className="py-24 relative" data-name="projects" data-file="components/Projects.js">
                 <div className="container mx-auto px-6">
                     <h2 className="section-title">Projetos em Destaque</h2>
                     
-                    <div className="space-y-16">
-                        {projects.map((project, index) => (
-                            <div key={project.id} className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center`}>
-                                
-                                {/* Image Container */}
-                                <div className="w-full lg:w-1/2">
-                                    <div 
-                                        className="glass-panel aspect-[16/10] flex flex-col items-center justify-center p-2 border-2 border-[var(--surface-border)] group hover:border-[var(--primary-color)] transition-colors relative overflow-hidden rounded-xl cursor-pointer"
-                                        onClick={() => setSelectedImage(project.image)}
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-[var(--surface-color)] to-transparent opacity-50"></div>
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-contain rounded-lg z-10 relative group-hover:scale-[1.02] transition-transform duration-500" />
-                                        
-                                        {/* Hover Overlay for "Click to expand" */}
-                                        <div className="absolute inset-0 bg-[#0b1121] bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 z-20 flex items-center justify-center">
-                                            <div className="opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300 bg-[var(--primary-color)] text-white p-3 rounded-full shadow-lg">
-                                                <div className="icon-maximize text-xl"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="text-[10px] md:text-xs text-[var(--text-muted)] mt-4 italic flex items-center justify-center md:justify-start gap-1.5 opacity-80">
-                                        <div className="icon-shield-check text-[var(--primary-color)]"></div>
-                                        <span>Dados anonimizados para preservação de confidencialidade corporativa.</span>
-                                    </div>
+                    <div className="glass-panel p-6 md:p-8 mb-12 grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center border border-[var(--surface-border)]">
+                        <div>
+                            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-4">
+                                <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
+                                Resultado compartilhado · Dashboards de BI
+                            </span>
+                            <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] leading-tight mb-4">
+                                De relatórios dispersos a uma única fonte de consulta
+                            </h3>
+                            <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+                                Centralizei informações antes dispersas em diversos relatórios do ERP em uma única solução de BI. Com dashboards interativos para pedidos, produção, prazos e análise comercial, ficou mais fácil consultar os indicadores sem precisar localizar e cruzar os relatórios manualmente.
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">Estrutura técnica da solução</p>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
+                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">5</div>
+                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">módulos funcionais</div>
                                 </div>
-
-                                {/* Project Info */}
-                                <div className="w-full lg:w-1/2 space-y-5 md:space-y-6 text-center lg:text-left">
-                                    <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
-                                    <p className="text-base md:text-lg text-[var(--text-muted)]">{project.description}</p>
-                                    {project.outcome && (
-                                        <div className="glass-panel p-5 border-l-4 border-[var(--primary-color)] text-left">
-                                            <div className="text-xs font-semibold uppercase tracking-wider text-[var(--primary-color)] mb-2">Resultado</div>
-                                            <p className="text-sm md:text-base text-[var(--text-main)] leading-relaxed">{project.outcome}</p>
-                                        </div>
-                                    )}
-                                    
-                                    <div className="space-y-3">
-                                        {project.details.map((detail, idx) => (
-                                            <div key={idx} className="flex gap-3 items-start">
-                                                <div className="icon-circle-check text-[var(--primary-color)] mt-1 flex-shrink-0"></div>
-                                                <span className="text-[var(--text-main)] text-sm md:text-base">{detail}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-2 pt-4">
-                                        {project.tags.map((tag, idx) => (
-                                            <span key={idx} className="text-xs font-medium px-3 py-1 glass-panel text-[var(--primary-color)] rounded-full">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
+                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
+                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">184</div>
+                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">medidas DAX</div>
+                                </div>
+                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
+                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">~40</div>
+                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">tabelas de negócio</div>
+                                </div>
+                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
+                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">12</div>
+                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">relacionamentos no modelo</div>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                    </div>
+
+                    <div className="flex items-end justify-between gap-4 mb-5">
+                        <div>
+                            <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Dashboards e análises de BI</h3>
+                            <p className="text-sm text-[var(--text-muted)] mt-1">Pedidos, produção, prazos e inteligência comercial</p>
+                        </div>
+                        <span className="hidden sm:inline-flex rounded-full border border-[var(--surface-border)] px-3 py-1.5 text-xs text-[var(--text-muted)]">04 projetos</span>
+                    </div>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {dashboardProjects.map(renderProjectCard)}
+                    </div>
+
+                    <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Soluções digitais e automações</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Ferramentas para apoiar a operação e o controle do dia a dia</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {additionalProjects.map(renderProjectCard)}
+                    </div>
                     </div>
                 </div>
 
