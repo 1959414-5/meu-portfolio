@@ -122,6 +122,7 @@ function Projects() {
                 description: "Projeto demonstrativo de análise de dados com MySQL, baseado em uma indústria fictícia. Integra dados comerciais, compras, estoque e produção para gerar indicadores e apoiar decisões operacionais.",
                 tags: ["MySQL 8.4", "SQL", "Modelagem Relacional", "CTEs", "Window Functions", "Performance"],
                 repoUrl: "https://github.com/1959414-5/erp-industrial-analytics",
+                pageUrl: "projeto-erp-industrial-analytics.html",
                 details: [
                     "Modelagem relacional com tabelas de clientes, fornecedores, produtos, pedidos de venda e compra, estoque e ordens de produção.",
                     "Consultas analíticas com JOINs, agregações, CASE, CTEs, funções de janela e Views.",
@@ -166,6 +167,17 @@ function Projects() {
                             ))}
                         </ul>
                     </details>
+
+                    {project.pageUrl && (
+                        <a
+                            href={project.pageUrl}
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"
+                        >
+                            <div className="icon-book-open text-base" aria-hidden="true"></div>
+                            Ver estudo de caso completo
+                            <div className="icon-arrow-up-right text-xs" aria-hidden="true"></div>
+                        </a>
+                    )}
 
                     {project.repoUrl && (
                         <a
