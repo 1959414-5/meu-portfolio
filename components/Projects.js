@@ -114,6 +114,24 @@ function Projects() {
         const dashboardProjects = projects.slice(0, 4);
         const additionalProjects = projects.slice(4);
 
+        const sqlProjects = [
+            {
+                id: "erp-industrial-analytics",
+                title: "ERP Industrial Analytics",
+                image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/01_indicadores_comerciais.png",
+                description: "Projeto demonstrativo de análise de dados com MySQL, baseado em uma indústria fictícia. Integra dados comerciais, compras, estoque e produção para gerar indicadores e apoiar decisões operacionais.",
+                tags: ["MySQL 8.4", "SQL", "Modelagem Relacional", "CTEs", "Window Functions", "Performance"],
+                repoUrl: "https://github.com/1959414-5/erp-industrial-analytics",
+                details: [
+                    "Modelagem relacional com tabelas de clientes, fornecedores, produtos, pedidos de venda e compra, estoque e ordens de produção.",
+                    "Consultas analíticas com JOINs, agregações, CASE, CTEs, funções de janela e Views.",
+                    "Indicadores e análises de faturamento, pedidos, saldo e reposição de estoque, produção, qualidade e consumo de materiais.",
+                    "Análise de desempenho com EXPLAIN ANALYZE e comparação entre índices simples e compostos.",
+                    "Base de dados 100% fictícia, criada para estudo e demonstração, sem informações confidenciais de empresas."
+                ]
+            }
+        ];
+
         const renderProjectCard = (project) => (
             <article key={project.id} className="glass-panel overflow-hidden flex flex-col group hover:-translate-y-1 transition-transform duration-300">
                 <button
@@ -148,6 +166,19 @@ function Projects() {
                             ))}
                         </ul>
                     </details>
+
+                    {project.repoUrl && (
+                        <a
+                            href={project.repoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"
+                        >
+                            <div className="icon-github text-base" aria-hidden="true"></div>
+                            Ver código-fonte no GitHub
+                            <div className="icon-external-link text-xs" aria-hidden="true"></div>
+                        </a>
+                    )}
 
                     <div className="flex flex-wrap gap-2 pt-1 mt-auto">
                         {project.tags.map((tag, idx) => (
@@ -210,6 +241,14 @@ function Projects() {
                     </div>
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {dashboardProjects.map(renderProjectCard)}
+                    </div>
+
+                    <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Banco de dados e SQL</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Modelagem relacional, consultas analíticas e análise de performance com MySQL</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {sqlProjects.map(renderProjectCard)}
                     </div>
 
                     <div className="mt-16 mb-5">
