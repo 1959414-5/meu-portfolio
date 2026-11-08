@@ -68,7 +68,7 @@ function Skills() {
                                     {group.skills.map((skill) => (
                                         <span
                                             key={skill}
-                                            className="inline-flex items-center rounded-lg border border-[var(--surface-border)] bg-[var(--surface-color)] px-3 py-1.5 text-xs sm:text-[13px] font-medium text-[var(--text-main)]"
+                                            className="inner-card inline-flex items-center rounded-lg border border-[var(--surface-border)] px-3 py-1.5 text-xs sm:text-[13px] font-medium text-[var(--text-main)]"
                                         >
                                             {skill}
                                         </span>
