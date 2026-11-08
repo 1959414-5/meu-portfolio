@@ -103,17 +103,7 @@ function Experience() {
                                 </div>
                             </div>
 
-                            <div className="glass-panel p-6 mt-8 border border-[var(--primary-color)]/20">
-                                <div className="flex items-center gap-2 text-[var(--primary-color)] text-sm font-semibold mb-3">
-                                    <div className="icon-chart-no-axes-combined text-lg"></div>
-                                    Especialização e desenvolvimento
-                                </div>
-                                <h3 className="text-lg font-bold text-[var(--text-main)] mb-1">Análise de Dados com Power BI</h3>
-                                <p className="text-xs text-[var(--text-muted)] mb-3">Em andamento</p>
-                                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                                    Aprofundamento em preparação, modelagem, análise e visualização de dados para construção de indicadores e soluções de Business Intelligence.
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
