@@ -13,13 +13,13 @@ function Hero() {
                         <p className="text-lg text-[var(--text-muted)] max-w-lg leading-relaxed">
                             Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais à análise de dados, desenvolvendo dashboards e indicadores com Power BI e SQL.
                         </p>
-                        <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
-                            <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center gap-2">
+                        <div className="flex flex-wrap md:flex-nowrap gap-2 pt-4 justify-center md:justify-start">
+                            <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-sm px-4 py-3">
                                 <div className="icon-chart-bar"></div>Ver Projetos
                             </button>
-                            <button onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })} className="btn-outline">Ver experiência</button>
-                            <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="text-sm font-semibold text-[var(--primary-color)] hover:underline px-2">Contato</button>
-                            <a href="./curriculo-dados.pdf" download="curriculo-dados.pdf" className="btn-primary flex items-center justify-center gap-2 shadow-lg ring-2 ring-[var(--primary-color)]/30">
+                            <button onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })} className="btn-outline whitespace-nowrap text-sm px-4 py-3">Ver experiência</button>
+                            <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="text-sm font-semibold text-[var(--primary-color)] hover:underline px-2 whitespace-nowrap">Contato</button>
+                            <a href="./curriculo-dados.pdf" download="curriculo-dados.pdf" className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-sm px-4 py-3 shadow-lg ring-2 ring-[var(--primary-color)]/30">
                                 <div className="icon-download"></div>Baixar currículo
                             </a>
                         </div>
