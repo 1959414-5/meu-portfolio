@@ -19,7 +19,7 @@ function Hero() {
                             </button>
                             <button onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })} className="btn-outline">Ver experiência</button>
                             <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="text-sm font-semibold text-[var(--primary-color)] hover:underline px-2">Contato</button>
-                            <a href="./curriculo-dados.pdf" download="curriculo-dados.pdf" className="btn-outline flex items-center gap-2">
+                            <a href="./curriculo-dados.pdf" download="curriculo-dados.pdf" className="btn-primary flex items-center justify-center gap-2 shadow-lg ring-2 ring-[var(--primary-color)]/30">
                                 <div className="icon-download"></div>Baixar currículo
                             </a>
                         </div>
