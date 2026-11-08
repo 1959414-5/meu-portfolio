@@ -29,6 +29,7 @@
             color-scheme: light;
             --bg-color: #f4f7fb;
             --surface-color: rgba(255, 255, 255, 0.86);
+            --card-color: rgba(229, 240, 249, 0.96);
             --surface-border: rgba(148, 163, 184, 0.28);
             --primary-color: #087ea4;
             --primary-hover: #066886;
@@ -43,6 +44,7 @@
             color-scheme: dark;
             --bg-color: #0b1121;
             --surface-color: rgba(30, 41, 59, 0.58);
+            --card-color: rgba(24, 39, 60, 0.94);
             --surface-border: rgba(255, 255, 255, 0.10);
             --primary-color: #38bdf8;
             --primary-hover: #0ea5e9;
@@ -76,7 +78,7 @@
 
     @layer components {
         .glass-panel {
-            background-color: var(--surface-color);
+            background-color: var(--card-color);
             backdrop-filter: blur(16px);
             border: 1px solid var(--surface-border);
             border-radius: 1.25rem;
