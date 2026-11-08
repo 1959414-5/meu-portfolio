@@ -324,32 +324,32 @@ function Projects() {
 
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
                         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
-                            <div className="relative min-h-[260px] md:min-h-[360px] bg-slate-100/70 p-3 md:p-5">
-                                <button type="button" className="w-full h-full min-h-[230px] md:min-h-[320px] relative group" onClick={() => setSelectedImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
+                            <div className="relative bg-slate-100/70 p-3 md:p-4 flex flex-col justify-center">
+                                <button type="button" className="w-full aspect-[4/3] relative group" onClick={() => setSelectedImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
                                     <img src={sqlEvidence[sqlEvidenceIndex].image} alt={sqlEvidence[sqlEvidenceIndex].title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{sqlEvidence[sqlEvidenceIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
                                 </button>
                                 <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex - 1 + sqlEvidence.length) % sqlEvidence.length)} className="absolute left-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Evidência anterior"><span className="icon-chevron-left text-xl" aria-hidden="true"></span></button>
                                 <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex + 1) % sqlEvidence.length)} className="absolute right-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima evidência"><span className="icon-chevron-right text-xl" aria-hidden="true"></span></button>
-                                <div className="flex justify-center items-center gap-2 mt-3">
+                                <div className="flex justify-center items-center gap-2 mt-2">
                                     {sqlEvidence.map((item, index) => <button key={item.title} type="button" onClick={() => setSqlEvidenceIndex(index)} className={"h-2.5 rounded-full transition-all " + (sqlEvidenceIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-slate-400/40")} aria-label={"Ver " + item.title} />)}
                                     <span className="ml-2 text-xs text-slate-600 tabular-nums">{sqlEvidenceIndex + 1} / {sqlEvidence.length}</span>
                                 </div>
                             </div>
 
-                            <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
-                                <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-3">Projeto prático · MySQL</span>
-                                <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-4">{sqlProjects[0].title}</h4>
-                                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-6">
+                            <div className="p-5 md:p-7 lg:p-8 flex flex-col justify-start">
+                                <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-2">Projeto prático · MySQL</span>
+                                <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-3">{sqlProjects[0].title}</h4>
+                                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-4">
                                     Banco de dados relacional desenvolvido para simular a operação de uma indústria. O projeto conecta informações de vendas, compras, produtos, estoque e produção em uma base fictícia, permitindo praticar consultas SQL e construir análises próximas de problemas reais de negócio.
                                 </p>
-                                <div className="grid grid-cols-2 gap-3 mb-6">
+                                <div className="grid grid-cols-2 gap-3 mb-4">
                                     <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">11</div><div className="text-xs text-[var(--text-muted)] mt-1">tabelas relacionais</div></div>
                                     <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">2</div><div className="text-xs text-[var(--text-muted)] mt-1">views SQL</div></div>
                                 </div>
                                 <p className="text-sm font-semibold text-[var(--text-main)] mb-2">O que foi desenvolvido</p>
-                                <ul className="space-y-2 mb-6">
+                                <ul className="space-y-2 mb-4">
                                     {[
                                         "Modelagem relacional com chaves primárias, estrangeiras e restrições.",
                                         "Consultas com JOINs, agregações, CTEs e Window Functions.",
@@ -359,7 +359,7 @@ function Projects() {
                                         <li key={index} className="flex gap-2 items-start text-sm text-[var(--text-muted)] leading-relaxed"><span className="icon-check text-[var(--primary-color)] mt-1 flex-shrink-0" aria-hidden="true"></span><span>{item}</span></li>
                                     ))}
                                 </ul>
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2 mb-4">
                                     {sqlProjects[0].tags.map((tag) => <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>)}
                                 </div>
                                 <div className="flex flex-col sm:flex-row flex-wrap gap-4">
