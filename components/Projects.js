@@ -208,51 +208,107 @@ function Projects() {
                 <div className="container mx-auto px-6">
                     <h2 className="section-title">Projetos em Destaque</h2>
                     
-                    <div className="glass-panel p-6 md:p-8 mb-12 grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center border border-[var(--surface-border)]">
-                        <div>
-                            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-4">
-                                <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
-                                Projeto em destaque · Business Intelligence
-                            </span>
-                            <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] leading-tight mb-4">
-                                Uma visão integrada dos dados comerciais e operacionais
-                            </h3>
-                            <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
-                                Desenvolvimento de uma solução de BI para organizar informações comerciais e operacionais em dashboards interativos. O projeto reúne visões de pedidos, produção, prazos e análise comercial, conectando indicadores às rotinas de acompanhamento do negócio.
-                            </p>
-                        </div>
-                        <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">Escopo técnico</p>
-                            <div className="grid grid-cols-2 gap-3">
-                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
-                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">5</div>
-                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">módulos funcionais</div>
+                    <div className="glass-panel overflow-hidden mb-14 border border-[var(--surface-border)]">
+                        <div className="p-6 md:p-8 lg:p-10">
+                            <div className="flex flex-wrap items-center gap-2 mb-5">
+                                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)]">
+                                    <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
+                                    Case principal · Business Intelligence
+                                </span>
+                                <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 text-xs text-[var(--text-muted)]">Power BI</span>
+                            </div>
+
+                            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-start">
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-main)] leading-tight mb-5">
+                                        Dados comerciais e operacionais em uma visão integrada
+                                    </h3>
+                                    <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-3xl">
+                                        Solução de Business Intelligence desenvolvida para consolidar informações de diferentes rotinas do negócio e facilitar o acompanhamento de pedidos, produção, prazos e desempenho comercial.
+                                    </p>
+
+                                    <div className="grid sm:grid-cols-2 gap-5 mt-8">
+                                        <div>
+                                            <h4 className="text-sm font-bold text-[var(--text-main)] mb-2 flex items-center gap-2">
+                                                <span className="icon-target text-[var(--primary-color)]" aria-hidden="true"></span>
+                                                Contexto
+                                            </h4>
+                                            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                                                Informações distribuídas em relatórios e controles distintos dificultavam uma leitura conjunta dos indicadores comerciais e operacionais.
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-bold text-[var(--text-main)] mb-2 flex items-center gap-2">
+                                                <span className="icon-chart-no-axes-combined text-[var(--primary-color)]" aria-hidden="true"></span>
+                                                Solução
+                                            </h4>
+                                            <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                                                Organização dos dados em um modelo analítico no Power BI, com páginas e indicadores voltados ao acompanhamento de diferentes áreas.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
-                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">184</div>
-                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">medidas DAX</div>
-                                </div>
-                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
-                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">~40</div>
-                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">tabelas de negócio</div>
-                                </div>
-                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
-                                    <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">12</div>
-                                    <div className="text-xs md:text-sm text-[var(--text-muted)] mt-1">relacionamentos no modelo</div>
+
+                                <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-5 md:p-6">
+                                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">Escopo técnico</p>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4">
+                                            <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">5</div>
+                                            <div className="text-xs text-[var(--text-muted)] mt-1">páginas analíticas</div>
+                                        </div>
+                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4">
+                                            <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">184</div>
+                                            <div className="text-xs text-[var(--text-muted)] mt-1">medidas DAX</div>
+                                        </div>
+                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4 col-span-2">
+                                            <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">~40</div>
+                                            <div className="text-xs text-[var(--text-muted)] mt-1">tabelas de negócio no modelo</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 mt-5">
+                                        {["Power BI", "DAX", "Power Query", "Modelagem de Dados", "Google Sheets"].map((tag) => (
+                                            <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] text-[var(--primary-color)]">{tag}</span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="flex items-end justify-between gap-4 mb-5">
-                        <div>
-                            <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Solução de BI · Comercial e Operações</h3>
-                            <p className="text-sm text-[var(--text-muted)] mt-1">Quatro perspectivas complementares de acompanhamento</p>
+                        <div className="border-t border-[var(--surface-border)] bg-[var(--bg-color)]/40 p-4 md:p-6">
+                            <div className="flex flex-wrap items-end justify-between gap-3 mb-4">
+                                <div>
+                                    <h4 className="text-lg md:text-xl font-bold text-[var(--text-main)]">Quatro perspectivas da solução</h4>
+                                    <p className="text-sm text-[var(--text-muted)] mt-1">Selecione uma imagem para ampliar a visualização.</p>
+                                </div>
+                                <span className="text-xs text-[var(--text-muted)]">Galeria do projeto</span>
+                            </div>
+
+                            <button
+                                type="button"
+                                className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group"
+                                onClick={() => setSelectedImage(dashboardProjects[0].image)}
+                                aria-label={`Ampliar imagem de ${dashboardProjects[0].title}`}
+                            >
+                                <img src={dashboardProjects[0].image} alt={dashboardProjects[0].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
+                                <span className="absolute bottom-3 left-3 rounded-lg bg-slate-950/75 text-white text-xs md:text-sm px-3 py-2">{dashboardProjects[0].title}</span>
+                                <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                            </button>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+                                {dashboardProjects.slice(1).map((project) => (
+                                    <button
+                                        key={project.id}
+                                        type="button"
+                                        className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100/70 group text-left"
+                                        onClick={() => setSelectedImage(project.image)}
+                                        aria-label={`Ampliar imagem de ${project.title}`}
+                                    >
+                                        <img src={project.image} alt={project.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
+                                        <span className="absolute inset-x-0 bottom-0 bg-slate-950/75 text-white text-xs px-3 py-2">{project.title}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                        <span className="hidden sm:inline-flex rounded-full border border-[var(--surface-border)] px-3 py-1.5 text-xs text-[var(--text-muted)]">04 visões da solução</span>
-                    </div>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        {dashboardProjects.map(renderProjectCard)}
                     </div>
 
                     <div className="mt-16 mb-5">
