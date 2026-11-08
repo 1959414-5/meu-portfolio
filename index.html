@@ -30,6 +30,7 @@
             --bg-color: #eaf2f9;
             --surface-color: rgba(255, 255, 255, 0.96);
             --card-color: rgba(255, 255, 255, 0.96);
+            --inner-card-color: #eaf2f9;
             --surface-border: rgba(148, 163, 184, 0.28);
             --primary-color: #087ea4;
             --primary-hover: #066886;
@@ -45,6 +46,7 @@
             --bg-color: #0b1121;
             --surface-color: rgba(30, 41, 59, 0.58);
             --card-color: rgba(24, 39, 60, 0.94);
+            --inner-card-color: rgba(11, 17, 33, 0.48);
             --surface-border: rgba(255, 255, 255, 0.10);
             --primary-color: #38bdf8;
             --primary-hover: #0ea5e9;
@@ -77,6 +79,10 @@
     }
 
     @layer components {
+        .inner-card {
+            background-color: var(--inner-card-color);
+            transition: background-color 200ms ease;
+        }
         .glass-panel {
             background-color: var(--card-color);
             backdrop-filter: blur(16px);
