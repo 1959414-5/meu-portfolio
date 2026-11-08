@@ -2,6 +2,7 @@ function Projects() {
     try {
         const [selectedImage, setSelectedImage] = React.useState(null);
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
+        const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
 
         // Close modal with ESC key
         React.useEffect(() => {
@@ -114,6 +115,15 @@ function Projects() {
 
         const dashboardProjects = projects.slice(0, 4);
         const additionalProjects = projects.slice(4);
+
+        const sqlEvidence = [
+            { title: "Indicadores Comerciais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/01_indicadores_comerciais.png" },
+            { title: "Análise de Pedidos", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/02_analise_pedidos.png" },
+            { title: "Saldo de Estoque", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/03_saldo_estoque.png" },
+            { title: "Necessidade de Materiais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/04_necessidade_materiais.png" },
+            { title: "Indicadores de Produção", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/05_indicadores_producao.png" },
+            { title: "Consumo de Materiais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/06_consumo_materiais.png" }
+        ];
 
         const sqlProjects = [
             {
@@ -288,7 +298,7 @@ function Projects() {
                             <div className="relative">
                                 <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => setSelectedImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
                                     <img src={dashboardProjects[dashboardIndex].image} alt={dashboardProjects[dashboardIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
-                                    <span className="absolute bottom-3 left-3 rounded-lg bg-slate-950/75 text-white text-xs md:text-sm px-3 py-2">{dashboardProjects[dashboardIndex].title}</span>
+                                    <span className="absolute bottom-3 left-3 rounded-lg text-xs md:text-sm px-3 py-2 font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{dashboardProjects[dashboardIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
                                 </button>
                                 <button type="button" onClick={() => setDashboardIndex((dashboardIndex - 1 + dashboardProjects.length) % dashboardProjects.length)} className="absolute left-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Imagem anterior">
@@ -314,10 +324,20 @@ function Projects() {
 
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
                         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
-                            <button type="button" className="relative min-h-[260px] md:min-h-[360px] bg-slate-100/70 p-3 md:p-5 group" onClick={() => setSelectedImage(sqlProjects[0].image)} aria-label="Ampliar evidência do projeto ERP Industrial Analytics">
-                                <img src={sqlProjects[0].image} alt="Painel de indicadores comerciais do projeto ERP Industrial Analytics" className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
-                                <span className="absolute bottom-6 right-6 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
-                            </button>
+                            <div className="relative min-h-[260px] md:min-h-[360px] bg-slate-100/70 p-3 md:p-5">
+                                <button type="button" className="w-full h-full min-h-[230px] md:min-h-[320px] relative group" onClick={() => setSelectedImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
+                                    <img src={sqlEvidence[sqlEvidenceIndex].image} alt={sqlEvidence[sqlEvidenceIndex].title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
+                                    <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{sqlEvidence[sqlEvidenceIndex].title}</span>
+                                    <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                                </button>
+                                <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex - 1 + sqlEvidence.length) % sqlEvidence.length)} className="absolute left-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Evidência anterior"><span className="icon-chevron-left text-xl" aria-hidden="true"></span></button>
+                                <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex + 1) % sqlEvidence.length)} className="absolute right-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima evidência"><span className="icon-chevron-right text-xl" aria-hidden="true"></span></button>
+                                <div className="flex justify-center items-center gap-2 mt-3">
+                                    {sqlEvidence.map((item, index) => <button key={item.title} type="button" onClick={() => setSqlEvidenceIndex(index)} className={"h-2.5 rounded-full transition-all " + (sqlEvidenceIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-slate-400/40")} aria-label={"Ver " + item.title} />)}
+                                    <span className="ml-2 text-xs text-slate-600 tabular-nums">{sqlEvidenceIndex + 1} / {sqlEvidence.length}</span>
+                                </div>
+                            </div>
+
                             <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
                                 <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-3">Projeto prático · MySQL</span>
                                 <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-4">{sqlProjects[0].title}</h4>
