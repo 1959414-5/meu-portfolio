@@ -278,15 +278,15 @@ function Projects() {
                                 <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-5 md:p-6">
                                     <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">Escopo técnico</p>
                                     <div className="grid grid-cols-2 gap-3">
-                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4">
+                                        <div className="rounded-xl inner-card border border-[var(--surface-border)] p-4">
                                             <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">5</div>
                                             <div className="text-xs text-[var(--text-muted)] mt-1">páginas analíticas</div>
                                         </div>
-                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4">
+                                        <div className="rounded-xl inner-card border border-[var(--surface-border)] p-4">
                                             <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">184</div>
                                             <div className="text-xs text-[var(--text-muted)] mt-1">medidas DAX</div>
                                         </div>
-                                        <div className="rounded-xl bg-[var(--surface-color)] border border-[var(--surface-border)] p-4 col-span-2">
+                                        <div className="rounded-xl inner-card border border-[var(--surface-border)] p-4 col-span-2">
                                             <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">~40</div>
                                             <div className="text-xs text-[var(--text-muted)] mt-1">tabelas de negócio no modelo</div>
                                         </div>
@@ -360,8 +360,8 @@ function Projects() {
                                     Banco de dados relacional desenvolvido para simular a operação de uma indústria. O projeto conecta informações de vendas, compras, produtos, estoque e produção em uma base fictícia, permitindo praticar consultas SQL e construir análises próximas de problemas reais de negócio.
                                 </p>
                                 <div className="grid grid-cols-2 gap-3 mb-4">
-                                    <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">11</div><div className="text-xs text-[var(--text-muted)] mt-1">tabelas relacionais</div></div>
-                                    <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">2</div><div className="text-xs text-[var(--text-muted)] mt-1">views SQL</div></div>
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">11</div><div className="text-xs text-[var(--text-muted)] mt-1">tabelas relacionais</div></div>
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">2</div><div className="text-xs text-[var(--text-muted)] mt-1">views SQL</div></div>
                                 </div>
                                 <p className="text-sm font-semibold text-[var(--text-main)] mb-2">O que foi desenvolvido</p>
                                 <ul className="space-y-2 mb-4">
