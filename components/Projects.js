@@ -38,10 +38,10 @@ function Projects() {
                 description: "Monitoramento operacional para identificar atrasos e melhorar a gestão de entregas.",
                 tags: ["Power BI", "Logística", "Gestão"],
                 details: [
-                    "Dificuldade em identificar pedidos atrasados em tempo real.",
-                    "Necessidade de monitoramento operacional contínuo.",
-                    "Criação de painel para rastreamento de status de pedidos.",
-                    "Centralização dos dados de produção em um único painel."
+                    "Necessidade de visualizar pedidos em aberto e acompanhar prazos.",
+                    "Organização dos pedidos por status e situação de entrega.",
+                    "Construção de indicadores para destacar atrasos e prioridades.",
+                    "Visão consolidada para apoiar o acompanhamento operacional."
                 ]
             },
             {
@@ -51,10 +51,10 @@ function Projects() {
                 description: "Análise de métricas produtivas para identificar gargalos e produtividade.",
                 tags: ["Power BI", "Métricas", "Operação"],
                 details: [
-                    "Falta de indicadores estratégicos operacionais estruturados.",
-                    "Dashboard desenvolvido com foco em eficiência e análise.",
-                    "Melhor visibilidade de gargalos na linha de produção.",
-                    "Aumento da capacidade analítica dos gestores de fábrica."
+                    "Necessidade de acompanhar indicadores de desempenho da produção.",
+                    "Organização das métricas em uma visão analítica.",
+                    "Acompanhamento de produtividade e identificação de pontos de atenção.",
+                    "Indicadores apresentados para apoiar a análise da operação."
                 ]
             },
             {
@@ -77,10 +77,10 @@ function Projects() {
                 description: "Sistema web para planejamento e acompanhamento de rotas de entrega, com visualização geográfica em tempo real.",
                 tags: ["JavaScript", "Leaflet.js", "Google Apps Script", "Logística"],
                 details: [
-                    "Entregas e rotas eram controladas manualmente, sem visão geográfica consolidada.",
-                    "Desenvolvimento de mapa interativo (Leaflet.js/MapLibre) para planejamento de rotas.",
-                    "Interfaces dedicadas para coordenador, motorista e painel somente leitura para vendas.",
-                    "Memória de endereço por cliente e otimizações de performance no backend."
+                    "Necessidade de organizar entregas e consultar rotas em uma visão geográfica.",
+                    "Desenvolvimento de mapa interativo com Leaflet.js para apoiar o planejamento.",
+                    "Interfaces para coordenação, motoristas e consulta pela equipe de vendas.",
+                    "Cadastro e reutilização de endereços de clientes."
                 ]
             },
             {
@@ -90,10 +90,10 @@ function Projects() {
                 description: "Sistema de rastreamento de chapas metálicas, do estoque até a produção, com totem, painel de TV e conferência.",
                 tags: ["Google Apps Script", "Google Sheets", "QR Code", "PCP"],
                 details: [
-                    "Falta de rastreabilidade da movimentação de chapas metálicas entre estoque e produção.",
-                    "Totem (kiosk) para registro das movimentações no chão de fábrica.",
-                    "Painel de TV com status em tempo real e página de conferência para o PCP.",
-                    "Estrutura em Google Sheets + Apps Script para atualização automática dos dados."
+                    "Necessidade de registrar a movimentação de chapas entre estoque e produção.",
+                    "Interface de totem para registrar movimentações no chão de fábrica.",
+                    "Painel de acompanhamento e página de conferência para o PCP.",
+                    "Integração com Google Sheets e Apps Script."
                 ]
             },
             {
@@ -103,10 +103,10 @@ function Projects() {
                 description: "Controle de estoque de peças com geração de etiquetas térmicas e leitura por QR Code.",
                 tags: ["Google Apps Script", "Google Sheets", "QR Code", "GitHub Pages"],
                 details: [
-                    "Dificuldade em rastrear a movimentação e a localização de peças em estoque.",
-                    "Arquitetura em Google Sheets + Apps Script + GitHub Pages para controle centralizado.",
-                    "Impressão de etiquetas térmicas para identificação dos itens (Argox OS-214 Plus, 203 dpi).",
-                    "Leitura via QR Code para agilizar consultas e solicitações de peças."
+                    "Necessidade de identificar peças e acompanhar sua movimentação no estoque.",
+                    "Aplicação web integrada ao Google Sheets e Apps Script.",
+                    "Geração de etiquetas térmicas para identificação dos itens.",
+                    "Leitura de QR Code para consulta e solicitação de peças."
                 ]
             }
         ];
@@ -212,17 +212,17 @@ function Projects() {
                         <div>
                             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-4">
                                 <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
-                                Resultado compartilhado · Dashboards de BI
+                                Projeto em destaque · Business Intelligence
                             </span>
                             <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] leading-tight mb-4">
-                                De relatórios dispersos a uma única fonte de consulta
+                                Uma visão integrada dos dados comerciais e operacionais
                             </h3>
                             <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
-                                Centralizei informações antes dispersas em diversos relatórios do ERP em uma única solução de BI. Com dashboards interativos para pedidos, produção, prazos e análise comercial, ficou mais fácil consultar os indicadores sem precisar localizar e cruzar os relatórios manualmente.
+                                Desenvolvimento de uma solução de BI para organizar informações comerciais e operacionais em dashboards interativos. O projeto reúne visões de pedidos, produção, prazos e análise comercial, conectando indicadores às rotinas de acompanhamento do negócio.
                             </p>
                         </div>
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">Estrutura técnica da solução</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-3">Escopo técnico</p>
                             <div className="grid grid-cols-2 gap-3">
                                 <div className="rounded-2xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4">
                                     <div className="text-2xl md:text-3xl font-bold text-[var(--primary-color)]">5</div>
@@ -246,10 +246,10 @@ function Projects() {
 
                     <div className="flex items-end justify-between gap-4 mb-5">
                         <div>
-                            <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Dashboards e análises de BI</h3>
-                            <p className="text-sm text-[var(--text-muted)] mt-1">Pedidos, produção, prazos e inteligência comercial</p>
+                            <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Solução de BI · Comercial e Operações</h3>
+                            <p className="text-sm text-[var(--text-muted)] mt-1">Quatro perspectivas complementares de acompanhamento</p>
                         </div>
-                        <span className="hidden sm:inline-flex rounded-full border border-[var(--surface-border)] px-3 py-1.5 text-xs text-[var(--text-muted)]">04 projetos</span>
+                        <span className="hidden sm:inline-flex rounded-full border border-[var(--surface-border)] px-3 py-1.5 text-xs text-[var(--text-muted)]">04 visões da solução</span>
                     </div>
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {dashboardProjects.map(renderProjectCard)}
@@ -264,8 +264,8 @@ function Projects() {
                     </div>
 
                     <div className="mt-16 mb-5">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Soluções digitais e automações</h3>
-                        <p className="text-sm text-[var(--text-muted)] mt-1">Ferramentas para apoiar a operação e o controle do dia a dia</p>
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Aplicações e automações desenvolvidas para necessidades operacionais</p>
                     </div>
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {additionalProjects.map(renderProjectCard)}
