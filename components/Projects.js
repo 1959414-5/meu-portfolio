@@ -1,6 +1,7 @@
 function Projects() {
     try {
         const [selectedImage, setSelectedImage] = React.useState(null);
+        const [dashboardIndex, setDashboardIndex] = React.useState(0);
 
         // Close modal with ESC key
         React.useEffect(() => {
@@ -283,30 +284,25 @@ function Projects() {
                                 <span className="text-xs text-[var(--text-muted)]">Galeria do projeto</span>
                             </div>
 
-                            <button
-                                type="button"
-                                className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group"
-                                onClick={() => setSelectedImage(dashboardProjects[0].image)}
-                                aria-label={`Ampliar imagem de ${dashboardProjects[0].title}`}
-                            >
-                                <img src={dashboardProjects[0].image} alt={dashboardProjects[0].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
-                                <span className="absolute bottom-3 left-3 rounded-lg bg-slate-950/75 text-white text-xs md:text-sm px-3 py-2">{dashboardProjects[0].title}</span>
-                                <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
-                            </button>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
-                                {dashboardProjects.slice(1).map((project) => (
-                                    <button
-                                        key={project.id}
-                                        type="button"
-                                        className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100/70 group text-left"
-                                        onClick={() => setSelectedImage(project.image)}
-                                        aria-label={`Ampliar imagem de ${project.title}`}
-                                    >
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
-                                        <span className="absolute inset-x-0 bottom-0 bg-slate-950/75 text-white text-xs px-3 py-2">{project.title}</span>
-                                    </button>
+                            <div className="relative">
+                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => setSelectedImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
+                                    <img src={dashboardProjects[dashboardIndex].image} alt={dashboardProjects[dashboardIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
+                                    <span className="absolute bottom-3 left-3 rounded-lg bg-slate-950/75 text-white text-xs md:text-sm px-3 py-2">{dashboardProjects[dashboardIndex].title}</span>
+                                    <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                                </button>
+                                <button type="button" onClick={() => setDashboardIndex((dashboardIndex - 1 + dashboardProjects.length) % dashboardProjects.length)} className="absolute left-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Imagem anterior">
+                                    <span className="icon-chevron-left text-xl" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" onClick={() => setDashboardIndex((dashboardIndex + 1) % dashboardProjects.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima imagem">
+                                    <span className="icon-chevron-right text-xl" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div className="flex items-center justify-center gap-2 mt-4">
+                                {dashboardProjects.map((project, index) => (
+                                    <button key={project.id} type="button" onClick={() => setDashboardIndex(index)} className={"h-2.5 rounded-full transition-all " + (dashboardIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-[var(--surface-border)]")} aria-label={"Ver " + project.title} aria-current={dashboardIndex === index ? "true" : undefined} />
                                 ))}
+                                <span className="ml-2 text-xs text-[var(--text-muted)] tabular-nums">{dashboardIndex + 1} / {dashboardProjects.length}</span>
                             </div>
                         </div>
                     </div>
@@ -315,9 +311,44 @@ function Projects() {
                         <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Banco de dados e SQL</h3>
                         <p className="text-sm text-[var(--text-muted)] mt-1">Modelagem relacional, consultas analíticas e análise de performance com MySQL</p>
                     </div>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        {sqlProjects.map(renderProjectCard)}
-                    </div>
+
+                    <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
+                        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
+                            <button type="button" className="relative min-h-[260px] md:min-h-[360px] bg-slate-100/70 p-3 md:p-5 group" onClick={() => setSelectedImage(sqlProjects[0].image)} aria-label="Ampliar evidência do projeto ERP Industrial Analytics">
+                                <img src={sqlProjects[0].image} alt="Painel de indicadores comerciais do projeto ERP Industrial Analytics" className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
+                                <span className="absolute bottom-6 right-6 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                            </button>
+                            <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                                <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)] mb-3">Projeto prático · MySQL</span>
+                                <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-4">{sqlProjects[0].title}</h4>
+                                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-6">
+                                    Banco de dados relacional desenvolvido para simular a operação de uma indústria. O projeto conecta informações de vendas, compras, produtos, estoque e produção em uma base fictícia, permitindo praticar consultas SQL e construir análises próximas de problemas reais de negócio.
+                                </p>
+                                <div className="grid grid-cols-2 gap-3 mb-6">
+                                    <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">11</div><div className="text-xs text-[var(--text-muted)] mt-1">tabelas relacionais</div></div>
+                                    <div className="rounded-xl border border-[var(--surface-border)] bg-[var(--bg-color)]/70 p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">2</div><div className="text-xs text-[var(--text-muted)] mt-1">views SQL</div></div>
+                                </div>
+                                <p className="text-sm font-semibold text-[var(--text-main)] mb-2">O que foi desenvolvido</p>
+                                <ul className="space-y-2 mb-6">
+                                    {[
+                                        "Modelagem relacional com chaves primárias, estrangeiras e restrições.",
+                                        "Consultas com JOINs, agregações, CTEs e Window Functions.",
+                                        "Views para organizar consultas analíticas de faturamento e estoque.",
+                                        "Testes de desempenho com EXPLAIN ANALYZE e análise de índices."
+                                    ].map((item, index) => (
+                                        <li key={index} className="flex gap-2 items-start text-sm text-[var(--text-muted)] leading-relaxed"><span className="icon-check text-[var(--primary-color)] mt-1 flex-shrink-0" aria-hidden="true"></span><span>{item}</span></li>
+                                    ))}
+                                </ul>
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {sqlProjects[0].tags.map((tag) => <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>)}
+                                </div>
+                                <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                                    <a href={sqlProjects[0].pageUrl} className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo</a>
+                                    <a href={sqlProjects[0].repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-github" aria-hidden="true"></span>Explorar repositório no GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
                     <div className="mt-16 mb-5">
                         <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
