@@ -3,11 +3,14 @@ function Projects() {
         const [selectedImage, setSelectedImage] = React.useState(null);
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
         const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
+        const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
         // Close modal with ESC key
         React.useEffect(() => {
             const handleKeyDown = (e) => {
                 if (e.key === 'Escape') setSelectedImage(null);
+                if (e.key === 'ArrowLeft') setModalImageIndex((current) => (current - 1 + modalImages.length) % modalImages.length);
+                if (e.key === 'ArrowRight') setModalImageIndex((current) => (current + 1) % modalImages.length);
             };
             if (selectedImage) {
                 window.addEventListener('keydown', handleKeyDown);
@@ -144,12 +147,24 @@ function Projects() {
             }
         ];
 
+        const modalImages = [...new Map([
+            ...dashboardProjects,
+            ...sqlEvidence,
+            ...additionalProjects
+        ].map((project) => [project.image, { image: project.image, title: project.title }])).values()];
+
+        const openImage = (image) => {
+            const index = modalImages.findIndex((item) => item.image === image);
+            setModalImageIndex(index >= 0 ? index : 0);
+            setSelectedImage(image);
+        };
+
         const renderProjectCard = (project) => (
             <article key={project.id} className="glass-panel overflow-hidden flex flex-col group hover:-translate-y-1 transition-transform duration-300">
                 <button
                     type="button"
                     className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100/70 p-2 text-left"
-                    onClick={() => setSelectedImage(project.image)}
+                    onClick={() => openImage(project.image)}
                     aria-label={`Ampliar imagem de ${project.title}`}
                 >
                     <img src={project.image} alt={project.title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.02]" />
@@ -296,7 +311,7 @@ function Projects() {
 
 
                             <div className="relative">
-                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => setSelectedImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
+                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => openImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
                                     <img src={dashboardProjects[dashboardIndex].image} alt={dashboardProjects[dashboardIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg text-xs md:text-sm px-3 py-2 font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{dashboardProjects[dashboardIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
@@ -325,7 +340,7 @@ function Projects() {
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
                         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
                             <div className="relative bg-slate-100/70 p-3 md:p-4 flex flex-col justify-center">
-                                <button type="button" className="w-full aspect-[4/3] relative group" onClick={() => setSelectedImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
+                                <button type="button" className="w-full aspect-[4/3] relative group" onClick={() => openImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
                                     <img src={sqlEvidence[sqlEvidenceIndex].image} alt={sqlEvidence[sqlEvidenceIndex].title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{sqlEvidence[sqlEvidenceIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
@@ -394,12 +409,21 @@ function Projects() {
                             </button>
                         </div>
                         
-                        <img 
-                            src={selectedImage} 
-                            className="max-w-full max-h-full object-contain rounded-lg animate-slide-up shadow-2xl" 
-                            alt="Visualização em tela cheia" 
-                            onClick={(e) => e.stopPropagation()}
-                        />
+                        <div className="relative flex items-center justify-center w-full h-full" onClick={(e) => e.stopPropagation()}>
+                            <button type="button" onClick={() => setModalImageIndex((modalImageIndex - 1 + modalImages.length) % modalImages.length)} className="absolute left-1 md:left-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Imagem anterior">
+                                <span className="icon-chevron-left text-2xl" aria-hidden="true"></span>
+                            </button>
+                            <div className="flex flex-col items-center justify-center max-w-[85vw] max-h-[88vh]">
+                                <img src={modalImages[modalImageIndex]?.image || selectedImage} className="max-w-full max-h-[78vh] object-contain rounded-lg animate-slide-up shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} />
+                                <div className="mt-3 text-center text-sm text-white font-medium">
+                                    {modalImages[modalImageIndex]?.title || ""}
+                                    <span className="ml-3 text-white/70 tabular-nums">{modalImageIndex + 1} / {modalImages.length}</span>
+                                </div>
+                            </div>
+                            <button type="button" onClick={() => setModalImageIndex((modalImageIndex + 1) % modalImages.length)} className="absolute right-1 md:right-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Próxima imagem">
+                                <span className="icon-chevron-right text-2xl" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
                 )}
             </section>
