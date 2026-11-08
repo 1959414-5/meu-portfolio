@@ -5,6 +5,7 @@ function Hero() {
                 <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center flex-1">
                     <div className="space-y-6 md:space-y-8 z-10 text-center md:text-left mt-8 md:mt-0">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados & Business Intelligence</div>
+                        <p className="text-lg sm:text-xl font-semibold tracking-wide text-[var(--text-main)] mb-2">Bárbara Cabral Paschoalin</p>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
                             Analista de Dados <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">& Business Intelligence</span>
