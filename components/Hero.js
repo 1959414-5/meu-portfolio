@@ -19,6 +19,9 @@ function Hero() {
                             </button>
                             <button onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })} className="btn-outline">Ver experiência</button>
                             <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="text-sm font-semibold text-[var(--primary-color)] hover:underline px-2">Contato</button>
+                            <a href="./curriculo-dados.pdf" download="curriculo-dados.pdf" className="btn-outline flex items-center gap-2">
+                                <div className="icon-download"></div>Baixar currículo
+                            </a>
                         </div>
                         <div className="flex flex-wrap gap-2 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start">
                             {["Power BI", "SQL / MySQL", "DAX", "Power Query"].map((skill) => (
