@@ -4,29 +4,25 @@ function Hero() {
             <section id="hero" className="min-h-screen flex flex-col justify-center pt-28 pb-12 md:pt-20 md:pb-0 relative overflow-hidden" data-name="hero" data-file="components/Hero.js">
                 <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center flex-1">
                     <div className="space-y-6 md:space-y-8 z-10 text-center md:text-left mt-8 md:mt-0">
-                        <div className="inline-block px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-medium mb-2 md:mb-4">Maringá - PR | Analista de Dados & BI</div>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados & Business Intelligence</div>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-                            Transformando Dados em <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">Decisões Estratégicas</span>
+                            Analista de Dados <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">& Business Intelligence</span>
                         </h1>
                         <p className="text-lg text-[var(--text-muted)] max-w-lg leading-relaxed">
-                            Olá, sou a Bárbara Cabral Paschoalin. Trago minha experiência operacional na indústria para o mundo dos dados, construindo soluções em Power BI que otimizam processos e geram insights valiosos para o negócio.
+                            Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais à análise de dados, desenvolvendo dashboards e indicadores com Power BI e SQL.
                         </p>
                         <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
                             <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center gap-2">
                                 <div className="icon-chart-bar"></div>Ver Projetos
                             </button>
-                            <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="btn-outline">Entrar em Contato</button>
+                            <button onClick={() => document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' })} className="btn-outline">Ver experiência</button>
+                            <button onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })} className="text-sm font-semibold text-[var(--primary-color)] hover:underline px-2">Contato</button>
                         </div>
-                        <div className="flex gap-6 pt-7 border-t border-[var(--surface-border)] justify-center md:justify-start">
-                            <div>
-                                <div className="text-2xl font-bold text-[var(--text-main)]">Power BI</div>
-                                <div className="text-sm text-[var(--text-muted)]">Dashboards Dinâmicos</div>
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold text-[var(--text-main)]">Analytics</div>
-                                <div className="text-sm text-[var(--text-muted)]">Indicadores Estratégicos</div>
-                            </div>
+                        <div className="flex flex-wrap gap-2 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start">
+                            {["Power BI", "SQL / MySQL", "DAX", "Power Query"].map((skill) => (
+                                <span key={skill} className="inner-card border border-[var(--surface-border)] rounded-full px-3 py-1.5 text-xs font-semibold text-[var(--text-main)]">{skill}</span>
+                            ))}
                         </div>
                     </div>
 
