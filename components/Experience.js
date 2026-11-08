@@ -8,9 +8,10 @@ function Experience() {
                 description: [
                     "Elaboração de orçamentos, lançamento e acompanhamento de pedidos de venda.",
                     "Consulta, conferência e atualização de informações comerciais no ERP industrial.",
-                    "Apoio ao atendimento de clientes e cobertura de rotinas de faturamento e suporte à equipe de vendas.",
-                    "Contato diário com informações de pedidos, prazos e processos que conectam a área comercial à operação."
-                ]
+                    "Atendimento a clientes e apoio às rotinas de faturamento e à equipe de vendas.",
+                    "Acompanhamento de informações de pedidos e prazos, em contato direto com os processos da operação."
+                ],
+                skills: ["ERP industrial", "Pedidos e orçamentos", "Processos comerciais"]
             },
             {
                 role: "Programadora CNC",
@@ -19,8 +20,9 @@ function Experience() {
                 description: [
                     "Programação de máquinas CNC para operações de corte de chapas metálicas.",
                     "Análise de encaixe e aproveitamento de material conforme as especificações dos serviços.",
-                    "Interpretação de desenhos técnicos e interface direta com a rotina de produção."
-                ]
+                    "Interpretação de desenhos técnicos e contato direto com a rotina de produção."
+                ],
+                skills: ["Programação CNC", "Desenho técnico", "Produção industrial"]
             },
             {
                 role: "Jovem Aprendiz",
@@ -29,7 +31,8 @@ function Experience() {
                 description: [
                     "Apoio às rotinas administrativas e à organização de informações.",
                     "Contato inicial com processos de pedidos e atividades de suporte à operação."
-                ]
+                ],
+                skills: ["Rotinas administrativas", "Organização", "Suporte operacional"]
             }
         ];
 
@@ -44,11 +47,11 @@ function Experience() {
                             </div>
                             <p className="text-sm text-[var(--text-muted)] mb-9 ml-10">Trajetória na indústria · 2018 – Atual</p>
 
-                            <div className="relative border-l-2 border-[var(--surface-border)] ml-3 md:ml-4 space-y-7 pb-4">
+                            <div className="relative border-l-2 border-[var(--surface-border)] ml-3 md:ml-4 space-y-7 pb-5">
                                 {experiences.map((experience, index) => (
                                     <div className="relative pl-6 md:pl-8" key={experience.role}>
                                         <div className={"absolute w-4 h-4 rounded-full -left-[9px] top-1 border-2 border-[var(--bg-color)] " + (experience.current ? "bg-[var(--primary-color)] shadow-[0_0_10px_var(--primary-color)]" : "bg-[var(--surface-border)]")}></div>
-                                        <article className="glass-panel p-5 md:p-6 hover:border-[var(--primary-color)] transition-colors">
+                                        <article className={"glass-panel p-5 md:p-6 transition-colors " + (experience.current ? "border border-[var(--primary-color)]/40 shadow-sm" : "hover:border-[var(--primary-color)]")}>
                                             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                                                 <h3 className="text-lg md:text-xl font-bold text-[var(--text-main)]">{experience.role}</h3>
                                                 {experience.current && (
@@ -64,18 +67,23 @@ function Experience() {
                                                     </li>
                                                 ))}
                                             </ul>
+                                            <div className="flex flex-wrap gap-2 mt-4">
+                                                {experience.skills.map((skill) => (
+                                                    <span key={skill} className="inner-card text-xs text-[var(--text-muted)] rounded-full px-3 py-1">{skill}</span>
+                                                ))}
+                                            </div>
                                         </article>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="glass-panel p-5 md:p-6 mt-2 border border-[var(--primary-color)]/20">
-                                <div className="flex items-center gap-2 text-[var(--primary-color)] font-semibold text-sm mb-2">
+                            <div className="glass-panel p-5 md:p-6 mt-1 border border-[var(--primary-color)]/25">
+                                <div className="flex items-center gap-2 text-[var(--primary-color)] font-semibold text-sm mb-3">
                                     <div className="icon-chart-no-axes-combined text-lg"></div>
-                                    Projetos de análise de dados
+                                    Da operação à análise de dados
                                 </div>
                                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                                    A partir da experiência com dados operacionais do ERP, desenvolvi por iniciativa própria dashboards e indicadores em Power BI, utilizando relatórios exportados do sistema como fonte.
+                                    A vivência em diferentes etapas da indústria me ajuda a entender o contexto por trás dos números. A partir desse conhecimento, desenvolvo projetos de análise de dados e dashboards em Power BI, transformando informações de processos comerciais e operacionais em indicadores que apoiam a tomada de decisão.
                                 </p>
                             </div>
                         </div>
@@ -102,8 +110,6 @@ function Experience() {
                                     </article>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
