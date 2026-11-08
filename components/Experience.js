@@ -6,9 +6,10 @@ function Experience() {
                 period: "2021 – Atual",
                 current: true,
                 description: [
-                    "Registro e acompanhamento de pedidos e elaboração de orçamentos para a equipe de vendas.",
-                    "Utilização diária do ERP industrial para consulta e atualização de informações comerciais.",
-                    "Organização de informações e suporte às rotinas administrativas da área de vendas."
+                    "Elaboração de orçamentos, lançamento e acompanhamento de pedidos de venda.",
+                    "Consulta, conferência e atualização de informações comerciais no ERP industrial.",
+                    "Apoio ao atendimento de clientes e cobertura de rotinas de faturamento e suporte à equipe de vendas.",
+                    "Contato diário com informações de pedidos, prazos e processos que conectam a área comercial à operação."
                 ]
             },
             {
@@ -16,9 +17,9 @@ function Experience() {
                 period: "2020 – 2021",
                 current: false,
                 description: [
-                    "Programação CNC e aproveitamento de chapas metálicas para processos de corte.",
-                    "Análise de encaixe e aproveitamento de material conforme as necessidades de produção.",
-                    "Interpretação de desenhos técnicos e contato direto com processos industriais."
+                    "Programação de máquinas CNC para operações de corte de chapas metálicas.",
+                    "Análise de encaixe e aproveitamento de material conforme as especificações dos serviços.",
+                    "Interpretação de desenhos técnicos e interface direta com a rotina de produção."
                 ]
             },
             {
@@ -100,6 +101,18 @@ function Experience() {
                                         </p>
                                     </article>
                                 </div>
+                            </div>
+
+                            <div className="glass-panel p-6 mt-8 border border-[var(--primary-color)]/20">
+                                <div className="flex items-center gap-2 text-[var(--primary-color)] text-sm font-semibold mb-3">
+                                    <div className="icon-chart-no-axes-combined text-lg"></div>
+                                    Especialização e desenvolvimento
+                                </div>
+                                <h3 className="text-lg font-bold text-[var(--text-main)] mb-1">Análise de Dados com Power BI</h3>
+                                <p className="text-xs text-[var(--text-muted)] mb-3">Em andamento</p>
+                                <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                                    Aprofundamento em preparação, modelagem, análise e visualização de dados para construção de indicadores e soluções de Business Intelligence.
+                                </p>
                             </div>
                         </div>
                     </div>
