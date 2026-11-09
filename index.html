@@ -127,8 +127,26 @@
         .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 15px; }
+    body { margin: 0; width: 100%; min-width: 320px; overflow-x: hidden; }
+    #root { width: 100%; min-width: 0; }
+    .container.mx-auto {
+        width: 100% !important;
+        max-width: 1600px !important;
+        margin-inline: auto !important;
+        padding-inline: clamp(18px, 4vw, 58px) !important;
+    }
+    img, video, canvas, svg { max-width: 100%; }
     section[id] { scroll-margin-top: 6rem; }
+    @media (max-width: 760px) {
+        html { font-size: 14px; }
+        .container.mx-auto { padding-inline: 18px !important; }
+        .section-title { font-size: clamp(1.6rem, 5.5vw, 2rem) !important; margin-bottom: 1.5rem !important; }
+        .glass-panel { border-radius: 1rem; }
+    }
+    @media (max-width: 380px) {
+        .container.mx-auto { padding-inline: 14px !important; }
+    }
     .btn-primary { color: #fff !important; }
     .theme-toggle { color: var(--text-main); }
     html[data-theme="light"] .text-white { color: var(--text-main) !important; }
