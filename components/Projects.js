@@ -4,7 +4,6 @@ function Projects() {
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
         const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
         const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
-        const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
         const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
         // Close modal with ESC key
@@ -168,7 +167,6 @@ function Projects() {
         const modalImages = [...new Map([
             ...dashboardProjects,
             ...sqlEvidence,
-            ...automationEvidence,
             ...automationEvidence,
             ...additionalProjects
         ].map((project) => [project.image, { image: project.image, title: project.title }])).values()];
