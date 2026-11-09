@@ -3,6 +3,7 @@ function Projects() {
         const [selectedImage, setSelectedImage] = React.useState(null);
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
         const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
+        const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
         const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
         // Close modal with ESC key
@@ -128,6 +129,14 @@ function Projects() {
             { title: "Consumo de Materiais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/06_consumo_materiais.png" }
         ];
 
+        const automationEvidence = [
+            { title: "Menu principal", image: "images/automacao/01-menu-principal.png" },
+            { title: "Conferência das datas", image: "images/automacao/02-conferencia-datas.png" },
+            { title: "Confirmação de início", image: "images/automacao/03-confirmacao-inicio.png" },
+            { title: "Configurador de posições", image: "images/automacao/04-configurador-redigido.png" },
+            { title: "Gerenciador de feriados", image: "images/automacao/05-gerenciador-feriados-redigido.png" }
+        ];
+
         const sqlProjects = [
             {
                 id: "erp-industrial-analytics",
@@ -150,6 +159,7 @@ function Projects() {
         const modalImages = [...new Map([
             ...dashboardProjects,
             ...sqlEvidence,
+            ...automationEvidence,
             ...additionalProjects
         ].map((project) => [project.image, { image: project.image, title: project.title }])).values()];
 
@@ -443,6 +453,37 @@ function Projects() {
                             </div>
                         </div>
                     </article>
+
+                    <div className="glass-panel overflow-hidden border border-[var(--surface-border)] mb-16">
+                        <div className="p-5 md:p-7 border-b border-[var(--surface-border)]">
+                            <div className="flex flex-wrap items-end justify-between gap-3">
+                                <div>
+                                    <h4 className="text-lg md:text-xl font-bold text-[var(--text-main)]">Evidências da automação</h4>
+                                    <p className="text-sm text-[var(--text-muted)] mt-1">Navegue pelas telas das ferramentas desenvolvidas. Selecione uma imagem para ampliar.</p>
+                                </div>
+                                <span className="text-xs text-[var(--text-muted)] tabular-nums">{automationEvidenceIndex + 1} / {automationEvidence.length}</span>
+                            </div>
+                        </div>
+                        <div className="p-4 md:p-6 bg-[var(--bg-color)]/35">
+                            <div className="relative">
+                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => openImage(automationEvidence[automationEvidenceIndex].image)} aria-label={"Ampliar evidência: " + automationEvidence[automationEvidenceIndex].title}>
+                                    <img src={automationEvidence[automationEvidenceIndex].image} alt={automationEvidence[automationEvidenceIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.01]" />
+                                    <span className="absolute bottom-3 left-3 rounded-lg text-xs md:text-sm px-3 py-2 font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{automationEvidence[automationEvidenceIndex].title}</span>
+                                    <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                                </button>
+                                <button type="button" onClick={() => setAutomationEvidenceIndex((automationEvidenceIndex - 1 + automationEvidence.length) % automationEvidence.length)} className="absolute left-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Evidência anterior"><span className="icon-chevron-left text-xl" aria-hidden="true"></span></button>
+                                <button type="button" onClick={() => setAutomationEvidenceIndex((automationEvidenceIndex + 1) % automationEvidence.length)} className="absolute right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima evidência"><span className="icon-chevron-right text-xl" aria-hidden="true"></span></button>
+                            </div>
+                            <div className="grid grid-cols-5 gap-2 mt-4">
+                                {automationEvidence.map((item, index) => (
+                                    <button key={item.title} type="button" onClick={() => setAutomationEvidenceIndex(index)} className={"rounded-lg overflow-hidden border-2 transition-all " + (automationEvidenceIndex === index ? "border-[var(--primary-color)] ring-2 ring-[var(--primary-color)]/20" : "border-[var(--surface-border)] opacity-75 hover:opacity-100")} aria-label={"Ver " + item.title} aria-current={automationEvidenceIndex === index ? "true" : undefined}>
+                                        <img src={item.image} alt="" className="w-full aspect-[5/3] object-cover bg-slate-100" />
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="text-center text-xs font-semibold text-[var(--text-main)] mt-3">{automationEvidence[automationEvidenceIndex].title}</div>
+                        </div>
+                    </div>
 
                     <div className="mt-16 mb-5">
                         <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
