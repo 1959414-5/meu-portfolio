@@ -422,6 +422,17 @@ function Projects() {
                                         <div className="text-xs text-[var(--text-muted)] mt-1">Conferência e cancelamento</div>
                                     </div>
                                 </div>
+                                <div className="grid grid-cols-2 gap-3 mb-5">
+                                    <div className="rounded-xl inner-card border border-[var(--surface-border)] p-3">
+                                        <div className="text-xs text-[var(--text-muted)]">Tempo manual</div>
+                                        <div className="text-2xl font-bold text-[var(--text-main)]">40 min</div>
+                                    </div>
+                                    <div className="rounded-xl inner-card border border-[var(--surface-border)] p-3">
+                                        <div className="text-xs text-[var(--text-muted)]">Automação + conferência</div>
+                                        <div className="text-2xl font-bold text-[var(--primary-color)]">10 min</div>
+                                    </div>
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mb-5">30 minutos economizados por execução · redução média de 75% no tempo.</p>
                                 <div className="flex flex-wrap gap-2 mb-5">
                                     {["Python", "PyAutoGUI", "Tkinter", "Pyperclip", "CSV / JSON", "RPA"].map((tag) => (
                                         <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>
