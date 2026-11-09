@@ -121,11 +121,11 @@ function Projects() {
         const additionalProjects = projects.slice(4);
 
         const automationEvidence = [
-            { title: "Menu principal", image: "images/automacao/01-menu-principal.png" },
-            { title: "Conferência de datas", image: "images/automacao/02-conferencia-datas.png" },
-            { title: "Confirmação de início", image: "images/automacao/03-confirmacao-inicio.png" },
-            { title: "Configurador de posições", image: "images/automacao/04-configurador-redigido.png" },
-            { title: "Gerenciador de feriados", image: "images/automacao/05-gerenciador-feriados-redigido.png" }
+            { title: "Menu principal", image: "images/automacao/01-menu-principal.png?v=20261109" },
+            { title: "Conferência de datas", image: "images/automacao/02-conferencia-datas.png?v=20261109" },
+            { title: "Confirmação de início", image: "images/automacao/03-confirmacao-inicio.png?v=20261109" },
+            { title: "Configurador de posições", image: "images/automacao/04-configurador-redigido.png?v=20261109" },
+            { title: "Gerenciador de feriados", image: "images/automacao/05-gerenciador-feriados-redigido.png?v=20261109" }
         ];
 
         const sqlEvidence = [
