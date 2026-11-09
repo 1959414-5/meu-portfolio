@@ -386,6 +386,65 @@ function Projects() {
                     </article>
 
                     <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Automação e RPA</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Automação desktop com Python para rotinas recorrentes de relatórios</p>
+                    </div>
+                    <article className="glass-panel overflow-hidden border border-[var(--surface-border)] mb-16">
+                        <div className="grid lg:grid-cols-[1fr_1fr] gap-0">
+                            <div className="p-6 md:p-8 flex flex-col justify-center">
+                                <div className="flex flex-wrap items-center gap-2 mb-4">
+                                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)]">Projeto prático · Python</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 text-xs text-[var(--text-muted)]">Case anonimizado</span>
+                                </div>
+                                <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-3">Automação de relatórios com Python</h4>
+                                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-5">
+                                    Automação de uma rotina recorrente em ERP desktop, com cálculo de períodos úteis, conferência das datas, execução de relatórios e encaminhamento ao destino configurado.
+                                </p>
+                                <div className="grid grid-cols-2 gap-3 mb-5">
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4">
+                                        <div className="text-2xl font-bold text-[var(--primary-color)]"><span className="icon-calendar-check"></span></div>
+                                        <div className="text-xs text-[var(--text-muted)] mt-1">Cálculo de períodos úteis</div>
+                                    </div>
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4">
+                                        <div className="text-2xl font-bold text-[var(--primary-color)]"><span className="icon-shield-check"></span></div>
+                                        <div className="text-xs text-[var(--text-muted)] mt-1">Conferência e cancelamento</div>
+                                    </div>
+                                </div>
+                                <div className="flex flex-wrap gap-2 mb-5">
+                                    {["Python", "PyAutoGUI", "Tkinter", "Pyperclip", "CSV / JSON", "RPA"].map((tag) => (
+                                        <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>
+                                    ))}
+                                </div>
+                                <a href="projeto-automacao-relatorios.html" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline">
+                                    <span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo
+                                    <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                            <div className="bg-[var(--bg-color)]/55 border-t lg:border-t-0 lg:border-l border-[var(--surface-border)] p-6 md:p-8 flex flex-col justify-center">
+                                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">Fluxo da solução</p>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        ["01", "Preparação", "Cálculo de datas e leitura de feriados", "icon-calendar-days"],
+                                        ["02", "Conferência", "Validação dos períodos pelo usuário", "icon-clipboard-check"],
+                                        ["03", "Execução", "Navegação e preenchimento no ERP", "icon-monitor-cog"],
+                                        ["04", "Controle", "Envio e mecanismos de interrupção", "icon-shield-check"]
+                                    ].map(([number, title, description, icon]) => (
+                                        <div key={number} className="inner-card rounded-xl border border-[var(--surface-border)] p-4">
+                                            <div className="flex items-center justify-between mb-3">
+                                                <span className="text-[10px] font-mono text-[var(--text-muted)]">{number}</span>
+                                                <span className={icon + " text-lg text-[var(--primary-color)]"} aria-hidden="true"></span>
+                                            </div>
+                                            <h5 className="font-bold text-sm text-[var(--text-main)] mb-1">{title}</h5>
+                                            <p className="text-xs text-[var(--text-muted)] leading-relaxed">{description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mt-4 leading-relaxed">Demonstração conceitual criada para o portfólio. Código, parâmetros e interface proprietária não são publicados.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div className="mt-16 mb-5">
                         <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
                         <p className="text-sm text-[var(--text-muted)] mt-1">Aplicações e automações desenvolvidas para necessidades operacionais</p>
                     </div>
