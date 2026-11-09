@@ -137,13 +137,7 @@ function Projects() {
             { title: "Consumo de Materiais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/06_consumo_materiais.png" }
         ];
 
-        const automationEvidence = [
-            { title: "Menu principal", image: "images/automacao/01-menu-principal.png" },
-            { title: "Conferência das datas", image: "images/automacao/02-conferencia-datas.png" },
-            { title: "Confirmação de início", image: "images/automacao/03-confirmacao-inicio.png" },
-            { title: "Configurador de posições", image: "images/automacao/04-configurador-redigido.png" },
-            { title: "Gerenciador de feriados", image: "images/automacao/05-gerenciador-feriados-redigido.png" }
-        ];
+
 
         const sqlProjects = [
             {
