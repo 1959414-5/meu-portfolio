@@ -4,6 +4,7 @@ function Projects() {
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
         const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
         const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
+        const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
         const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
         // Close modal with ESC key
@@ -120,6 +121,14 @@ function Projects() {
         const dashboardProjects = projects.slice(0, 4);
         const additionalProjects = projects.slice(4);
 
+        const automationEvidence = [
+            { title: "Menu principal", image: "images/automacao/01-menu-principal.png" },
+            { title: "Conferência de datas", image: "images/automacao/02-conferencia-datas.png" },
+            { title: "Confirmação de início", image: "images/automacao/03-confirmacao-inicio.png" },
+            { title: "Configurador de posições", image: "images/automacao/04-configurador-redigido.png" },
+            { title: "Gerenciador de feriados", image: "images/automacao/05-gerenciador-feriados-redigido.png" }
+        ];
+
         const sqlEvidence = [
             { title: "Indicadores Comerciais", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/01_indicadores_comerciais.png" },
             { title: "Análise de Pedidos", image: "https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/02_analise_pedidos.png" },
@@ -159,6 +168,7 @@ function Projects() {
         const modalImages = [...new Map([
             ...dashboardProjects,
             ...sqlEvidence,
+            ...automationEvidence,
             ...automationEvidence,
             ...additionalProjects
         ].map((project) => [project.image, { image: project.image, title: project.title }])).values()];
@@ -430,26 +440,24 @@ function Projects() {
                                     <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
                                 </a>
                             </div>
-                            <div className="bg-[var(--bg-color)]/55 border-t lg:border-t-0 lg:border-l border-[var(--surface-border)] p-6 md:p-8 flex flex-col justify-center">
-                                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)] mb-4">Fluxo da solução</p>
-                                <div className="grid grid-cols-2 gap-3">
-                                    {[
-                                        ["01", "Preparação", "Cálculo de datas e leitura de feriados", "icon-calendar-days"],
-                                        ["02", "Conferência", "Validação dos períodos pelo usuário", "icon-clipboard-check"],
-                                        ["03", "Execução", "Navegação e preenchimento no ERP", "icon-monitor-cog"],
-                                        ["04", "Controle", "Envio e mecanismos de interrupção", "icon-shield-check"]
-                                    ].map(([number, title, description, icon]) => (
-                                        <div key={number} className="inner-card rounded-xl border border-[var(--surface-border)] p-4">
-                                            <div className="flex items-center justify-between mb-3">
-                                                <span className="text-[10px] font-mono text-[var(--text-muted)]">{number}</span>
-                                                <span className={icon + " text-lg text-[var(--primary-color)]"} aria-hidden="true"></span>
-                                            </div>
-                                            <h5 className="font-bold text-sm text-[var(--text-main)] mb-1">{title}</h5>
-                                            <p className="text-xs text-[var(--text-muted)] leading-relaxed">{description}</p>
-                                        </div>
-                                    ))}
+                            <div className="bg-[var(--bg-color)]/55 border-t lg:border-t-0 lg:border-l border-[var(--surface-border)] p-5 md:p-6 flex flex-col justify-center">
+                                <div className="flex items-center justify-between gap-3 mb-3">
+                                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)]">Evidências da automação</p>
+                                    <span className="text-xs text-[var(--text-muted)] tabular-nums">{automationEvidenceIndex + 1} / {automationEvidence.length}</span>
                                 </div>
-                                <p className="text-xs text-[var(--text-muted)] mt-4 leading-relaxed">Demonstração conceitual criada para o portfólio. Código, parâmetros e interface proprietária não são publicados.</p>
+                                <button type="button" className="relative block w-full aspect-[5/4] overflow-hidden rounded-xl bg-slate-100/80 group" onClick={() => openImage(automationEvidence[automationEvidenceIndex].image)} aria-label={"Ampliar evidência: " + automationEvidence[automationEvidenceIndex].title}>
+                                    <img src={automationEvidence[automationEvidenceIndex].image} alt={automationEvidence[automationEvidenceIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
+                                    <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs font-semibold shadow-lg" style={{backgroundColor:"rgba(15,23,42,.92)",color:"#fff"}}>{automationEvidence[automationEvidenceIndex].title}</span>
+                                    <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-2 shadow-md"><span className="icon-maximize" aria-hidden="true"></span></span>
+                                </button>
+                                <div className="flex items-center justify-between gap-3 mt-3">
+                                    <button type="button" onClick={() => setAutomationEvidenceIndex((automationEvidenceIndex - 1 + automationEvidence.length) % automationEvidence.length)} className="rounded-full bg-[var(--surface-color)] border border-[var(--surface-border)] p-2 text-[var(--text-main)]" aria-label="Evidência anterior"><span className="icon-chevron-left"></span></button>
+                                    <div className="flex items-center justify-center gap-1.5">
+                                        {automationEvidence.map((item,index) => <button key={item.title} type="button" onClick={() => setAutomationEvidenceIndex(index)} className={"h-2.5 rounded-full transition-all " + (automationEvidenceIndex===index ? "w-6 bg-[var(--primary-color)]" : "w-2.5 bg-[var(--surface-border)]")} aria-label={"Ver " + item.title} aria-current={automationEvidenceIndex===index ? "true" : undefined}/>)}
+                                    </div>
+                                    <button type="button" onClick={() => setAutomationEvidenceIndex((automationEvidenceIndex + 1) % automationEvidence.length)} className="rounded-full bg-[var(--surface-color)] border border-[var(--surface-border)] p-2 text-[var(--text-main)]" aria-label="Próxima evidência"><span className="icon-chevron-right"></span></button>
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mt-3 leading-relaxed">Capturas reais com e-mail e caminho local ocultados. Clique na imagem para ampliar.</p>
                             </div>
                         </div>
                     </article>
