@@ -1,5 +1,65 @@
 function Hero() {
     try {
+        // Pequenas etiquetas técnicas flutuam em percursos próprios ao redor do painel.
+        React.useEffect(() => {
+            const layer = document.querySelector("#hero .hero-floating-layer");
+            if (!layer || typeof Element.prototype.animate !== "function") return;
+
+            const bubbles = Array.from(layer.querySelectorAll(".hero-float-item"));
+            const timers = new Set();
+            const animations = new Set();
+            let disposed = false;
+            const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+            const createPath = () => {
+                const points = [{ transform: "translate3d(0,0,0) rotate(0deg)", offset: 0 }];
+                for (let point = 1; point <= 5; point++) {
+                    const x = randomBetween(-7, 7).toFixed(1);
+                    const y = randomBetween(-6, 6).toFixed(1);
+                    const rotation = randomBetween(-2.5, 2.5).toFixed(1);
+                    points.push({
+                        transform: "translate3d(" + x + "px," + y + "px,0) rotate(" + rotation + "deg)",
+                        offset: point / 6
+                    });
+                }
+                points.push({ transform: "translate3d(0,0,0) rotate(0deg)", offset: 1 });
+                return points;
+            };
+
+            const startFloat = (bubble, delay = randomBetween(0, 1800)) => {
+                const timer = window.setTimeout(() => {
+                    timers.delete(timer);
+                    if (disposed) return;
+
+                    const animation = bubble.animate(createPath(), {
+                        duration: randomBetween(11000, 17000),
+                        easing: "ease-in-out",
+                        iterations: 1,
+                        fill: "forwards"
+                    });
+                    animations.add(animation);
+
+                    animation.onfinish = () => {
+                        animations.delete(animation);
+                        animation.cancel();
+                        if (!disposed) startFloat(bubble, randomBetween(250, 1200));
+                    };
+                    animation.oncancel = () => animations.delete(animation);
+                }, delay);
+                timers.add(timer);
+            };
+
+            bubbles.forEach(bubble => startFloat(bubble));
+
+            return () => {
+                disposed = true;
+                timers.forEach(timer => window.clearTimeout(timer));
+                animations.forEach(animation => animation.cancel());
+                timers.clear();
+                animations.clear();
+            };
+        }, []);
+
         return (
             <section id="hero" className="min-h-screen flex flex-col justify-center pt-28 pb-12 md:pt-20 md:pb-10 relative overflow-hidden" data-name="hero" data-file="components/Hero.js">
                 <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center flex-1">
@@ -49,6 +109,12 @@ function Hero() {
                     </div>
 
                     <div className="relative z-10 hidden md:flex items-center justify-center w-full py-10">
+                        <div className="hero-floating-layer" aria-hidden="true">
+                            <span className="hero-float-item hero-float-item--sql"><span className="icon-database"></span><span>SQL</span></span>
+                            <span className="hero-float-item hero-float-item--bi"><span className="icon-chart-no-axes-combined"></span><span>BI</span></span>
+                            <span className="hero-float-item hero-float-item--python"><span className="icon-code"></span><span>Python</span></span>
+                            <span className="hero-float-item hero-float-item--dax"><span className="icon-chart-pie"></span><span>DAX</span></span>
+                        </div>
                         <div aria-hidden="true" className="absolute inset-10 rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-blue-500 blur-[90px] opacity-10 pointer-events-none"></div>
                         <div className="glass-panel relative w-full max-w-[600px] p-6 lg:p-8 overflow-hidden">
                             <div className="absolute top-0 right-0 w-56 h-56 bg-gradient-to-bl from-[var(--primary-color)] to-transparent opacity-[0.07] rounded-bl-full pointer-events-none"></div>
