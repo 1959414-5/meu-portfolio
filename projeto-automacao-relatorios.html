@@ -56,31 +56,6 @@
       .case-float-bubble{min-height:30px;padding:6px 9px;font-size:.62rem}
       .case-float-bubble--secondary{display:none}
     }
-    /* Identidade visual compartilhada com o portfólio principal */
-    .case-hero-visual-wrap{position:relative;isolation:isolate;min-width:0;padding:15px 5px}
-    .case-hero-visual-wrap .hero-panel,.case-hero-visual-wrap .hero-visual{position:relative;z-index:1}
-    .case-float-layer{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
-    .case-float-bubble{
-      position:absolute;display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      min-height:34px;padding:7px 12px;border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));
-      border-radius:999px;background:color-mix(in srgb,var(--surface) 94%,transparent);
-      color:var(--muted);box-shadow:0 8px 22px var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      font-size:.68rem;font-weight:750;letter-spacing:.025em;line-height:1;white-space:nowrap;will-change:transform;
-    }
-    .case-float-bubble i{font-size:.92rem;color:var(--primary)}
-    .case-float-bubble--top-left{top:0;left:9%}
-    .case-float-bubble--top-right{top:0;right:8%}
-    .case-float-bubble--bottom-left{bottom:0;left:10%}
-    .case-float-bubble--bottom-right{bottom:0;right:8%}
-    @media(max-width:800px){
-      .case-hero-visual-wrap{padding:14px 3px}
-      .case-float-bubble{min-height:30px;padding:6px 9px;font-size:.62rem}
-      .case-float-bubble--secondary{display:none}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .case-float-bubble{animation:none}
-    }
   </style>
 </head>
 <body>
@@ -280,48 +255,6 @@
       if(event.key==="ArrowRight")showEvidence(evidenceIndex+1);
     });
     // Movimento independente e lento para cada elemento flutuante do painel.
-    (() => {
-      const items=[...document.querySelectorAll("[data-float-bubble]")];
-      const timers=new Set();
-      const animations=new Set();
-      let disposed=false;
-      const random=(min,max)=>Math.random()*(max-min)+min;
-      const path=()=>{
-        const frames=[{transform:"translate3d(0,0,0) rotate(0deg)",offset:0}];
-        for(let i=1;i<=5;i++){
-          frames.push({
-            transform:"translate3d("+random(-7,7).toFixed(1)+"px,"+random(-6,6).toFixed(1)+"px,0) rotate("+random(-2.5,2.5).toFixed(1)+"deg)",
-            offset:i/6
-          });
-        }
-        frames.push({transform:"translate3d(0,0,0) rotate(0deg)",offset:1});
-        return frames;
-      };
-      const start=(item,delay=random(0,1800))=>{
-        const timer=setTimeout(()=>{
-          timers.delete(timer);
-          if(disposed)return;
-          const animation=item.animate(path(),{duration:random(12000,18000),easing:"ease-in-out",iterations:1,fill:"forwards"});
-          animations.add(animation);
-          animation.onfinish=()=>{
-            animations.delete(animation);
-            animation.cancel();
-            if(!disposed)start(item,random(250,1200));
-          };
-          animation.oncancel=()=>animations.delete(animation);
-        },delay);
-        timers.add(timer);
-      };
-      items.forEach(item=>start(item));
-      window.addEventListener("pagehide",()=>{
-        disposed=true;
-        timers.forEach(clearTimeout);
-        animations.forEach(animation=>animation.cancel());
-        timers.clear();animations.clear();
-      },{once:true});
-    })();
-
-    // Movimento orgânico e independente dos elementos flutuantes do estudo de caso.
     (() => {
       const items=[...document.querySelectorAll("[data-float-bubble]")];
       const timers=new Set();
