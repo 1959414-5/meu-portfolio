@@ -23,19 +23,27 @@ function Hero() {
                                 <div className="icon-download"></div>Baixar currículo
                             </a>
                         </div>
-                        <div className="hero-tech-strip flex flex-wrap items-center gap-3 sm:gap-4 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start" aria-label="Tecnologias principais">
-                            <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)] font-semibold mr-1">Stack</span>
+                        <div className="hero-tech-strip flex flex-wrap items-center gap-2 sm:gap-3 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start" aria-label="Tecnologias principais">
                             <div className="tech-logo tech-logo--powerbi" role="img" aria-label="Power BI" title="Power BI">
                                 <img src="./images/technologies/power-bi.svg" alt="" />
                             </div>
                             <div className="tech-logo tech-logo--mysql" role="img" aria-label="SQL e MySQL" title="SQL / MySQL">
                                 <img src="./images/technologies/mysql.svg" alt="" />
                             </div>
-                            <div className="tech-logo tech-logo--dax" role="img" aria-label="DAX — medidas e expressões" title="DAX">
-                                <img src="./images/technologies/dax-measure.svg" alt="" />
+                            <div className="tech-logo tech-logo--python" role="img" aria-label="Python" title="Python">
+                                <img src="./images/technologies/python.svg" alt="" />
                             </div>
-                            <div className="tech-logo tech-logo--powerquery" role="img" aria-label="Power Query" title="Power Query">
-                                <img src="./images/technologies/power-query.svg" alt="" />
+                            <div className="tech-logo tech-logo--javascript" role="img" aria-label="JavaScript" title="JavaScript">
+                                <img src="./images/technologies/javascript.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--html" role="img" aria-label="HTML5" title="HTML">
+                                <img src="./images/technologies/html5.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--css" role="img" aria-label="CSS3" title="CSS">
+                                <img src="./images/technologies/css3.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--api" role="img" aria-label="API REST" title="API REST">
+                                <img src="./images/technologies/api-rest.svg" alt="" />
                             </div>
                         </div>
                     </div>
