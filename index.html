@@ -567,43 +567,19 @@
         box-shadow:
             0 8px 20px color-mix(in srgb,var(--primary-color) 9%,var(--shadow-color)),
             inset 0 1px 0 rgba(255,255,255,.08);
-        animation:skillBubbleDrift var(--drift-duration,23s) ease-in-out var(--drift-delay,0s) infinite normal;
-        will-change:transform;
         transform-origin:center;
+        will-change:transform;
     }
     #habilidades .skill-icon-item:hover .skill-icon-frame{
         border-color:var(--primary-color);
         box-shadow:0 10px 24px color-mix(in srgb,var(--primary-color) 18%,var(--shadow-color)),inset 0 1px 0 rgba(255,255,255,.12);
     }
     #habilidades .skill-icon-caption{margin-top:1px}
-    @keyframes skillBubbleDrift{
-        0%{transform:translate3d(0,0,0) rotate(0deg)}
-        12%{transform:translate3d(var(--drift-x1),var(--drift-y1),0) rotate(var(--drift-r1))}
-        25%{transform:translate3d(var(--drift-x2),var(--drift-y2),0) rotate(var(--drift-r2))}
-        38%{transform:translate3d(var(--drift-x3),var(--drift-y3),0) rotate(var(--drift-r3))}
-        50%{transform:translate3d(var(--drift-x4),var(--drift-y4),0) rotate(var(--drift-r4))}
-        63%{transform:translate3d(var(--drift-x5),var(--drift-y5),0) rotate(var(--drift-r5))}
-        76%{transform:translate3d(var(--drift-x6),var(--drift-y6),0) rotate(var(--drift-r6))}
-        88%{transform:translate3d(var(--drift-x7),var(--drift-y7),0) rotate(var(--drift-r7))}
-        100%{transform:translate3d(0,0,0) rotate(0deg)}
-    }
     @media(max-width:420px){
         #habilidades .skill-icon-frame{width:48px;height:48px;padding:9px}
     }
+    /* Mantém as decorações solicitadas em movimento com percursos independentes. */
     @media(prefers-reduced-motion:reduce){
-        #habilidades .skill-icon-frame{animation:none!important;transition:none!important;will-change:auto;transform:none!important}
-    }
-
-    /* Mantém os movimentos decorativos solicitados mesmo com redução de movimento no sistema.
-       As animações funcionais da interface continuam respeitando a preferência de acessibilidade. */
-    @media(prefers-reduced-motion:reduce){
-        #habilidades .skill-icon-frame{
-            animation:skillBubbleDrift var(--drift-duration,23s) ease-in-out var(--drift-delay,0s) infinite normal!important;
-            animation-duration:var(--drift-duration,23s)!important;
-            animation-iteration-count:infinite!important;
-            animation-play-state:running!important;
-            will-change:transform!important;
-        }
         .about-orbit-ring{
             animation:aboutOrbit 18s linear infinite!important;
             animation-duration:18s!important;
