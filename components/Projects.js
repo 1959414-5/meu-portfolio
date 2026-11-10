@@ -229,7 +229,7 @@ function Projects() {
             <article key={project.id} className="glass-panel overflow-hidden flex flex-col group hover:-translate-y-1 transition-transform duration-300">
                 <button
                     type="button"
-                    className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100/70 p-2 text-left"
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--inner-card-color)] p-2 text-left"
                     onClick={() => openImage(project.image)}
                     aria-label={`Ampliar imagem de ${project.title}`}
                 >
@@ -367,7 +367,7 @@ function Projects() {
 
 
                             <div className="relative">
-                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-slate-100/70 group" onClick={() => openImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
+                                <button type="button" className="relative block w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl bg-[var(--inner-card-color)] group" onClick={() => openImage(dashboardProjects[dashboardIndex].image)} aria-label={"Ampliar imagem de " + dashboardProjects[dashboardIndex].title}>
                                     <img src={dashboardProjects[dashboardIndex].image} alt={dashboardProjects[dashboardIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg text-xs md:text-sm px-3 py-2 font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{dashboardProjects[dashboardIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/90 text-slate-800 p-2 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
@@ -395,7 +395,7 @@ function Projects() {
 
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
                         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
-                            <div className="relative bg-slate-100/70 p-3 md:p-4 flex flex-col justify-center">
+                            <div className="relative bg-[var(--inner-card-color)] p-3 md:p-4 flex flex-col justify-center">
                                 <button type="button" className="w-full aspect-[4/3] relative group" onClick={() => openImage(sqlEvidence[sqlEvidenceIndex].image)} aria-label={"Ampliar evidência: " + sqlEvidence[sqlEvidenceIndex].title}>
                                     <img src={sqlEvidence[sqlEvidenceIndex].image} alt={sqlEvidence[sqlEvidenceIndex].title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{sqlEvidence[sqlEvidenceIndex].title}</span>
@@ -404,7 +404,7 @@ function Projects() {
                                 <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex - 1 + sqlEvidence.length) % sqlEvidence.length)} className="absolute left-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Evidência anterior"><span className="icon-chevron-left text-xl" aria-hidden="true"></span></button>
                                 <button type="button" onClick={() => setSqlEvidenceIndex((sqlEvidenceIndex + 1) % sqlEvidence.length)} className="absolute right-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima evidência"><span className="icon-chevron-right text-xl" aria-hidden="true"></span></button>
                                 <div className="flex justify-center items-center gap-2 mt-2">
-                                    {sqlEvidence.map((item, index) => <button key={item.title} type="button" onClick={() => setSqlEvidenceIndex(index)} className={"h-2.5 rounded-full transition-all " + (sqlEvidenceIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-slate-400/40")} aria-label={"Ver " + item.title} />)}
+                                    {sqlEvidence.map((item, index) => <button key={item.title} type="button" onClick={() => setSqlEvidenceIndex(index)} className={"h-2.5 rounded-full transition-all " + (sqlEvidenceIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-[var(--surface-border)]")} aria-label={"Ver " + item.title} />)}
                                     <span className="ml-2 text-xs text-slate-600 tabular-nums">{sqlEvidenceIndex + 1} / {sqlEvidence.length}</span>
                                 </div>
                             </div>
@@ -486,7 +486,7 @@ function Projects() {
                                     <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--text-muted)]">Evidências da automação</p>
                                     <span className="text-xs text-[var(--text-muted)] tabular-nums">{automationEvidenceIndex + 1} / {automationEvidence.length}</span>
                                 </div>
-                                <button type="button" className="relative block w-full aspect-[5/4] overflow-hidden rounded-xl bg-slate-100/80 group" onClick={() => openImage(automationEvidence[automationEvidenceIndex].image)} aria-label={"Ampliar evidência: " + automationEvidence[automationEvidenceIndex].title}>
+                                <button type="button" className="relative block w-full aspect-[5/4] overflow-hidden rounded-xl bg-[var(--inner-card-color)] group" onClick={() => openImage(automationEvidence[automationEvidenceIndex].image)} aria-label={"Ampliar evidência: " + automationEvidence[automationEvidenceIndex].title}>
                                     <img src={automationEvidence[automationEvidenceIndex].image} alt={automationEvidence[automationEvidenceIndex].title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.015]" />
                                     <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs font-semibold shadow-lg" style={{backgroundColor:"rgba(15,23,42,.92)",color:"#fff"}}>{automationEvidence[automationEvidenceIndex].title}</span>
                                     <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-2 shadow-md"><span className="icon-maximize" aria-hidden="true"></span></span>
