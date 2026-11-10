@@ -35,20 +35,72 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+function SiteEffects() {
+  React.useEffect(() => {
+    const revealTargets = Array.from(document.querySelectorAll(
+      "main > section, main > section .glass-panel, main > section .section-title"
+    ));
+
+    revealTargets.forEach((element, index) => {
+      element.classList.add("scroll-reveal");
+      if (element.classList.contains("glass-panel")) {
+        element.style.setProperty("--reveal-delay", `${(index % 4) * 65}ms`);
+      }
+    });
+
+    let observer;
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -36px 0px" });
+
+      revealTargets.forEach(element => observer.observe(element));
+    } else {
+      revealTargets.forEach(element => element.classList.add("is-visible"));
+    }
+
+    const progress = document.getElementById("scroll-progress");
+    const updateProgress = () => {
+      if (!progress) return;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+      progress.style.transform = `scaleX(${amount})`;
+    };
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+
+    return () => {
+      if (observer) observer.disconnect();
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
+
+  return <div id="scroll-progress" aria-hidden="true"></div>;
+}
+
 function App() {
   try {
     return (
       <div className="relative min-h-screen" data-name="app" data-file="app.js">
         <div className="bg-glow top-0 left-0"></div>
         <div className="bg-glow top-1/2 right-0"></div>
+        <SiteEffects />
         <Header />
         <main>
           <Hero />
           <Highlights />
           <About />
-          <Experience />
           <Skills />
           <Projects />
+          <Experience />
           <Contact />
         </main>
         <Footer />
