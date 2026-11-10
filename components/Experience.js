@@ -11,7 +11,11 @@ function Experience() {
                     "Atendimento a clientes e apoio às rotinas de faturamento e à equipe de vendas.",
                     "Acompanhamento de informações de pedidos e prazos, em contato direto com os processos da operação."
                 ],
-                skills: ["ERP industrial", "Pedidos e orçamentos", "Processos comerciais"]
+                skills: [
+                    { label: "ERP industrial", icon: "icon-factory" },
+                    { label: "Pedidos e orçamentos", icon: "icon-file-text" },
+                    { label: "Processos comerciais", icon: "icon-briefcase" }
+                ]
             },
             {
                 role: "Programadora CNC",
@@ -22,7 +26,11 @@ function Experience() {
                     "Análise de encaixe e aproveitamento de material conforme as especificações dos serviços.",
                     "Interpretação de desenhos técnicos e contato direto com a rotina de produção."
                 ],
-                skills: ["Programação CNC", "Desenho técnico", "Produção industrial"]
+                skills: [
+                    { label: "Programação CNC", icon: "icon-settings" },
+                    { label: "Desenho técnico", icon: "icon-ruler" },
+                    { label: "Produção industrial", icon: "icon-factory" }
+                ]
             },
             {
                 role: "Jovem Aprendiz",
@@ -32,7 +40,11 @@ function Experience() {
                     "Apoio às rotinas administrativas e à organização de informações.",
                     "Contato inicial com processos de pedidos e atividades de suporte à operação."
                 ],
-                skills: ["Rotinas administrativas", "Organização", "Suporte operacional"]
+                skills: [
+                    { label: "Rotinas administrativas", icon: "icon-clipboard-list" },
+                    { label: "Organização", icon: "icon-folder-check" },
+                    { label: "Suporte operacional", icon: "icon-life-buoy" }
+                ]
             }
         ];
 
@@ -67,9 +79,14 @@ function Experience() {
                                                     </li>
                                                 ))}
                                             </ul>
-                                            <div className="flex flex-wrap gap-2 mt-4">
+                                            <div className="skills-icon-grid portfolio-icon-grid experience-skill-grid mt-4">
                                                 {experience.skills.map((skill) => (
-                                                    <span key={skill} className="inner-card text-xs text-[var(--text-muted)] rounded-full px-3 py-1">{skill}</span>
+                                                    <div key={skill.label} className="skill-icon-item" title={skill.label}>
+                                                        <div className="skill-icon-frame">
+                                                            <span className={skill.icon + " skill-generic-icon"} aria-hidden="true"></span>
+                                                        </div>
+                                                        <span className="skill-icon-caption">{skill.label}</span>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </article>
