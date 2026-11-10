@@ -538,6 +538,49 @@
     .experience-skill-grid{max-width:330px}
     @media(max-width:420px){.skills-icon-grid{gap:10px 5px}.skill-icon-frame{width:43px;height:43px;border-radius:12px;padding:8px}.skill-icon-caption{font-size:9.5px}}
 
+    /* Habilidades: cards nivelados e ícones em bolhas flutuantes */
+    #habilidades .skills-icon-grid{
+        flex:1 1 auto;
+        min-height:0;
+        align-content:space-evenly;
+        row-gap:12px;
+    }
+    #habilidades .skill-icon-item{
+        overflow:visible;
+        background:transparent;
+    }
+    #habilidades .skill-icon-frame{
+        width:52px;
+        height:52px;
+        padding:10px;
+        border-radius:50%;
+        border:1px solid color-mix(in srgb,var(--primary-color) 28%,var(--surface-border));
+        background:
+            radial-gradient(circle at 32% 24%, color-mix(in srgb,var(--primary-color) 13%,var(--card-color)), color-mix(in srgb,var(--card-color) 94%,transparent) 70%);
+        box-shadow:
+            0 8px 20px color-mix(in srgb,var(--primary-color) 9%,var(--shadow-color)),
+            inset 0 1px 0 rgba(255,255,255,.08);
+        animation:skillBubbleFloat 5.8s ease-in-out infinite;
+        will-change:transform;
+    }
+    #habilidades .skill-icon-item:nth-child(3n+2) .skill-icon-frame{animation-delay:-1.9s}
+    #habilidades .skill-icon-item:nth-child(3n) .skill-icon-frame{animation-delay:-3.8s}
+    #habilidades .skill-icon-item:hover .skill-icon-frame{
+        border-color:var(--primary-color);
+        box-shadow:0 10px 24px color-mix(in srgb,var(--primary-color) 18%,var(--shadow-color)),inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    #habilidades .skill-icon-caption{margin-top:1px}
+    @keyframes skillBubbleFloat{
+        0%,100%{transform:translateY(0)}
+        50%{transform:translateY(-4px)}
+    }
+    @media(max-width:420px){
+        #habilidades .skill-icon-frame{width:48px;height:48px;padding:9px}
+    }
+    @media(prefers-reduced-motion:reduce){
+        #habilidades .skill-icon-frame{animation:none!important;will-change:auto}
+    }
+
     </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
