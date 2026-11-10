@@ -6,12 +6,19 @@ function Projects() {
         const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
         const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
-        // Close modal with ESC key
+        // Controles do visualizador ampliado: mantêm índice e imagem sincronizados.
         React.useEffect(() => {
             const handleKeyDown = (e) => {
-                if (e.key === 'Escape') setSelectedImage(null);
-                if (e.key === 'ArrowLeft') setModalImageIndex((current) => (current - 1 + modalImages.length) % modalImages.length);
-                if (e.key === 'ArrowRight') setModalImageIndex((current) => (current + 1) % modalImages.length);
+                if (e.key === 'Escape') {
+                    setSelectedImage(null);
+                    return;
+                }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    const direction = e.key === 'ArrowLeft' ? -1 : 1;
+                    const nextIndex = (modalImageIndex + direction + modalImages.length) % modalImages.length;
+                    setModalImageIndex(nextIndex);
+                    setSelectedImage(modalImages[nextIndex]?.image || selectedImage);
+                }
             };
             if (selectedImage) {
                 window.addEventListener('keydown', handleKeyDown);
@@ -19,9 +26,9 @@ function Projects() {
             }
             return () => {
                 window.removeEventListener('keydown', handleKeyDown);
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
             };
-        }, [selectedImage]);
+        }, [selectedImage, modalImageIndex]);
 
         const projects = [
             {
@@ -528,17 +535,17 @@ function Projects() {
                         </div>
                         
                         <div className="relative flex items-center justify-center w-full h-full" onClick={(e) => e.stopPropagation()}>
-                            <button type="button" onClick={() => setModalImageIndex((modalImageIndex - 1 + modalImages.length) % modalImages.length)} className="absolute left-1 md:left-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Imagem anterior">
+                            <button type="button" onClick={() => { const nextIndex = (modalImageIndex - 1 + modalImages.length) % modalImages.length; setModalImageIndex(nextIndex); setSelectedImage(modalImages[nextIndex]?.image || selectedImage); }} className="absolute left-1 md:left-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Imagem anterior">
                                 <span className="icon-chevron-left text-2xl" aria-hidden="true"></span>
                             </button>
                             <div className="flex flex-col items-center justify-center max-w-[85vw] max-h-[88vh]">
-                                <img src={modalImages[modalImageIndex]?.image || selectedImage} className="max-w-full max-h-[78vh] object-contain rounded-lg animate-slide-up shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} />
+                                <img key={selectedImage} src={selectedImage} loading="eager" decoding="async" className="block w-auto h-auto max-w-[88vw] max-h-[78vh] object-contain rounded-lg shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} onError={(event) => { event.currentTarget.style.visibility = "hidden"; console.error("Não foi possível carregar a imagem ampliada:", selectedImage); }} onLoad={(event) => { event.currentTarget.style.visibility = "visible"; }} />
                                 <div className="mt-3 text-center text-sm text-white font-medium">
                                     {modalImages[modalImageIndex]?.title || ""}
                                     <span className="ml-3 text-white/70 tabular-nums">{modalImageIndex + 1} / {modalImages.length}</span>
                                 </div>
                             </div>
-                            <button type="button" onClick={() => setModalImageIndex((modalImageIndex + 1) % modalImages.length)} className="absolute right-1 md:right-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Próxima imagem">
+                            <button type="button" onClick={() => { const nextIndex = (modalImageIndex + 1) % modalImages.length; setModalImageIndex(nextIndex); setSelectedImage(modalImages[nextIndex]?.image || selectedImage); }} className="absolute right-1 md:right-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Próxima imagem">
                                 <span className="icon-chevron-right text-2xl" aria-hidden="true"></span>
                             </button>
                         </div>
