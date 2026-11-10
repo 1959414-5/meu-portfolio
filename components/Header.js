@@ -2,79 +2,96 @@ function Header() {
     try {
         const [isScrolled, setIsScrolled] = React.useState(false);
         const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+        const [activeSection, setActiveSection] = React.useState("sobre");
         const [theme, setTheme] = React.useState(() => {
             try {
-                return localStorage.getItem('portfolio-theme') === 'dark' ? 'dark' : 'light';
+                return localStorage.getItem("portfolio-theme") === "light" ? "light" : "dark";
             } catch (error) {
-                return 'light';
+                return "dark";
             }
         });
 
+        const navItems = [
+            { id: "sobre", label: "Sobre" },
+            { id: "habilidades", label: "Habilidades" },
+            { id: "projetos", label: "Projetos" },
+            { id: "experiencia", label: "Experiência" },
+            { id: "contato", label: "Contato" }
+        ];
+
         React.useEffect(() => {
-            const handleScroll = () => setIsScrolled(window.scrollY > 20);
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
+            const handleScroll = () => setIsScrolled(window.scrollY > 24);
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            handleScroll();
+
+            const targets = navItems
+                .map(item => document.getElementById(item.id))
+                .filter(Boolean);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) setActiveSection(entry.target.id);
+                });
+            }, { rootMargin: "-28% 0px -58% 0px", threshold: 0 });
+            targets.forEach(target => observer.observe(target));
+
+            return () => {
+                window.removeEventListener("scroll", handleScroll);
+                observer.disconnect();
+            };
         }, []);
 
         React.useEffect(() => {
-            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute("data-theme", theme);
             const themeColor = document.querySelector('meta[name="theme-color"]');
             if (themeColor) {
-                themeColor.setAttribute('content', theme === 'light' ? '#f4f7fb' : '#0b1121');
+                themeColor.setAttribute("content", theme === "light" ? "#fff7fa" : "#150f18");
             }
             try {
-                localStorage.setItem('portfolio-theme', theme);
+                localStorage.setItem("portfolio-theme", theme);
             } catch (error) {}
         }, [theme]);
 
-        const toggleTheme = () => setTheme(current => current === 'light' ? 'dark' : 'light');
+        const toggleTheme = () => setTheme(current => current === "light" ? "dark" : "light");
 
         const scrollToSection = (id) => {
             const element = document.getElementById(id);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
                 setMobileMenuOpen(false);
             }
         };
-
-        const navItems = [
-            { id: 'sobre', label: 'Sobre' },
-            { id: 'habilidades', label: 'Habilidades' },
-            { id: 'projetos', label: 'Projetos' },
-            { id: 'experiencia', label: 'Experiência' },
-            { id: 'contato', label: 'Contato' }
-        ];
 
         const themeToggle = (
             <button
                 type="button"
                 onClick={toggleTheme}
                 className="theme-toggle glass-panel w-10 h-10 inline-flex items-center justify-center rounded-full hover:border-[var(--primary-color)] transition-colors"
-                aria-label={theme === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro'}
-                title={theme === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro'}
-                aria-pressed={theme === 'dark'}
+                aria-label={theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"}
+                title={theme === "light" ? "Ativar tema escuro" : "Ativar tema claro"}
+                aria-pressed={theme === "dark"}
             >
-                <div className={`icon-${theme === 'light' ? 'moon' : 'sun'} text-lg`} aria-hidden="true"></div>
+                <div className={`icon-${theme === "light" ? "moon" : "sun"} text-lg`} aria-hidden="true"></div>
             </button>
         );
 
         return (
             <header
-                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-3' : 'bg-transparent py-5'}`}
+                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "glass-panel py-3" : "bg-transparent py-5"}`}
                 data-name="header"
                 data-file="components/Header.js"
             >
                 <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
-                    <div className="text-xl font-bold tracking-tight text-[var(--text-main)]">
+                    <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-xl font-bold tracking-tight text-[var(--text-main)]" aria-label="Voltar ao início">
                         Bárbara<span className="text-[var(--primary-color)]">.</span>BI
-                    </div>
+                    </button>
 
                     <nav className="hidden lg:flex gap-7" aria-label="Navegação principal">
                         {navItems.map(item => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="nav-link"
+                                className={`nav-link ${activeSection === item.id ? "active-nav-link" : ""}`}
+                                aria-current={activeSection === item.id ? "location" : undefined}
                             >
                                 {item.label}
                             </button>
@@ -83,7 +100,7 @@ function Header() {
 
                     <div className="hidden lg:flex items-center gap-3">
                         {themeToggle}
-                        <button onClick={() => scrollToSection('contato')} className="btn-primary py-2.5 px-5 text-sm">
+                        <button onClick={() => scrollToSection("contato")} className="btn-primary py-2.5 px-5 text-sm">
                             Falar comigo
                         </button>
                     </div>
@@ -94,11 +111,11 @@ function Header() {
                             type="button"
                             className="w-10 h-10 inline-flex items-center justify-center rounded-full text-[var(--text-main)] hover:bg-[var(--surface-color)] transition-colors"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+                            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
                             aria-expanded={mobileMenuOpen}
                             aria-controls="mobile-navigation"
                         >
-                            <div className={`icon-${mobileMenuOpen ? 'x' : 'menu'} text-2xl`} aria-hidden="true"></div>
+                            <div className={`icon-${mobileMenuOpen ? "x" : "menu"} text-2xl`} aria-hidden="true"></div>
                         </button>
                     </div>
                 </div>
@@ -109,12 +126,12 @@ function Header() {
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="text-left text-[var(--text-main)] hover:text-[var(--primary-color)] py-3 px-2 border-b border-[var(--surface-border)] transition-colors"
+                                className={`text-left py-3 px-2 border-b border-[var(--surface-border)] transition-colors ${activeSection === item.id ? "text-[var(--primary-color)] font-semibold" : "text-[var(--text-main)] hover:text-[var(--primary-color)]"}`}
                             >
                                 {item.label}
                             </button>
                         ))}
-                        <button onClick={() => scrollToSection('contato')} className="btn-primary py-3 px-4 text-sm mt-3 w-full text-center">
+                        <button onClick={() => scrollToSection("contato")} className="btn-primary py-3 px-4 text-sm mt-3 w-full text-center">
                             Falar comigo
                         </button>
                     </nav>
@@ -122,7 +139,7 @@ function Header() {
             </header>
         );
     } catch (error) {
-        console.error('Header component error:', error);
+        console.error("Header component error:", error);
         return null;
     }
 }
