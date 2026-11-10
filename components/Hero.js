@@ -1,7 +1,7 @@
 function Hero() {
     try {
         return (
-            <section id="hero" className="min-h-screen flex flex-col justify-center pt-28 pb-12 md:pt-20 md:pb-0 relative overflow-hidden" data-name="hero" data-file="components/Hero.js">
+            <section id="hero" className="min-h-screen flex flex-col justify-center pt-28 pb-12 md:pt-20 md:pb-10 relative overflow-hidden" data-name="hero" data-file="components/Hero.js">
                 <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center flex-1">
                     <div className="space-y-6 md:space-y-8 z-10 text-center md:text-left mt-8 md:mt-0">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados & Business Intelligence</div>
