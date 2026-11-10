@@ -17,35 +17,35 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f4f7fb;
-      --surface: rgba(255,255,255,.88);
-      --surface-solid: #fff;
-      --border: rgba(148,163,184,.28);
-      --primary: #087ea4;
-      --primary-hover: #066886;
-      --text: #17243a;
-      --muted: #607087;
-      --shadow: 0 18px 48px rgba(15,23,42,.08);
-      --glow-a: rgba(34,211,238,.16);
-      --glow-b: rgba(59,130,246,.10);
-      --code-bg: #101a2b;
-      --code-text: #dce7f7;
+      --bg: #fff7fa;
+      --surface: rgba(255,255,255,.94);
+      --surface-solid: #ffffff;
+      --border: rgba(194,24,91,.15);
+      --primary: #c2185b;
+      --primary-hover: #a9144c;
+      --text: #2a1522;
+      --muted: #765f6d;
+      --shadow: 0 18px 48px rgba(85,24,54,.08);
+      --glow-a: rgba(236,72,153,.10);
+      --glow-b: rgba(190,24,93,.06);
+      --code-bg: #2a1d29;
+      --code-text: #f8eaf1;
     }
     html[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #0b1121;
-      --surface: rgba(30,41,59,.68);
-      --surface-solid: #142033;
-      --border: rgba(255,255,255,.10);
-      --primary: #38bdf8;
-      --primary-hover: #0ea5e9;
-      --text: #f8fafc;
-      --muted: #a4b2c7;
-      --shadow: 0 18px 48px rgba(0,0,0,.28);
-      --glow-a: rgba(14,165,233,.12);
-      --glow-b: rgba(30,64,175,.10);
-      --code-bg: #07101e;
-      --code-text: #dce7f7;
+      --bg: #150f18;
+      --surface: rgba(34,25,39,.84);
+      --surface-solid: #2a1e31;
+      --border: rgba(255,255,255,.09);
+      --primary: #f15aa7;
+      --primary-hover: #dc3f8d;
+      --text: #fbf4fa;
+      --muted: #bbaebb;
+      --shadow: 0 18px 48px rgba(0,0,0,.30);
+      --glow-a: rgba(241,90,167,.12);
+      --glow-b: rgba(124,58,237,.10);
+      --code-bg: #211827;
+      --code-text: #f8eaf1;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 92px; font-size: 14.5px; }
@@ -239,6 +239,31 @@
     @media (prefers-reduced-motion: reduce) {
       *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
+    /* Identidade visual compartilhada com o portfólio principal */
+    .case-hero-visual-wrap{position:relative;isolation:isolate;min-width:0;padding:15px 5px}
+    .case-hero-visual-wrap .hero-panel,.case-hero-visual-wrap .hero-visual{position:relative;z-index:1}
+    .case-float-layer{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
+    .case-float-bubble{
+      position:absolute;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:34px;padding:7px 12px;border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));
+      border-radius:999px;background:color-mix(in srgb,var(--surface) 94%,transparent);
+      color:var(--muted);box-shadow:0 8px 22px var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      font-size:.68rem;font-weight:750;letter-spacing:.025em;line-height:1;white-space:nowrap;will-change:transform;
+    }
+    .case-float-bubble i{font-size:.92rem;color:var(--primary)}
+    .case-float-bubble--top-left{top:0;left:9%}
+    .case-float-bubble--top-right{top:0;right:8%}
+    .case-float-bubble--bottom-left{bottom:0;left:10%}
+    .case-float-bubble--bottom-right{bottom:0;right:8%}
+    @media(max-width:800px){
+      .case-hero-visual-wrap{padding:14px 3px}
+      .case-float-bubble{min-height:30px;padding:6px 9px;font-size:.62rem}
+      .case-float-bubble--secondary{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .case-float-bubble{animation:none}
+    }
   </style>
   <script>
     try {
@@ -281,9 +306,17 @@
               <a class="btn btn-secondary" href="#evidencias"><span class="icon-images" aria-hidden="true"></span> Ver as seis evidências</a>
             </div>
           </div>
-          <div class="hero-visual">
-            <img src="https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/01_indicadores_comerciais.png" alt="Evidência da consulta de indicadores comerciais no MySQL Workbench">
-            <div class="hero-visual-caption"><strong>Visão comercial</strong><span>Dados inteiramente fictícios</span></div>
+          <div class="case-hero-visual-wrap">
+            <div class="case-float-layer" aria-hidden="true">
+              <span class="case-float-bubble case-float-bubble--top-left" data-float-bubble><i class="icon icon-database"></i><span>MySQL 8.4</span></span>
+              <span class="case-float-bubble case-float-bubble--top-right" data-float-bubble><i class="icon icon-code"></i><span>SQL</span></span>
+              <span class="case-float-bubble case-float-bubble--bottom-left case-float-bubble--secondary" data-float-bubble><i class="icon icon-network"></i><span>Modelagem</span></span>
+              <span class="case-float-bubble case-float-bubble--bottom-right" data-float-bubble><i class="icon icon-gauge"></i><span>Performance</span></span>
+            </div>
+            <div class="hero-visual">
+              <img src="https://raw.githubusercontent.com/1959414-5/erp-industrial-analytics/main/evidencias/01_indicadores_comerciais.png" alt="Evidência da consulta de indicadores comerciais no MySQL Workbench">
+              <div class="hero-visual-caption"><strong>Visão comercial</strong><span>Dados inteiramente fictícios</span></div>
+            </div>
           </div>
         </div>
         <div class="stats" aria-label="Resumo do projeto">
@@ -569,6 +602,48 @@ ON benchmark_movimentacoes (
       if (event.target === imageDialog) imageDialog.close();
     });
     imageDialog.addEventListener('close', () => { dialogImage.src = ''; });
+    // Movimento orgânico e independente dos elementos flutuantes do estudo de caso.
+    (() => {
+      const items=[...document.querySelectorAll("[data-float-bubble]")];
+      const timers=new Set();
+      const animations=new Set();
+      let disposed=false;
+      const random=(min,max)=>Math.random()*(max-min)+min;
+      const path=()=>{
+        const frames=[{transform:"translate3d(0,0,0) rotate(0deg)",offset:0}];
+        for(let i=1;i<=5;i++){
+          frames.push({
+            transform:"translate3d("+random(-7,7).toFixed(1)+"px,"+random(-6,6).toFixed(1)+"px,0) rotate("+random(-2.5,2.5).toFixed(1)+"deg)",
+            offset:i/6
+          });
+        }
+        frames.push({transform:"translate3d(0,0,0) rotate(0deg)",offset:1});
+        return frames;
+      };
+      const start=(item,delay=random(0,1800))=>{
+        const timer=setTimeout(()=>{
+          timers.delete(timer);
+          if(disposed)return;
+          const animation=item.animate(path(),{duration:random(12000,18000),easing:"ease-in-out",iterations:1,fill:"forwards"});
+          animations.add(animation);
+          animation.onfinish=()=>{
+            animations.delete(animation);
+            animation.cancel();
+            if(!disposed)start(item,random(250,1200));
+          };
+          animation.oncancel=()=>animations.delete(animation);
+        },delay);
+        timers.add(timer);
+      };
+      items.forEach(item=>start(item));
+      window.addEventListener("pagehide",()=>{
+        disposed=true;
+        timers.forEach(clearTimeout);
+        animations.forEach(animation=>animation.cancel());
+        timers.clear();animations.clear();
+      },{once:true});
+    })();
+
   </script>
 </body>
 </html>
