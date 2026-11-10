@@ -594,6 +594,42 @@
         #habilidades .skill-icon-frame{animation:none!important;transition:none!important;will-change:auto;transform:none!important}
     }
 
+    /* Mantém os movimentos decorativos solicitados mesmo com redução de movimento no sistema.
+       As animações funcionais da interface continuam respeitando a preferência de acessibilidade. */
+    @media(prefers-reduced-motion:reduce){
+        #habilidades .skill-icon-frame{
+            animation:skillBubbleDrift var(--drift-duration,23s) ease-in-out var(--drift-delay,0s) infinite normal!important;
+            animation-duration:var(--drift-duration,23s)!important;
+            animation-iteration-count:infinite!important;
+            animation-play-state:running!important;
+            will-change:transform!important;
+        }
+        .about-orbit-ring{
+            animation:aboutOrbit 18s linear infinite!important;
+            animation-duration:18s!important;
+            animation-iteration-count:infinite!important;
+            animation-play-state:running!important;
+        }
+        .about-floating-database{
+            animation:aboutFloat 5.8s ease-in-out infinite!important;
+            animation-duration:5.8s!important;
+            animation-iteration-count:infinite!important;
+            animation-play-state:running!important;
+        }
+        .about-floating-sparkle{
+            animation:aboutTwinkle 3.8s ease-in-out infinite!important;
+            animation-duration:3.8s!important;
+            animation-iteration-count:infinite!important;
+            animation-play-state:running!important;
+        }
+        .about-orbit-dot{
+            animation:aboutFloat 4.6s ease-in-out infinite reverse!important;
+            animation-duration:4.6s!important;
+            animation-iteration-count:infinite!important;
+            animation-play-state:running!important;
+        }
+    }
+
     </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
