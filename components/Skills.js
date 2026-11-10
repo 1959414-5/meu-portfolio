@@ -17,17 +17,27 @@ function Skills() {
   ];
 
   // Trajetórias aleatórias individuais: cada ícone recebe seu próprio percurso contínuo.
+  const randomizeBubblePath = (event) => {
+   const bubble = event.currentTarget;
+   const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
+   for (let point = 1; point <= 7; point++) {
+    bubble.style.setProperty("--drift-x" + point, random(-20, 20) + "px");
+    bubble.style.setProperty("--drift-y" + point, random(-14, 14) + "px");
+    bubble.style.setProperty("--drift-r" + point, random(-5, 5) + "deg");
+   }
+  };
+
   const bubbleMotions = React.useMemo(() => skillGroups.map(group =>
    group.skills.map(() => {
     const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
     const style = {};
     for (let point = 1; point <= 7; point++) {
-     style["--drift-x" + point] = random(-14, 14) + "px";
-     style["--drift-y" + point] = random(-11, 11) + "px";
+     style["--drift-x" + point] = random(-20, 20) + "px";
+     style["--drift-y" + point] = random(-14, 14) + "px";
      style["--drift-r" + point] = random(-5, 5) + "deg";
     }
-    style["--drift-duration"] = random(18, 29) + "s";
-    style["--drift-delay"] = random(-28, 0) + "s";
+    style["--drift-duration"] = random(18, 27) + "s";
+    style["--drift-delay"] = random(-26, 0) + "s";
     return style;
    })
   ), []);
@@ -50,7 +60,7 @@ function Skills() {
         <div className="skills-icon-grid">
          {group.skills.map((skill,skillIndex)=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
-           <div className="skill-icon-frame" style={bubbleMotions[index][skillIndex]}>
+           <div className="skill-icon-frame" style={bubbleMotions[index][skillIndex]} onAnimationIteration={randomizeBubblePath}>
             {skill.image?<img src={"./images/technologies/"+skill.image} alt="" loading="lazy"/>:<span className={skill.icon+" skill-generic-icon"} aria-hidden="true"></span>}
            </div>
            <span className="skill-icon-caption">{skill.label}</span>
