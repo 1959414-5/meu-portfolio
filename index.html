@@ -32,6 +32,7 @@
             --surface-color: rgba(255, 255, 255, 0.94);
             --card-color: #ffffff;
             --inner-card-color: #fff0f5;
+            --section-alt-color: #f8eaf1;
             --surface-border: rgba(194, 24, 91, 0.15);
             --primary-color: #c2185b;
             --primary-hover: #a9144c;
@@ -47,8 +48,9 @@
             color-scheme: dark;
             --bg-color: #150f18;
             --surface-color: rgba(34, 25, 39, 0.84);
-            --card-color: rgba(33, 24, 39, 0.96);
-            --inner-card-color: #2b1e32;
+            --card-color: rgba(42, 30, 49, 0.97);
+            --inner-card-color: #35263d;
+            --section-alt-color: #1e1423;
             --surface-border: rgba(255, 255, 255, 0.09);
             --primary-color: #f15aa7;
             --primary-hover: #dc3f8d;
@@ -287,8 +289,15 @@
         background: linear-gradient(90deg, transparent, var(--surface-border) 12%, var(--surface-border) 88%, transparent);
         pointer-events: none;
     }
+    /* Faixas de fundo alternadas para dar ritmo visual à página inteira */
+    main > section {
+        transition: background-color .38s ease;
+    }
     main > section:nth-of-type(even):not(#hero) {
-        background: linear-gradient(180deg, transparent 0%, var(--section-wash) 48%, transparent 100%);
+        background-color: var(--section-alt-color);
+        background-image:
+            radial-gradient(ellipse at 8% 18%, var(--section-wash), transparent 44%),
+            linear-gradient(115deg, color-mix(in srgb, var(--section-alt-color) 96%, transparent), var(--section-alt-color));
     }
     main .glass-panel:hover {
         border-color: color-mix(in srgb, var(--primary-color) 42%, var(--surface-border));
