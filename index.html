@@ -1,9 +1,9 @@
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f4f7fb">
+    <meta name="theme-color" content="#150f18">
 
     <title>Bárbara Cabral Paschoalin | Portfólio de Análise de Dados</title>
     <meta name="description" content="Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.">
@@ -15,46 +15,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         try {
-            if (localStorage.getItem('portfolio-theme') === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        } catch (error) {}
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            document.documentElement.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
+        } catch (error) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
     </script>
     <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
     <style type="text/tailwindcss">
         @layer theme {
         :root {
             color-scheme: light;
-            --bg-color: #eaf2f9;
-            --surface-color: rgba(255, 255, 255, 0.96);
-            --card-color: rgba(255, 255, 255, 0.96);
-            --inner-card-color: #eaf2f9;
-            --surface-border: rgba(148, 163, 184, 0.28);
-            --primary-color: #087ea4;
-            --primary-hover: #066886;
-            --text-main: #17243a;
-            --text-muted: #607087;
-            --shadow-color: rgba(15, 23, 42, 0.08);
-            --page-glow-a: rgba(34, 211, 238, 0.16);
-            --page-glow-b: rgba(59, 130, 246, 0.10);
+            --bg-color: #fff7fa;
+            --surface-color: rgba(255, 255, 255, 0.94);
+            --card-color: #ffffff;
+            --inner-card-color: #fff0f5;
+            --surface-border: rgba(194, 24, 91, 0.15);
+            --primary-color: #c2185b;
+            --primary-hover: #a9144c;
+            --text-main: #2a1522;
+            --text-muted: #765f6d;
+            --shadow-color: rgba(85, 24, 54, 0.08);
+            --page-glow-a: rgba(236, 72, 153, 0.10);
+            --page-glow-b: rgba(190, 24, 93, 0.06);
+            --section-wash: rgba(194, 24, 91, 0.025);
         }
 
         html[data-theme="dark"] {
             color-scheme: dark;
-            --bg-color: #0b1121;
-            --surface-color: rgba(30, 41, 59, 0.58);
-            --card-color: rgba(24, 39, 60, 0.94);
-            --inner-card-color: rgba(11, 17, 33, 0.48);
-            --surface-border: rgba(255, 255, 255, 0.10);
-            --primary-color: #38bdf8;
-            --primary-hover: #0ea5e9;
-            --text-main: #f8fafc;
-            --text-muted: #a4b2c7;
-            --shadow-color: rgba(0, 0, 0, 0.28);
-            --page-glow-a: rgba(14, 165, 233, 0.12);
-            --page-glow-b: rgba(30, 64, 175, 0.10);
+            --bg-color: #150f18;
+            --surface-color: rgba(34, 25, 39, 0.84);
+            --card-color: rgba(33, 24, 39, 0.96);
+            --inner-card-color: #2b1e32;
+            --surface-border: rgba(255, 255, 255, 0.09);
+            --primary-color: #f15aa7;
+            --primary-hover: #dc3f8d;
+            --text-main: #fbf4fa;
+            --text-muted: #bbaebb;
+            --shadow-color: rgba(0, 0, 0, 0.30);
+            --page-glow-a: rgba(241, 90, 167, 0.12);
+            --page-glow-b: rgba(124, 58, 237, 0.10);
+            --section-wash: rgba(241, 90, 167, 0.035);
         }
     }
 
@@ -132,7 +135,7 @@
     #root { width: 100%; min-width: 0; }
     .container.mx-auto {
         width: 100% !important;
-        max-width: 1680px !important;
+        max-width: 1240px !important;
         margin-inline: auto !important;
         padding-inline: clamp(24px, 5vw, 84px) !important;
     }
@@ -229,6 +232,131 @@
             transition-duration: 0.01ms !important;
         }
     }
+
+    /* Identidade visual: referência Bárbara.BI */
+    html { scroll-padding-top: 7rem; }
+    body {
+        background-image:
+            radial-gradient(ellipse at 8% 2%, var(--page-glow-a), transparent 38%),
+            radial-gradient(ellipse at 92% 26%, var(--page-glow-b), transparent 34%),
+            linear-gradient(180deg, var(--bg-color), var(--bg-color));
+        background-attachment: fixed;
+    }
+    h1, h2, h3, h4, .section-title, header .text-xl {
+        font-family: 'Space Grotesk', 'Inter', sans-serif;
+        letter-spacing: -0.025em;
+    }
+    h1 { letter-spacing: -0.045em; }
+    .section-title {
+        position: relative;
+        display: inline-block;
+        font-size: clamp(2rem, 3.2vw, 2.75rem) !important;
+        line-height: 1.12 !important;
+        margin-bottom: 2.1rem !important;
+        background-image: linear-gradient(110deg, var(--text-main) 12%, var(--primary-color) 100%);
+    }
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 58px;
+        height: 3px;
+        margin-top: 13px;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--primary-color), transparent);
+    }
+    .glass-panel {
+        background-color: var(--card-color);
+        border: 1px solid var(--surface-border);
+        border-radius: 1.2rem;
+        box-shadow: 0 16px 42px var(--shadow-color);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+    }
+    main > section:not(#hero) {
+        position: relative;
+        isolation: isolate;
+    }
+    main > section:not(#hero)::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: max(22px, calc((100% - 1120px) / 2));
+        right: max(22px, calc((100% - 1120px) / 2));
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--surface-border) 12%, var(--surface-border) 88%, transparent);
+        pointer-events: none;
+    }
+    main > section:nth-of-type(even):not(#hero) {
+        background: linear-gradient(180deg, transparent 0%, var(--section-wash) 48%, transparent 100%);
+    }
+    main .glass-panel:hover {
+        border-color: color-mix(in srgb, var(--primary-color) 42%, var(--surface-border));
+        box-shadow: 0 22px 52px var(--shadow-color), 0 0 0 1px color-mix(in srgb, var(--primary-color) 9%, transparent);
+        transform: translateY(-4px);
+    }
+    .btn-primary {
+        background: var(--primary-color) !important;
+        box-shadow: 0 8px 24px color-mix(in srgb, var(--primary-color) 28%, transparent) !important;
+        border-radius: 12px !important;
+    }
+    .btn-primary:hover {
+        background: var(--primary-hover) !important;
+        box-shadow: 0 12px 30px color-mix(in srgb, var(--primary-color) 34%, transparent) !important;
+    }
+    .btn-outline { border-radius: 12px !important; }
+    .nav-link {
+        position: relative;
+        color: var(--text-muted) !important;
+        padding: 8px 0;
+    }
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: 1px;
+        height: 2px;
+        border-radius: 5px;
+        background: var(--primary-color);
+        transition: right .25s ease;
+    }
+    .nav-link:hover::after, .nav-link.active-nav-link::after { right: 0; }
+    .nav-link.active-nav-link { color: var(--primary-color) !important; }
+    .theme-toggle {
+        background: var(--surface-color) !important;
+        border-color: var(--surface-border) !important;
+    }
+    #scroll-progress {
+        position: fixed;
+        z-index: 1000;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 3px;
+        transform: scaleX(0);
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--primary-color), #f9a8d4, #c084fc);
+        box-shadow: 0 0 14px color-mix(in srgb, var(--primary-color) 55%, transparent);
+        pointer-events: none;
+    }
+    .scroll-reveal {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+        transition: opacity .72s ease, transform .72s cubic-bezier(.2,.7,.2,1);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+    .scroll-reveal.is-visible { opacity: 1; transform: translate3d(0,0,0); }
+    section[id] { scroll-margin-top: 7rem; }
+    @media (max-width: 760px) {
+        main > section:not(#hero)::before { left: 18px; right: 18px; }
+        main .glass-panel:hover { transform: none; }
+        .section-title { margin-bottom: 1.5rem !important; }
+        .scroll-reveal { transform: translate3d(0, 14px, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .scroll-reveal { opacity: 1; transform: none; transition: none; }
+    }
+
     </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
