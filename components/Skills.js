@@ -22,15 +22,15 @@ function Skills() {
       <h2 className="section-title mb-4">Habilidades</h2>
       <p className="text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">Ferramentas e conhecimentos que utilizo para organizar dados, compreender processos e desenvolver soluções de análise e BI.</p>
      </div>
-     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
       {skillGroups.map((group,index)=>(
-       <article key={group.title} className="glass-panel p-5 md:p-6 flex flex-col h-full border border-[var(--surface-border)] hover:border-[var(--primary-color)]/50 transition-colors duration-200">
+       <article key={group.title} className="glass-panel p-5 md:p-6 flex flex-col border border-[var(--surface-border)] hover:border-[var(--primary-color)]/50 transition-colors duration-200">
         <div className="flex items-center gap-3 mb-4">
          <div className="w-11 h-11 shrink-0 rounded-xl bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><span className={group.icon+" text-2xl"} aria-hidden="true"></span></div>
          <div><span className="block text-[10px] uppercase tracking-[0.16em] text-[var(--primary-color)] font-semibold mb-1">0{index+1}</span><h3 className="text-lg font-bold text-[var(--text-main)] leading-tight">{group.title}</h3></div>
         </div>
-        <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 min-h-[42px]">{group.subtitle}</p>
-        <div className="skills-icon-grid mb-6">
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{group.subtitle}</p>
+        <div className="skills-icon-grid">
          {group.skills.map(skill=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
            <div className="skill-icon-frame">
@@ -40,15 +40,25 @@ function Skills() {
           </div>
          ))}
         </div>
-        <div className="mt-auto pt-5 border-t border-[var(--surface-border)]">
-         <p className="text-[10px] uppercase tracking-[0.15em] text-[var(--primary-color)] font-semibold mb-2">Aplicação prática</p>
-         <p className="text-sm text-[var(--text-muted)] leading-relaxed">{group.application}</p>
-        </div>
        </article>
       ))}
      </div>
-     <div className="mt-7 glass-panel p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-[var(--primary-color)]/20">
-      <div className="w-11 h-11 shrink-0 rounded-xl bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><span className="icon-lightbulb text-2xl" aria-hidden="true"></span></div>
+     <div className="mt-7 glass-panel p-5 md:p-6 border border-[var(--primary-color)]/20">
+      <div className="flex items-center gap-3 mb-4">
+       <div className="w-11 h-11 shrink-0 rounded-xl bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><span className="icon-lightbulb text-2xl" aria-hidden="true"></span></div>
+       <div><h3 className="font-semibold text-[var(--text-main)]">Aplicação prática</h3><p className="text-xs text-[var(--text-muted)]">Como conecto essas habilidades ao trabalho.</p></div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+       {skillGroups.map(group=>(
+        <div key={group.title} className="min-w-0">
+         <p className="text-[10px] uppercase tracking-[0.15em] text-[var(--primary-color)] font-semibold mb-2">{group.title}</p>
+         <p className="text-sm text-[var(--text-muted)] leading-relaxed">{group.application}</p>
+        </div>
+       ))}
+      </div>
+     </div>
+     <div className="mt-5 flex items-start gap-4 rounded-xl border border-[var(--surface-border)] bg-[var(--section-wash)] p-5 md:p-6">
+      <div className="w-10 h-10 shrink-0 rounded-xl bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><span className="icon-sparkles text-xl" aria-hidden="true"></span></div>
       <div><h3 className="font-semibold text-[var(--text-main)] mb-1">Meu diferencial</h3><p className="text-sm text-[var(--text-muted)] leading-relaxed">Vivência prática em ambiente industrial, conectando o conhecimento dos processos comerciais e produtivos à análise de dados e ao desenvolvimento de soluções.</p></div>
      </div>
     </div>
