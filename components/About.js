@@ -6,11 +6,14 @@ function About() {
                     <h2 className="section-title">Sobre Mim</h2>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div className="glass-panel p-6 md:p-10 order-2 md:order-1 relative overflow-hidden text-center md:text-left">
-                            <div className="absolute top-0 right-0 p-8 opacity-10">
-                                <div className="icon-database text-9xl"></div>
+                            <div className="about-orbit-decoration" aria-hidden="true">
+                                <span className="about-orbit-ring"></span>
+                                <span className="about-orbit-dot"></span>
+                                <div className="icon-database about-floating-database"></div>
+                                <div className="icon-sparkles about-floating-sparkle"></div>
                             </div>
-                            <h3 className="text-2xl font-bold mb-6 text-[var(--text-main)]">Da indústria para os dados</h3>
-                            <div className="space-y-4 text-[var(--text-muted)] leading-relaxed text-sm md:text-base">
+                            <h3 className="relative z-10 text-2xl font-bold mb-6 text-[var(--text-main)] pr-16">Da indústria para os dados</h3>
+                            <div className="relative z-10 space-y-4 text-[var(--text-muted)] leading-relaxed text-sm md:text-base">
                                 <p>
                                     Sou formada em <strong>Análise e Desenvolvimento de Sistemas</strong> pela UniCesumar (2024). Minha trajetória profissional começou na indústria, em 2018, como Jovem Aprendiz.
                                 </p>
