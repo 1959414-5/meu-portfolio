@@ -521,37 +521,109 @@ function Projects() {
 
                 {/* Fullscreen Image Modal */}
                 {selectedImage && ReactDOM.createPortal((
-                    <div 
-                        style={{ position: "fixed", inset: 0, zIndex: 10000 }}
-                        className="flex items-center justify-center px-4 py-4 bg-[#150f18]/95 backdrop-blur-sm animate-fade-in"
+                    <div
+                        style={{
+                            position: "fixed",
+                            top: 0,
+                            left: 0,
+                            width: "100vw",
+                            height: "100vh",
+                            height: "100dvh",
+                            zIndex: 10000,
+                            display: "grid",
+                            placeItems: "center",
+                            boxSizing: "border-box",
+                            padding: "20px",
+                            overflow: "hidden",
+                            background: "rgba(21, 15, 24, .96)",
+                            backdropFilter: "blur(12px)",
+                            WebkitBackdropFilter: "blur(12px)"
+                        }}
                         onClick={() => setSelectedImage(null)}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Visualização ampliada das imagens"
                     >
-                        <div className="absolute top-4 right-4 z-20">
-                            <button 
-                                onClick={() => setSelectedImage(null)} 
-                                className="p-3 rounded-full bg-[var(--surface-color)] hover:bg-[var(--primary-color)] text-white transition-colors"
+                        <button
+                            type="button"
+                            onClick={() => setSelectedImage(null)}
+                            style={{ position: "absolute", top: 16, right: 16, zIndex: 20 }}
+                            className="p-3 rounded-full bg-[var(--surface-color)] hover:bg-[var(--primary-color)] text-white transition-colors"
+                            aria-label="Fechar imagem ampliada"
+                        >
+                            <span className="icon-x text-2xl" aria-hidden="true"></span>
+                        </button>
+
+                        <div
+                            style={{
+                                position: "relative",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "100%",
+                                maxWidth: "calc(100vw - 120px)",
+                                maxHeight: "90dvh",
+                                minHeight: 0,
+                                margin: "auto"
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const nextIndex = (modalImageIndex - 1 + modalImages.length) % modalImages.length;
+                                    setModalImageIndex(nextIndex);
+                                    setSelectedImage(modalImages[nextIndex]?.image || selectedImage);
+                                }}
+                                style={{ position: "absolute", left: "-58px", top: "50%", transform: "translateY(-50%)", zIndex: 20 }}
+                                className="rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3"
+                                aria-label="Imagem anterior"
                             >
-                                <div className="icon-x text-2xl"></div>
-                            </button>
-                        </div>
-                        
-                        <div className="relative flex items-center justify-center w-full h-full" onClick={(e) => e.stopPropagation()}>
-                            <button type="button" onClick={() => { const nextIndex = (modalImageIndex - 1 + modalImages.length) % modalImages.length; setModalImageIndex(nextIndex); setSelectedImage(modalImages[nextIndex]?.image || selectedImage); }} className="absolute left-1 md:left-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Imagem anterior">
                                 <span className="icon-chevron-left text-2xl" aria-hidden="true"></span>
                             </button>
-                            <div className="flex flex-col items-center justify-center max-w-[85vw] max-h-[88vh]">
-                                <img key={selectedImage || modalImages[modalImageIndex]?.image} src={selectedImage || modalImages[modalImageIndex]?.image || ""} loading="eager" decoding="async" className="block w-auto h-auto max-w-[88vw] max-h-[78vh] object-contain rounded-lg shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} onError={() => console.error("Não foi possível carregar a imagem ampliada:", selectedImage || modalImages[modalImageIndex]?.image)} />
-                                <div className="mt-3 text-center text-sm text-white font-medium">
-                                    {modalImages[modalImageIndex]?.title || ""}
-                                    <span className="ml-3 text-white/70 tabular-nums">{modalImageIndex + 1} / {modalImages.length}</span>
-                                </div>
+
+                            <img
+                                key={selectedImage}
+                                src={selectedImage}
+                                loading="eager"
+                                decoding="async"
+                                style={{
+                                    display: "block",
+                                    width: "auto",
+                                    height: "auto",
+                                    maxWidth: "calc(100vw - 160px)",
+                                    maxHeight: "calc(90dvh - 48px)",
+                                    objectFit: "contain",
+                                    flex: "0 1 auto",
+                                    margin: "0 auto"
+                                }}
+                                className="rounded-lg shadow-2xl"
+                                alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"}
+                            />
+
+                            <div className="mt-3 text-center text-sm text-white font-medium">
+                                {modalImages[modalImageIndex]?.title || ""}
+                                <span className="ml-3 text-white/70 tabular-nums">{modalImageIndex + 1} / {modalImages.length}</span>
                             </div>
-                            <button type="button" onClick={() => { const nextIndex = (modalImageIndex + 1) % modalImages.length; setModalImageIndex(nextIndex); setSelectedImage(modalImages[nextIndex]?.image || selectedImage); }} className="absolute right-1 md:right-6 z-20 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3 md:p-4" aria-label="Próxima imagem">
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const nextIndex = (modalImageIndex + 1) % modalImages.length;
+                                    setModalImageIndex(nextIndex);
+                                    setSelectedImage(modalImages[nextIndex]?.image || selectedImage);
+                                }}
+                                style={{ position: "absolute", right: "-58px", top: "50%", transform: "translateY(-50%)", zIndex: 20 }}
+                                className="rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl p-3"
+                                aria-label="Próxima imagem"
+                            >
                                 <span className="icon-chevron-right text-2xl" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
                 ), document.body)}
+
             </section>
         );
     } catch (error) {
