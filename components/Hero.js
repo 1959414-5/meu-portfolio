@@ -23,10 +23,20 @@ function Hero() {
                                 <div className="icon-download"></div>Baixar currículo
                             </a>
                         </div>
-                        <div className="flex flex-wrap gap-2 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start">
-                            {["Power BI", "SQL / MySQL", "DAX", "Power Query"].map((skill) => (
-                                <span key={skill} className="inner-card border border-[var(--surface-border)] rounded-full px-3 py-1.5 text-xs font-semibold text-[var(--text-main)]">{skill}</span>
-                            ))}
+                        <div className="hero-tech-strip flex flex-wrap items-center gap-3 sm:gap-4 pt-5 border-t border-[var(--surface-border)] justify-center md:justify-start" aria-label="Tecnologias principais">
+                            <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)] font-semibold mr-1">Stack</span>
+                            <div className="tech-logo tech-logo--powerbi" role="img" aria-label="Power BI" title="Power BI">
+                                <img src="./images/technologies/power-bi.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--mysql" role="img" aria-label="SQL e MySQL" title="SQL / MySQL">
+                                <img src="./images/technologies/mysql.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--dax" role="img" aria-label="DAX — medidas e expressões" title="DAX">
+                                <img src="./images/technologies/dax-measure.svg" alt="" />
+                            </div>
+                            <div className="tech-logo tech-logo--powerquery" role="img" aria-label="Power Query" title="Power Query">
+                                <img src="./images/technologies/power-query.svg" alt="" />
+                            </div>
                         </div>
                     </div>
 
@@ -79,12 +89,9 @@ function Hero() {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-wrap items-center gap-2 mt-6 pt-5 border-t border-[var(--surface-border)]">
-                                    <span className="text-[10px] text-[var(--text-muted)] mr-1">Tecnologias</span>
-                                    <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold text-[var(--primary-color)] bg-[var(--primary-color)]/10">POWER BI</span>
-                                    <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold text-[var(--primary-color)] bg-[var(--primary-color)]/10">SQL</span>
-                                    <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold text-[var(--primary-color)] bg-[var(--primary-color)]/10">POWER QUERY</span>
-                                    <span className="px-2.5 py-1 rounded-md text-[10px] font-semibold text-[var(--primary-color)] bg-[var(--primary-color)]/10">DAX</span>
+                                <div className="flex items-center gap-2 mt-6 pt-5 border-t border-[var(--surface-border)] text-[var(--text-muted)]">
+                                    <div className="icon-sparkles text-[var(--primary-color)] text-sm" aria-hidden="true"></div>
+                                    <span className="text-xs">Da coleta à tomada de decisão</span>
                                 </div>
                             </div>
                         </div>
