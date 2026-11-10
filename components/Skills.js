@@ -16,25 +16,40 @@ function Skills() {
    ],application:"Leitura de processos comerciais e industriais, identificação de gargalos e apoio à tomada de decisão."}
   ];
 
-  // Cada bolha recebe uma trajetória, duração e fase próprias ao carregar a página.
-  const bubbleMotions = React.useMemo(() => skillGroups.map(group =>
-   group.skills.map(() => {
-    const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
-    return {
-     "--bubble-x1": random(-8, 8) + "px",
-     "--bubble-y1": random(-6, 6) + "px",
-     "--bubble-x2": random(-7, 7) + "px",
-     "--bubble-y2": random(-7, 7) + "px",
-     "--bubble-x3": random(-8, 8) + "px",
-     "--bubble-y3": random(-5, 5) + "px",
-     "--bubble-r1": random(-3, 3) + "deg",
-     "--bubble-r2": random(-4, 4) + "deg",
-     "--bubble-r3": random(-2, 2) + "deg",
-     "--bubble-duration": random(14, 24) + "s",
-     "--bubble-delay": random(-24, 0) + "s"
-    };
-   })
-  ), []);
+  // Cada bolha escolhe continuamente uma nova posição, sem repetir uma trajetória fixa.
+  React.useEffect(() => {
+   const section = document.getElementById("habilidades");
+   if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+   const bubbles = Array.from(section.querySelectorAll(".skill-icon-frame"));
+   const activeTimers = new Set();
+   const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+   const scheduleDrift = (bubble, delay = randomBetween(4200, 6900)) => {
+    const timer = window.setTimeout(() => {
+     activeTimers.delete(timer);
+     const x = randomBetween(-10, 10).toFixed(1);
+     const y = randomBetween(-8, 8).toFixed(1);
+     const rotation = randomBetween(-4, 4).toFixed(1);
+     bubble.style.transform = "translate3d(" + x + "px," + y + "px,0) rotate(" + rotation + "deg)";
+     scheduleDrift(bubble);
+    }, delay);
+    activeTimers.add(timer);
+   };
+
+   bubbles.forEach(bubble => {
+    bubble.style.setProperty("--bubble-transition", randomBetween(3.5, 5.5).toFixed(1) + "s");
+    scheduleDrift(bubble, randomBetween(250, 2800));
+   });
+
+   return () => {
+    activeTimers.forEach(timer => window.clearTimeout(timer));
+    bubbles.forEach(bubble => {
+     bubble.style.transform = "";
+     bubble.style.removeProperty("--bubble-transition");
+    });
+   };
+  }, []);
 
   return (
    <section id="habilidades" className="py-20 lg:py-24 relative bg-[var(--bg-color)]" data-name="skills" data-file="components/Skills.js">
@@ -54,7 +69,7 @@ function Skills() {
         <div className="skills-icon-grid">
          {group.skills.map((skill,skillIndex)=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
-           <div className="skill-icon-frame" style={bubbleMotions[index][skillIndex]}>
+           <div className="skill-icon-frame">
             {skill.image?<img src={"./images/technologies/"+skill.image} alt="" loading="lazy"/>:<span className={skill.icon+" skill-generic-icon"} aria-hidden="true"></span>}
            </div>
            <span className="skill-icon-caption">{skill.label}</span>
