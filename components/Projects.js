@@ -171,6 +171,60 @@ function Projects() {
             setSelectedImage(image);
         };
 
+        const tagVisuals = {
+            "Power BI": { image: "power-bi.svg" },
+            "DAX": { image: "dax.svg" },
+            "Power Query": { image: "power-query.svg" },
+            "Modelagem de Dados": { icon: "icon-network" },
+            "Google Sheets": { image: "google-sheets.svg" },
+            "ERP": { icon: "icon-factory" },
+            "Eficiência": { icon: "icon-gauge" },
+            "Logística": { icon: "icon-truck" },
+            "Gestão": { icon: "icon-clipboard-list" },
+            "Métricas": { icon: "icon-chart-no-axes-combined" },
+            "Operação": { icon: "icon-settings" },
+            "Comercial": { icon: "icon-briefcase" },
+            "Estratégia": { icon: "icon-target" },
+            "JavaScript": { image: "javascript.svg" },
+            "Leaflet.js": { icon: "icon-map" },
+            "Google Apps Script": { image: "google-apps-script.svg" },
+            "QR Code": { icon: "icon-qr-code" },
+            "PCP": { icon: "icon-calendar-check" },
+            "GitHub Pages": { icon: "icon-github" },
+            "MySQL 8.4": { image: "mysql.svg" },
+            "SQL": { icon: "icon-database" },
+            "Modelagem Relacional": { icon: "icon-network" },
+            "CTEs": { icon: "icon-code" },
+            "Window Functions": { icon: "icon-braces" },
+            "Performance": { icon: "icon-gauge" },
+            "Python": { image: "python.svg" },
+            "PyAutoGUI": { icon: "icon-mouse-pointer-click" },
+            "Tkinter": { icon: "icon-monitor" },
+            "Pyperclip": { icon: "icon-clipboard" },
+            "CSV / JSON": { icon: "icon-file-json" },
+            "CSV e JSON": { icon: "icon-file-json" },
+            "RPA": { icon: "icon-workflow" },
+            "Automação desktop": { icon: "icon-monitor" }
+        };
+
+        const renderTagIcons = (tags, extraClass = "") => (
+            <div className={"skills-icon-grid portfolio-icon-grid " + extraClass}>
+                {tags.map((tag) => {
+                    const visual = tagVisuals[tag] || { icon: "icon-layers" };
+                    return (
+                        <div key={tag} className="skill-icon-item" title={tag}>
+                            <div className="skill-icon-frame">
+                                {visual.image
+                                    ? <img src={"./images/technologies/" + visual.image} alt="" loading="lazy" />
+                                    : <span className={(visual.icon || "icon-tag") + " skill-generic-icon"} aria-hidden="true"></span>}
+                            </div>
+                            <span className="skill-icon-caption">{tag}</span>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+
         const renderProjectCard = (project) => (
             <article key={project.id} className="glass-panel overflow-hidden flex flex-col group hover:-translate-y-1 transition-transform duration-300">
                 <button
@@ -230,13 +284,7 @@ function Projects() {
                         </a>
                     )}
 
-                    <div className="flex flex-wrap gap-2 pt-1 mt-auto">
-                        {project.tags.map((tag, idx) => (
-                            <span key={idx} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
+                    {renderTagIcons(project.tags, "mt-auto")}
                 </div>
             </article>
         );
@@ -253,7 +301,7 @@ function Projects() {
                                     <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
                                     Case principal · Business Intelligence
                                 </span>
-                                <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 text-xs text-[var(--text-muted)]">Power BI</span>
+                                <div className="flex items-center gap-2 text-xs font-semibold text-[var(--text-muted)]"><span className="skill-icon-frame portfolio-inline-icon"><img src="./images/technologies/power-bi.svg" alt="" /></span><span>Power BI</span></div>
                             </div>
 
                             <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-start">
@@ -303,11 +351,7 @@ function Projects() {
                                             <div className="text-xs text-[var(--text-muted)] mt-1">tabelas de negócio no modelo</div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-wrap gap-2 mt-5">
-                                        {["Power BI", "DAX", "Power Query", "Modelagem de Dados", "Google Sheets"].map((tag) => (
-                                            <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] text-[var(--primary-color)]">{tag}</span>
-                                        ))}
-                                    </div>
+                                    {renderTagIcons(["Power BI", "DAX", "Power Query", "Modelagem de Dados", "Google Sheets"], "mt-5")}
                                 </div>
                             </div>
                         </div>
@@ -386,9 +430,7 @@ function Projects() {
                                         <li key={index} className="flex gap-2 items-start text-sm text-[var(--text-muted)] leading-relaxed"><span className="icon-check text-[var(--primary-color)] mt-1 flex-shrink-0" aria-hidden="true"></span><span>{item}</span></li>
                                     ))}
                                 </ul>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {sqlProjects[0].tags.map((tag) => <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>)}
-                                </div>
+                                {renderTagIcons(sqlProjects[0].tags, "mb-4")}
                                 <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                                     <a href={sqlProjects[0].pageUrl} className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo</a>
                                     <a href={sqlProjects[0].repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-github" aria-hidden="true"></span>Explorar repositório no GitHub</a>
@@ -433,11 +475,7 @@ function Projects() {
                                     </div>
                                 </div>
                                 <p className="text-xs text-[var(--text-muted)] mb-5">30 minutos economizados por execução · redução média de 75% no tempo.</p>
-                                <div className="flex flex-wrap gap-2 mb-5">
-                                    {["Python", "PyAutoGUI", "Tkinter", "Pyperclip", "CSV / JSON", "RPA"].map((tag) => (
-                                        <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--surface-border)] bg-[var(--surface-color)] text-[var(--primary-color)]">{tag}</span>
-                                    ))}
-                                </div>
+                                {renderTagIcons(["Python", "PyAutoGUI", "Tkinter", "Pyperclip", "CSV / JSON", "RPA"], "mb-5")}
                                 <a href="projeto-automacao-relatorios.html" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline">
                                     <span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo
                                     <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
