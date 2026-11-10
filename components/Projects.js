@@ -539,7 +539,7 @@ function Projects() {
                                 <span className="icon-chevron-left text-2xl" aria-hidden="true"></span>
                             </button>
                             <div className="flex flex-col items-center justify-center max-w-[85vw] max-h-[88vh]">
-                                <img key={selectedImage} src={selectedImage} loading="eager" decoding="async" className="block w-auto h-auto max-w-[88vw] max-h-[78vh] object-contain rounded-lg shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} onError={(event) => { event.currentTarget.style.visibility = "hidden"; console.error("Não foi possível carregar a imagem ampliada:", selectedImage); }} onLoad={(event) => { event.currentTarget.style.visibility = "visible"; }} />
+                                <img key={selectedImage || modalImages[modalImageIndex]?.image} src={selectedImage || modalImages[modalImageIndex]?.image || ""} loading="eager" decoding="async" className="block w-auto h-auto max-w-[88vw] max-h-[78vh] object-contain rounded-lg shadow-2xl" alt={modalImages[modalImageIndex]?.title || "Visualização em tela cheia"} onError={() => console.error("Não foi possível carregar a imagem ampliada:", selectedImage || modalImages[modalImageIndex]?.image)} />
                                 <div className="mt-3 text-center text-sm text-white font-medium">
                                     {modalImages[modalImageIndex]?.title || ""}
                                     <span className="ml-3 text-white/70 tabular-nums">{modalImageIndex + 1} / {modalImages.length}</span>
