@@ -538,7 +538,14 @@
     .experience-skill-grid{max-width:330px}
     @media(max-width:420px){.skills-icon-grid{gap:10px 5px}.skill-icon-frame{width:43px;height:43px;border-radius:12px;padding:8px}.skill-icon-caption{font-size:9.5px}}
 
-    /* Habilidades: cards nivelados e ícones em bolhas flutuantes */
+    /* Habilidades: cards nivelados e bolhas com trajetórias orgânicas */
+    @media(min-width:1024px){
+        #habilidades .skills-groups-grid{
+            grid-template-rows:1fr;
+            align-items:stretch;
+        }
+        #habilidades .skills-groups-grid>article{height:100%;min-height:100%}
+    }
     #habilidades .skills-icon-grid{
         flex:1 1 auto;
         min-height:0;
@@ -560,25 +567,26 @@
         box-shadow:
             0 8px 20px color-mix(in srgb,var(--primary-color) 9%,var(--shadow-color)),
             inset 0 1px 0 rgba(255,255,255,.08);
-        animation:skillBubbleFloat 5.8s ease-in-out infinite;
+        animation:skillBubbleDrift var(--bubble-duration,19s) ease-in-out var(--bubble-delay,0s) infinite;
         will-change:transform;
+        transform-origin:center;
     }
-    #habilidades .skill-icon-item:nth-child(3n+2) .skill-icon-frame{animation-delay:-1.9s}
-    #habilidades .skill-icon-item:nth-child(3n) .skill-icon-frame{animation-delay:-3.8s}
     #habilidades .skill-icon-item:hover .skill-icon-frame{
         border-color:var(--primary-color);
         box-shadow:0 10px 24px color-mix(in srgb,var(--primary-color) 18%,var(--shadow-color)),inset 0 1px 0 rgba(255,255,255,.12);
     }
     #habilidades .skill-icon-caption{margin-top:1px}
-    @keyframes skillBubbleFloat{
-        0%,100%{transform:translateY(0)}
-        50%{transform:translateY(-4px)}
+    @keyframes skillBubbleDrift{
+        0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+        22%{transform:translate3d(var(--bubble-x1,0px),var(--bubble-y1,0px),0) rotate(var(--bubble-r1,0deg))}
+        48%{transform:translate3d(var(--bubble-x2,0px),var(--bubble-y2,0px),0) rotate(var(--bubble-r2,0deg))}
+        76%{transform:translate3d(var(--bubble-x3,0px),var(--bubble-y3,0px),0) rotate(var(--bubble-r3,0deg))}
     }
     @media(max-width:420px){
         #habilidades .skill-icon-frame{width:48px;height:48px;padding:9px}
     }
     @media(prefers-reduced-motion:reduce){
-        #habilidades .skill-icon-frame{animation:none!important;will-change:auto}
+        #habilidades .skill-icon-frame{animation:none!important;will-change:auto;transform:none!important}
     }
 
     </style>
