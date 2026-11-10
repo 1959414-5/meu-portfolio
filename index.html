@@ -606,6 +606,57 @@
         }
     }
 
+
+    /* Elementos flutuantes discretos da primeira seção */
+    #hero .hero-floating-layer{
+        position:absolute;
+        inset:0;
+        z-index:20;
+        pointer-events:none;
+    }
+    #hero .hero-float-item{
+        position:absolute;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        min-height:34px;
+        padding:7px 12px;
+        border:1px solid color-mix(in srgb,var(--primary-color) 25%,var(--surface-border));
+        border-radius:999px;
+        background:color-mix(in srgb,var(--card-color) 92%,transparent);
+        color:var(--text-muted);
+        box-shadow:0 8px 22px var(--shadow-color),inset 0 1px 0 rgba(255,255,255,.06);
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        font-size:10px;
+        line-height:1;
+        font-weight:700;
+        letter-spacing:.035em;
+        white-space:nowrap;
+        will-change:transform;
+    }
+    #hero .hero-float-item>span:first-child{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        color:var(--primary-color);
+        font-size:14px;
+    }
+    #hero .hero-float-item--sql{top:1px;left:12%}
+    #hero .hero-float-item--bi{top:1px;right:12%}
+    #hero .hero-float-item--python{bottom:1px;left:13%}
+    #hero .hero-float-item--dax{bottom:1px;right:12%}
+    @media(max-width:1100px){
+        #hero .hero-float-item--sql{left:5%}
+        #hero .hero-float-item--bi{right:5%}
+        #hero .hero-float-item--python{left:5%}
+        #hero .hero-float-item--dax{right:5%}
+    }
+    @media(prefers-reduced-motion:reduce){
+        #hero .hero-float-item{animation:none!important}
+    }
+
     </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
@@ -620,7 +671,7 @@
 <body>
     <div id="root"></div>
     <script type="text/babel" src="components/Header.js"></script>
-    <script type="text/babel" src="components/Hero.js"></script>
+    <script type="text/babel" src="components/Hero.js?v=20261110-float-tags"></script>
     <script type="text/babel" src="components/Highlights.js"></script>
     <script type="text/babel" src="components/About.js"></script>
     <script type="text/babel" src="components/Skills.js?v=20261110-motion"></script>
