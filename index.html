@@ -567,7 +567,7 @@
         box-shadow:
             0 8px 20px color-mix(in srgb,var(--primary-color) 9%,var(--shadow-color)),
             inset 0 1px 0 rgba(255,255,255,.08);
-        animation:skillBubbleDrift var(--bubble-duration,19s) ease-in-out var(--bubble-delay,0s) infinite;
+        transition:transform var(--bubble-transition,4.5s) cubic-bezier(.42,0,.26,1),border-color .25s ease,box-shadow .25s ease;
         will-change:transform;
         transform-origin:center;
     }
@@ -576,17 +576,11 @@
         box-shadow:0 10px 24px color-mix(in srgb,var(--primary-color) 18%,var(--shadow-color)),inset 0 1px 0 rgba(255,255,255,.12);
     }
     #habilidades .skill-icon-caption{margin-top:1px}
-    @keyframes skillBubbleDrift{
-        0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
-        22%{transform:translate3d(var(--bubble-x1,0px),var(--bubble-y1,0px),0) rotate(var(--bubble-r1,0deg))}
-        48%{transform:translate3d(var(--bubble-x2,0px),var(--bubble-y2,0px),0) rotate(var(--bubble-r2,0deg))}
-        76%{transform:translate3d(var(--bubble-x3,0px),var(--bubble-y3,0px),0) rotate(var(--bubble-r3,0deg))}
-    }
     @media(max-width:420px){
         #habilidades .skill-icon-frame{width:48px;height:48px;padding:9px}
     }
     @media(prefers-reduced-motion:reduce){
-        #habilidades .skill-icon-frame{animation:none!important;will-change:auto;transform:none!important}
+        #habilidades .skill-icon-frame{animation:none!important;transition:none!important;will-change:auto;transform:none!important}
     }
 
     </style>
