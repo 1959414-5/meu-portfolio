@@ -67,7 +67,7 @@ function Skills() {
         </div>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{group.subtitle}</p>
         <div className="skills-icon-grid">
-         {group.skills.map((skill,skillIndex)=>(
+         {group.skills.map(skill=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
            <div className="skill-icon-frame">
             {skill.image?<img src={"./images/technologies/"+skill.image} alt="" loading="lazy"/>:<span className={skill.icon+" skill-generic-icon"} aria-hidden="true"></span>}
