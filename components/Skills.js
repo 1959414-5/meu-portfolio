@@ -16,31 +16,67 @@ function Skills() {
    ],application:"Leitura de processos comerciais e industriais, identificação de gargalos e apoio à tomada de decisão."}
   ];
 
-  // Trajetórias aleatórias individuais: cada ícone recebe seu próprio percurso contínuo.
-  const randomizeBubblePath = (event) => {
-   const bubble = event.currentTarget;
-   const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
-   for (let point = 1; point <= 7; point++) {
-    bubble.style.setProperty("--drift-x" + point, random(-20, 20) + "px");
-    bubble.style.setProperty("--drift-y" + point, random(-14, 14) + "px");
-    bubble.style.setProperty("--drift-r" + point, random(-5, 5) + "deg");
-   }
-  };
+  // Anima cada bolha diretamente no navegador e cria um novo percurso ao fim de cada ciclo.
+  React.useEffect(() => {
+   const section = document.getElementById("habilidades");
+   if (!section || typeof Element.prototype.animate !== "function") return;
 
-  const bubbleMotions = React.useMemo(() => skillGroups.map(group =>
-   group.skills.map(() => {
-    const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
-    const style = {};
+   const bubbles = Array.from(section.querySelectorAll(".skill-icon-frame"));
+   const activeAnimations = new Set();
+   const timers = new Set();
+   let disposed = false;
+
+   const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+   const createPath = () => {
+    const points = [{ transform: "translate3d(0px,0px,0px) rotate(0deg)", offset: 0 }];
     for (let point = 1; point <= 7; point++) {
-     style["--drift-x" + point] = random(-20, 20) + "px";
-     style["--drift-y" + point] = random(-14, 14) + "px";
-     style["--drift-r" + point] = random(-5, 5) + "deg";
+     const x = randomBetween(-22, 22).toFixed(1);
+     const y = randomBetween(-16, 16).toFixed(1);
+     const rotation = randomBetween(-5, 5).toFixed(1);
+     points.push({
+      transform: "translate3d(" + x + "px," + y + "px,0) rotate(" + rotation + "deg)",
+      offset: point / 8
+     });
     }
-    style["--drift-duration"] = random(18, 27) + "s";
-    style["--drift-delay"] = random(-26, 0) + "s";
-    return style;
-   })
-  ), []);
+    points.push({ transform: "translate3d(0px,0px,0px) rotate(0deg)", offset: 1 });
+    return points;
+   };
+
+   const startDrift = (bubble, delay = randomBetween(0, 2600)) => {
+    const timer = window.setTimeout(() => {
+     timers.delete(timer);
+     if (disposed) return;
+
+     const animation = bubble.animate(createPath(), {
+      duration: randomBetween(18000, 28000),
+      easing: "cubic-bezier(.42,0,.26,1)",
+      iterations: 1,
+      fill: "forwards"
+     });
+     activeAnimations.add(animation);
+
+     animation.onfinish = () => {
+      activeAnimations.delete(animation);
+      animation.cancel();
+      if (!disposed) startDrift(bubble, randomBetween(180, 900));
+     };
+     animation.oncancel = () => activeAnimations.delete(animation);
+    }, delay);
+
+    timers.add(timer);
+   };
+
+   bubbles.forEach(bubble => startDrift(bubble));
+
+   return () => {
+    disposed = true;
+    timers.forEach(timer => window.clearTimeout(timer));
+    activeAnimations.forEach(animation => animation.cancel());
+    timers.clear();
+    activeAnimations.clear();
+   };
+  }, []);
 
   return (
    <section id="habilidades" className="py-20 lg:py-24 relative bg-[var(--bg-color)]" data-name="skills" data-file="components/Skills.js">
@@ -58,9 +94,9 @@ function Skills() {
         </div>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{group.subtitle}</p>
         <div className="skills-icon-grid">
-         {group.skills.map((skill,skillIndex)=>(
+         {group.skills.map(skill=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
-           <div className="skill-icon-frame" style={bubbleMotions[index][skillIndex]} onAnimationIteration={randomizeBubblePath}>
+           <div className="skill-icon-frame">
             {skill.image?<img src={"./images/technologies/"+skill.image} alt="" loading="lazy"/>:<span className={skill.icon+" skill-generic-icon"} aria-hidden="true"></span>}
            </div>
            <span className="skill-icon-caption">{skill.label}</span>
