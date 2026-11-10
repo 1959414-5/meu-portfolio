@@ -567,7 +567,7 @@
         box-shadow:
             0 8px 20px color-mix(in srgb,var(--primary-color) 9%,var(--shadow-color)),
             inset 0 1px 0 rgba(255,255,255,.08);
-        transition:transform var(--bubble-transition,4.5s) cubic-bezier(.42,0,.26,1),border-color .25s ease,box-shadow .25s ease;
+        animation:skillBubbleDrift var(--drift-duration,23s) ease-in-out var(--drift-delay,0s) infinite alternate;
         will-change:transform;
         transform-origin:center;
     }
@@ -576,6 +576,17 @@
         box-shadow:0 10px 24px color-mix(in srgb,var(--primary-color) 18%,var(--shadow-color)),inset 0 1px 0 rgba(255,255,255,.12);
     }
     #habilidades .skill-icon-caption{margin-top:1px}
+    @keyframes skillBubbleDrift{
+        0%{transform:translate3d(0,0,0) rotate(0deg)}
+        12%{transform:translate3d(var(--drift-x1),var(--drift-y1),0) rotate(var(--drift-r1))}
+        25%{transform:translate3d(var(--drift-x2),var(--drift-y2),0) rotate(var(--drift-r2))}
+        38%{transform:translate3d(var(--drift-x3),var(--drift-y3),0) rotate(var(--drift-r3))}
+        50%{transform:translate3d(var(--drift-x4),var(--drift-y4),0) rotate(var(--drift-r4))}
+        63%{transform:translate3d(var(--drift-x5),var(--drift-y5),0) rotate(var(--drift-r5))}
+        76%{transform:translate3d(var(--drift-x6),var(--drift-y6),0) rotate(var(--drift-r6))}
+        88%{transform:translate3d(var(--drift-x7),var(--drift-y7),0) rotate(var(--drift-r7))}
+        100%{transform:translate3d(0,0,0) rotate(0deg)}
+    }
     @media(max-width:420px){
         #habilidades .skill-icon-frame{width:48px;height:48px;padding:9px}
     }
