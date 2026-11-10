@@ -34,7 +34,7 @@ function Hero() {
                                 <img src="./images/technologies/python.svg" alt="" />
                             </div>
                             <div className="tech-logo tech-logo--javascript" role="img" aria-label="JavaScript" title="JavaScript">
-                                <img src="./images/technologies/javascript.svg" alt="" />
+                                <span className="javascript-mark" aria-hidden="true">JS</span>
                             </div>
                             <div className="tech-logo tech-logo--html" role="img" aria-label="HTML5" title="HTML">
                                 <img src="./images/technologies/html5.svg" alt="" />
