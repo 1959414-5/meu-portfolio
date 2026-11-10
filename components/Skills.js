@@ -22,9 +22,9 @@ function Skills() {
       <h2 className="section-title mb-4">Habilidades</h2>
       <p className="text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">Ferramentas e conhecimentos que utilizo para organizar dados, compreender processos e desenvolver soluções de análise e BI.</p>
      </div>
-     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
+     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
       {skillGroups.map((group,index)=>(
-       <article key={group.title} className="glass-panel p-5 md:p-6 flex flex-col border border-[var(--surface-border)] hover:border-[var(--primary-color)]/50 transition-colors duration-200">
+       <article key={group.title} className="glass-panel h-full p-5 md:p-6 flex flex-col border border-[var(--surface-border)] hover:border-[var(--primary-color)]/50 transition-colors duration-200">
         <div className="flex items-center gap-3 mb-4">
          <div className="w-11 h-11 shrink-0 rounded-xl bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><span className={group.icon+" text-2xl"} aria-hidden="true"></span></div>
          <div><span className="block text-[10px] uppercase tracking-[0.16em] text-[var(--primary-color)] font-semibold mb-1">0{index+1}</span><h3 className="text-lg font-bold text-[var(--text-main)] leading-tight">{group.title}</h3></div>
