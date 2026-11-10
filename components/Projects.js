@@ -520,9 +520,10 @@ function Projects() {
                 </div>
 
                 {/* Fullscreen Image Modal */}
-                {selectedImage && (
+                {selectedImage && ReactDOM.createPortal((
                     <div 
-                        className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4 bg-[#0b1121] bg-opacity-90 backdrop-blur-sm animate-fade-in"
+                        style={{ position: "fixed", inset: 0, zIndex: 10000 }}
+                        className="flex items-center justify-center px-4 py-4 bg-[#150f18]/95 backdrop-blur-sm animate-fade-in"
                         onClick={() => setSelectedImage(null)}
                     >
                         <div className="absolute top-4 right-4 z-20">
@@ -550,7 +551,7 @@ function Projects() {
                             </button>
                         </div>
                     </div>
-                )}
+                ), document.body)}
             </section>
         );
     } catch (error) {
