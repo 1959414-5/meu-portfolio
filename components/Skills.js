@@ -15,6 +15,27 @@ function Skills() {
     {label:"Análise Comercial",icon:"icon-chart-line"},{label:"Produção e Estoque",icon:"icon-boxes"},{label:"Melhoria Contínua",icon:"icon-trending-up"}
    ],application:"Leitura de processos comerciais e industriais, identificação de gargalos e apoio à tomada de decisão."}
   ];
+
+  // Cada bolha recebe uma trajetória, duração e fase próprias ao carregar a página.
+  const bubbleMotions = React.useMemo(() => skillGroups.map(group =>
+   group.skills.map(() => {
+    const random = (min, max) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
+    return {
+     "--bubble-x1": random(-8, 8) + "px",
+     "--bubble-y1": random(-6, 6) + "px",
+     "--bubble-x2": random(-7, 7) + "px",
+     "--bubble-y2": random(-7, 7) + "px",
+     "--bubble-x3": random(-8, 8) + "px",
+     "--bubble-y3": random(-5, 5) + "px",
+     "--bubble-r1": random(-3, 3) + "deg",
+     "--bubble-r2": random(-4, 4) + "deg",
+     "--bubble-r3": random(-2, 2) + "deg",
+     "--bubble-duration": random(14, 24) + "s",
+     "--bubble-delay": random(-24, 0) + "s"
+    };
+   })
+  ), []);
+
   return (
    <section id="habilidades" className="py-20 lg:py-24 relative bg-[var(--bg-color)]" data-name="skills" data-file="components/Skills.js">
     <div className="container mx-auto px-6">
@@ -22,7 +43,7 @@ function Skills() {
       <h2 className="section-title mb-4">Habilidades</h2>
       <p className="text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">Ferramentas e conhecimentos que utilizo para organizar dados, compreender processos e desenvolver soluções de análise e BI.</p>
      </div>
-     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch skills-groups-grid">
       {skillGroups.map((group,index)=>(
        <article key={group.title} className="glass-panel h-full p-5 md:p-6 flex flex-col border border-[var(--surface-border)] hover:border-[var(--primary-color)]/50 transition-colors duration-200">
         <div className="flex items-center gap-3 mb-4">
@@ -31,9 +52,9 @@ function Skills() {
         </div>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{group.subtitle}</p>
         <div className="skills-icon-grid">
-         {group.skills.map(skill=>(
+         {group.skills.map((skill,skillIndex)=>(
           <div key={skill.label} className="skill-icon-item" title={skill.label}>
-           <div className="skill-icon-frame">
+           <div className="skill-icon-frame" style={bubbleMotions[index][skillIndex]}>
             {skill.image?<img src={"./images/technologies/"+skill.image} alt="" loading="lazy"/>:<span className={skill.icon+" skill-generic-icon"} aria-hidden="true"></span>}
            </div>
            <span className="skill-icon-caption">{skill.label}</span>
