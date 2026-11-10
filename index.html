@@ -366,6 +366,141 @@
         .scroll-reveal { opacity: 1; transform: none; transition: none; }
     }
 
+
+    /* Marcas das tecnologias no destaque principal */
+    .hero-tech-strip {
+        min-height: 62px;
+    }
+    .tech-logo {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        padding: 8px;
+        border-radius: 14px;
+        border: 1px solid var(--surface-border);
+        background: color-mix(in srgb, var(--card-color) 88%, transparent);
+        box-shadow: 0 7px 18px var(--shadow-color);
+        transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+        animation: technologyFloat 6.2s ease-in-out infinite;
+        will-change: transform;
+    }
+    .tech-logo img {
+        display: block;
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        pointer-events: none;
+    }
+    .tech-logo--powerbi img { width: 25px; height: 34px; }
+    .tech-logo--mysql img { width: 34px; height: 34px; }
+    .tech-logo--dax img { width: 29px; height: 29px; }
+    .tech-logo--powerquery {
+        background: #30233a;
+        border-color: rgba(255,255,255,.16);
+    }
+    .tech-logo--powerquery img { width: 31px; height: 31px; }
+    .tech-logo--powerbi { animation-delay: -0.8s; }
+    .tech-logo--mysql { animation-delay: -2.1s; }
+    .tech-logo--dax { animation-delay: -3.4s; }
+    .tech-logo--powerquery { animation-delay: -4.6s; }
+    .tech-logo:hover {
+        transform: translateY(-6px) scale(1.08);
+        border-color: color-mix(in srgb, var(--primary-color) 55%, var(--surface-border));
+        box-shadow: 0 13px 26px var(--shadow-color), 0 0 18px color-mix(in srgb, var(--primary-color) 13%, transparent);
+        animation-play-state: paused;
+    }
+
+    /* Elemento decorativo flutuante do card Sobre Mim */
+    .about-orbit-decoration {
+        position: absolute;
+        top: 22px;
+        right: 26px;
+        width: 82px;
+        height: 82px;
+        z-index: 1;
+        pointer-events: none;
+        opacity: .9;
+    }
+    .about-orbit-ring {
+        position: absolute;
+        inset: 8px;
+        border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+        border-radius: 50%;
+        animation: aboutOrbit 18s linear infinite;
+    }
+    .about-orbit-ring::before {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 2px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        opacity: .45;
+        box-shadow: 0 0 12px var(--primary-color);
+    }
+    .about-floating-database {
+        position: absolute;
+        top: 18px;
+        left: 20px;
+        color: var(--primary-color);
+        font-size: 2.65rem;
+        line-height: 1;
+        opacity: .22;
+        filter: drop-shadow(0 5px 12px color-mix(in srgb, var(--primary-color) 32%, transparent));
+        animation: aboutFloat 5.8s ease-in-out infinite;
+    }
+    .about-floating-sparkle {
+        position: absolute;
+        right: 2px;
+        bottom: 11px;
+        color: var(--primary-color);
+        font-size: 1rem;
+        opacity: .34;
+        animation: aboutTwinkle 3.8s ease-in-out infinite;
+    }
+    .about-orbit-dot {
+        position: absolute;
+        right: 7px;
+        top: 17px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        opacity: .42;
+        animation: aboutFloat 4.6s ease-in-out infinite reverse;
+    }
+    @keyframes technologyFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+    @keyframes aboutFloat {
+        0%, 100% { transform: translateY(0) rotate(-5deg); }
+        50% { transform: translateY(-8px) rotate(4deg); }
+    }
+    @keyframes aboutOrbit {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    @keyframes aboutTwinkle {
+        0%, 100% { opacity: .22; transform: scale(.88) rotate(-8deg); }
+        50% { opacity: .52; transform: scale(1.12) rotate(8deg); }
+    }
+    @media (max-width: 760px) {
+        .hero-tech-strip { gap: .65rem !important; }
+        .tech-logo { width: 43px; height: 43px; }
+        .about-orbit-decoration { top: 16px; right: 16px; transform: scale(.88); transform-origin: top right; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .tech-logo, .about-orbit-ring, .about-floating-database, .about-floating-sparkle, .about-orbit-dot {
+            animation: none !important;
+        }
+    }
+
     </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
