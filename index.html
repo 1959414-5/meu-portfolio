@@ -266,6 +266,28 @@
         border-radius: 99px;
         background: linear-gradient(90deg, var(--primary-color), transparent);
     }
+
+    .hero-name-tag{
+        display:inline-flex;
+        align-items:center;
+        width:max-content;
+        max-width:100%;
+        margin:0 0 .8rem;
+        padding:.38rem .78rem .42rem;
+        border-radius:7px;
+        background:linear-gradient(105deg,#f15aa7 0%,#dc3f8d 100%);
+        color:#fff;
+        font-family:'Space Grotesk','Inter',sans-serif;
+        font-size:clamp(.98rem,1.35vw,1.14rem);
+        font-weight:700;
+        line-height:1.25;
+        letter-spacing:-.018em;
+        box-shadow:0 7px 20px rgba(241,90,167,.19);
+        text-shadow:0 1px 1px rgba(70,10,42,.12);
+    }
+    @media(max-width:480px){
+        .hero-name-tag{font-size:.98rem;padding:.36rem .68rem}
+    }
     .glass-panel {
         background-color: var(--card-color);
         border: 1px solid var(--surface-border);
@@ -671,7 +693,7 @@
 <body>
     <div id="root"></div>
     <script type="text/babel" src="components/Header.js"></script>
-    <script type="text/babel" src="components/Hero.js?v=20261110-float-tags"></script>
+    <script type="text/babel" src="components/Hero.js?v=20261111-name-style"></script>
     <script type="text/babel" src="components/Highlights.js"></script>
     <script type="text/babel" src="components/About.js"></script>
     <script type="text/babel" src="components/Skills.js?v=20261110-motion"></script>
