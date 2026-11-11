@@ -93,7 +93,7 @@ function Header() {
                         Bárbara<span className="text-[var(--primary-color)]">.</span>BI
                     </button>
 
-                    <nav className="hidden lg:flex gap-7" aria-label="Navegação principal">
+                    <nav className="desktop-nav hidden lg:flex gap-7" aria-label="Navegação principal">
                         {navItems.map(item => (
                             <button
                                 key={item.id}
@@ -106,7 +106,7 @@ function Header() {
                         ))}
                     </nav>
 
-                    <div className="hidden lg:flex items-center gap-3">
+                    <div className="desktop-actions hidden lg:flex items-center gap-3">
                         {languageSwitcher}
                         {themeToggle}
                         <button onClick={() => scrollToSection("contato")} className="btn-primary py-2.5 px-5 text-sm">
@@ -114,7 +114,7 @@ function Header() {
                         </button>
                     </div>
 
-                    <div className="flex lg:hidden items-center gap-2">
+                    <div className="mobile-actions flex lg:hidden items-center gap-2">
                         {languageSwitcher}
                         {themeToggle}
                         <button
@@ -131,7 +131,7 @@ function Header() {
                 </div>
 
                 {mobileMenuOpen && (
-                    <nav id="mobile-navigation" className="lg:hidden glass-panel mx-4 mt-3 p-4 flex flex-col gap-1 absolute top-full left-0 right-0 shadow-2xl z-[60] animate-slide-up" aria-label="Navegação móvel">
+                    <nav id="mobile-navigation" className="mobile-navigation lg:hidden glass-panel mx-4 mt-3 p-4 flex flex-col gap-1 absolute top-full left-0 right-0 shadow-2xl z-[60] animate-slide-up" aria-label="Navegação móvel">
                         {navItems.map(item => (
                             <button
                                 key={item.id}
