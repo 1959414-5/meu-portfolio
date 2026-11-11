@@ -654,10 +654,17 @@
   }
 
   window.setPortfolioLanguage = applyLanguage;
+  window.changePortfolioLanguage = applyLanguage;
   window.getPortfolioLanguage = function () { return currentLanguage; };
 
+  // Fallback de delegação para controles inseridos dinamicamente.
   document.addEventListener("click", function (event) {
-    const control = event.target.closest("[data-language]");
+    const target = event.target && event.target.nodeType === 1
+      ? event.target
+      : event.target && event.target.parentElement;
+    const control = target && typeof target.closest === "function"
+      ? target.closest("[data-language]")
+      : null;
     if (control) {
       event.preventDefault();
       applyLanguage(control.getAttribute("data-language"));
