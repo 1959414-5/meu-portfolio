@@ -157,6 +157,33 @@
     .skill-cloud-icon img{display:block;width:100%;height:100%;object-fit:contain}
     .skill-cloud-item:hover .skill-cloud-icon{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 10px 24px color-mix(in srgb,var(--primary) 18%,var(--shadow))}
     .tag { padding: 8px 12px; color: var(--text); font-size: .79rem; }
+    .sql-techniques{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      width:100%;
+      margin-top:0;
+    }
+    .sql-techniques .tag{
+      display:inline-flex;
+      flex:0 0 auto;
+      align-items:center;
+      justify-content:center;
+      width:auto;
+      min-height:40px;
+      max-width:100%;
+      padding:9px 14px;
+      border-radius:999px;
+      white-space:nowrap;
+      line-height:1.2;
+      font-size:.76rem;
+      background:color-mix(in srgb,var(--surface-solid) 55%,transparent);
+    }
+    @media(max-width:580px){
+      .sql-techniques{gap:8px}
+      .sql-techniques .tag{min-height:36px;padding:8px 11px;font-size:.7rem}
+    }
     .performance-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
     table { width: 100%; border-collapse: collapse; min-width: 570px; font-size: .88rem; }
     th,td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--border); }
@@ -440,7 +467,7 @@
           <p class="section-intro">O foco não foi apenas escrever consultas, mas combinar técnicas de SQL para estruturar análises, tratar exceções e expressar regras de negócio.</p>
         </div>
         <div class="panel">
-          <div class="skill-cloud" style="margin-top:0">
+          <div class="sql-techniques" aria-label="Técnicas SQL utilizadas">
             <span class="tag">SELECT / WHERE / ORDER BY</span>
             <span class="tag">INNER JOIN / LEFT JOIN</span>
             <span class="tag">GROUP BY / HAVING</span>
