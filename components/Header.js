@@ -61,19 +61,19 @@ function Header() {
             }
         };
 
-        const changeLanguage = (language) => {
+        const changeLanguage = (event, language) => {
             if (typeof window.setPortfolioLanguage === "function") {
+                event.preventDefault();
                 window.setPortfolioLanguage(language);
-            } else {
-                console.error("Tradutor de idiomas ainda não foi carregado.");
             }
+            // Sem o tradutor carregado, o link segue para ?lang=xx e a página abre no idioma pedido.
         };
 
         const languageSwitcher = (
             <div className="language-switch" role="group" aria-label="Idioma do site">
-                <button type="button" data-language="pt" onClick={() => changeLanguage("pt")} aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button>
-                <button type="button" data-language="es" onClick={() => changeLanguage("es")} aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button>
-                <button type="button" data-language="en" onClick={() => changeLanguage("en")} aria-label="English" title="English" aria-pressed="false">🇺🇸</button>
+                <a href="?lang=pt" data-language="pt" onClick={(event) => changeLanguage(event, "pt")} aria-label="Português" title="Português" aria-pressed="true">🇧🇷</a>
+                <a href="?lang=es" data-language="es" onClick={(event) => changeLanguage(event, "es")} aria-label="Español" title="Español" aria-pressed="false">🇪🇸</a>
+                <a href="?lang=en" data-language="en" onClick={(event) => changeLanguage(event, "en")} aria-label="English" title="English" aria-pressed="false">🇺🇸</a>
             </div>
         );
 
