@@ -23,7 +23,6 @@
     ["Quatro perspectivas da solução", "Four views of the solution", "Cuatro perspectivas de la solución"],
     ["Galeria do projeto", "Project gallery", "Galería del proyecto"],
     ["Case principal · Business Intelligence", "Featured case · Business Intelligence", "Caso principal · Business Intelligence"],
-    ["View", "View", "Ver"],
     ["Estudo de caso de automação desktop com Python e PyAutoGUI: geração de relatórios, cálculo de períodos úteis, conferência de datas, configuração de posições e gerenciamento de feriados.", "Desktop automation case study with Python and PyAutoGUI: report generation, business-day calculations, date checks, position configuration and holiday management.", "Caso de estudio de automatización de escritorio con Python y PyAutoGUI: generación de informes, cálculo de días hábiles, verificación de fechas, configuración de posiciones y gestión de festivos."],
     ["Estudo de caso de análise de dados industriais com MySQL e SQL: modelagem relacional, análises comerciais, estoque, produção e benchmark de índices.", "Industrial data analytics case study with MySQL and SQL: relational modeling, commercial analysis, inventory, production and index benchmarking.", "Caso de estudio de análisis de datos industriales con MySQL y SQL: modelado relacional, análisis comercial, inventario, producción y pruebas comparativas de índices."],
     ["Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.", "Portfolio of Bárbara Cabral Paschoalin, Data Analyst and Business Intelligence professional focused on strategic indicators.", "Portafolio de Bárbara Cabral Paschoalin, Analista de Datos y Business Intelligence enfocada en indicadores estratégicos."],
@@ -501,6 +500,20 @@
     if (!core) return value;
 
     if (dictionary[core]) return leading + dictionary[core] + trailing;
+
+    const dynamicPrefixes = [
+      ["Ampliar imagem de ", "Ampliar imagem de"],
+      ["Ampliar evidência: ", "Ampliar evidência:"],
+      ["Ver ", "Ver"]
+    ];
+    for (let i = 0; i < dynamicPrefixes.length; i++) {
+      const prefix = dynamicPrefixes[i][0];
+      if (core.indexOf(prefix) === 0) {
+        const translatedPrefix = dictionary[dynamicPrefixes[i][1]] || dynamicPrefixes[i][1];
+        const remainder = core.slice(prefix.length);
+        return leading + translatedPrefix + " " + translateString(remainder, language) + trailing;
+      }
+    }
 
     let translated = core;
     const pairs = Object.keys(dictionary).sort(function (a, b) { return b.length - a.length; });
