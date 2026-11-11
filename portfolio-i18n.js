@@ -7,6 +7,41 @@
     ["Português", "Portuguese", "Portugués"],
     ["Español", "Spanish", "Español"],
     ["English", "English", "Inglés"],
+    ["Eficiência", "Efficiency", "Eficiencia"],
+    ["Logística", "Logistics", "Logística"],
+    ["Gestão", "Management", "Gestión"],
+    ["Métricas", "Metrics", "Métricas"],
+    ["Operação", "Operations", "Operaciones"],
+    ["Comercial", "Commercial", "Comercial"],
+    ["Estratégia", "Strategy", "Estrategia"],
+    ["Modelagem Relacional", "Relational Modeling", "Modelado relacional"],
+    ["CTEs", "CTEs", "CTEs"],
+    ["Performance", "Performance", "Rendimiento"],
+    ["Data Visualization", "Data Visualization", "Visualización de datos"],
+    ["Análise de Dados", "Data Analysis", "Análisis de datos"],
+    ["Case principal", "Featured case", "Caso principal"],
+    ["Quatro perspectivas da solução", "Four views of the solution", "Cuatro perspectivas de la solución"],
+    ["Galeria do projeto", "Project gallery", "Galería del proyecto"],
+    ["Case principal · Business Intelligence", "Featured case · Business Intelligence", "Caso principal · Business Intelligence"],
+    ["View", "View", "Ver"],
+    ["Estudo de caso de automação desktop com Python e PyAutoGUI: geração de relatórios, cálculo de períodos úteis, conferência de datas, configuração de posições e gerenciamento de feriados.", "Desktop automation case study with Python and PyAutoGUI: report generation, business-day calculations, date checks, position configuration and holiday management.", "Caso de estudio de automatización de escritorio con Python y PyAutoGUI: generación de informes, cálculo de días hábiles, verificación de fechas, configuración de posiciones y gestión de festivos."],
+    ["Estudo de caso de análise de dados industriais com MySQL e SQL: modelagem relacional, análises comerciais, estoque, produção e benchmark de índices.", "Industrial data analytics case study with MySQL and SQL: relational modeling, commercial analysis, inventory, production and index benchmarking.", "Caso de estudio de análisis de datos industriales con MySQL y SQL: modelado relacional, análisis comercial, inventario, producción y pruebas comparativas de índices."],
+    ["Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.", "Portfolio of Bárbara Cabral Paschoalin, Data Analyst and Business Intelligence professional focused on strategic indicators.", "Portafolio de Bárbara Cabral Paschoalin, Analista de Datos y Business Intelligence enfocada en indicadores estratégicos."],
+    ["Bárbara Cabral Paschoalin | Portfólio de Análise de Dados", "Bárbara Cabral Paschoalin | Data Analytics Portfolio", "Bárbara Cabral Paschoalin | Portafolio de Análisis de Datos"],
+    ["Automação de Relatórios com Python | Estudo de Caso — Bárbara Cabral Paschoalin", "Report Automation with Python | Case Study — Bárbara Cabral Paschoalin", "Automatización de informes con Python | Caso de estudio — Bárbara Cabral Paschoalin"],
+    ["ERP Industrial Analytics | Estudo de Caso — Bárbara Cabral Paschoalin", "ERP Industrial Analytics | Case Study — Bárbara Cabral Paschoalin", "ERP Industrial Analytics | Caso de estudio — Bárbara Cabral Paschoalin"],
+    ["O repositório público reúne o schema, os dados fictícios, as consultas analíticas, os testes de performance, a documentação e as evidências utilizadas neste estudo de caso.", "The public repository brings together the schema, fictional data, analytical queries, performance tests, documentation and evidence used in this case study.", "El repositorio público reúne el esquema, los datos ficticios, las consultas analíticas, las pruebas de rendimiento, la documentación y las evidencias utilizadas en este caso de estudio."],
+    ["Dashboard de Pedidos & Atrasos", "Orders & Delays Dashboard", "Dashboard de pedidos y retrasos"],
+    ["Solicitação de Estoque", "Inventory Request", "Solicitud de inventario"],
+    ["Controle de Chapas", "Sheet Inventory Control", "Control de chapas"],
+    ["Mapa de Entregas", "Delivery Map", "Mapa de entregas"],
+    ["Curva ABC Estratégica", "Strategic ABC Analysis", "Curva ABC estratégica"],
+    ["Dados comerciais e operacionais em uma visão integrada", "Commercial and operational data in an integrated view", "Datos comerciales y operativos en una vista integrada"],
+    ["Desenvolvimento de dashboards e indicadores com dados operacionais exportados do ERP.", "Development of dashboards and indicators using operational data exported from the ERP.", "Desarrollo de dashboards e indicadores con datos operativos exportados del ERP."],
+    ["Visualização ampliada das imagens", "Enlarged image viewer", "Visualización ampliada de imágenes"],
+    ["Idioma do site", "Site language", "Idioma del sitio"],
+    ["Visualizar", "View", "Ver"],
+    ["Voltar ao portfólio", "Back to portfolio", "Volver al portafolio"]
     ["Habilidades", "Skills", "Habilidades"],
     ["Projetos", "Projects", "Proyectos"],
     ["Experiência", "Experience", "Experiencia"],
@@ -440,7 +475,9 @@
   });
 
   const originalText = new WeakMap();
+  const lastTranslatedText = new WeakMap();
   const originalAttributes = new WeakMap();
+  const lastTranslatedAttributes = new WeakMap();
   const attributeNames = ["aria-label", "title", "alt", "placeholder", "content"];
   const languages = ["pt", "es", "en"];
   let currentLanguage = "pt";
@@ -476,22 +513,35 @@
   }
 
   function translateTextNode(node) {
-    if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+    const last = lastTranslatedText.get(node);
+    if (!originalText.has(node) || (typeof last !== "undefined" && node.nodeValue !== last)) {
+      originalText.set(node, node.nodeValue);
+    }
     const original = originalText.get(node);
     const translated = translateString(original, currentLanguage);
+    lastTranslatedText.set(node, translated);
     if (node.nodeValue !== translated) node.nodeValue = translated;
   }
 
   function translateAttribute(element, name) {
     if (!element.hasAttribute(name)) return;
     let stored = originalAttributes.get(element);
+    let last = lastTranslatedAttributes.get(element);
     if (!stored) {
       stored = Object.create(null);
       originalAttributes.set(element, stored);
     }
-    if (typeof stored[name] === "undefined") stored[name] = element.getAttribute(name);
+    if (!last) {
+      last = Object.create(null);
+      lastTranslatedAttributes.set(element, last);
+    }
+    const current = element.getAttribute(name);
+    if (typeof stored[name] === "undefined" || (typeof last[name] !== "undefined" && current !== last[name])) {
+      stored[name] = current;
+    }
     const translated = translateString(stored[name], currentLanguage);
-    if (element.getAttribute(name) !== translated) element.setAttribute(name, translated);
+    last[name] = translated;
+    if (current !== translated) element.setAttribute(name, translated);
   }
 
   function translateTree(node) {
