@@ -76,6 +76,38 @@ function SiteEffects() {
     window.addEventListener("resize", updateProgress);
     updateProgress();
 
+    // O conteúdo principal é montado pelo React depois do carregamento do tradutor.
+    // Reaplica o idioma após o primeiro commit para garantir que todo o DOM esteja disponível.
+    const applyInitialLanguage = () => {
+      let language = null;
+      try {
+        const requested = new URLSearchParams(window.location.search).get("lang");
+        const saved = localStorage.getItem("portfolio-language");
+        language = ["pt", "es", "en"].includes(requested) ? requested :
+          (["pt", "es", "en"].includes(saved) ? saved : "pt");
+      } catch (error) {
+        language = "pt";
+      }
+
+      const apply = () => {
+        if (typeof window.setPortfolioLanguage === "function") {
+          window.setPortfolioLanguage(language);
+        } else {
+          const script = document.createElement("script");
+          script.src = "./portfolio-i18n.js?v=20261111-react-mount-fix";
+          script.onload = () => {
+            if (typeof window.setPortfolioLanguage === "function") {
+              window.setPortfolioLanguage(language);
+            }
+          };
+          document.head.appendChild(script);
+        }
+      };
+
+      window.requestAnimationFrame(() => window.requestAnimationFrame(apply));
+    };
+    applyInitialLanguage();
+
     return () => {
       if (observer) observer.disconnect();
       window.removeEventListener("scroll", updateProgress);
