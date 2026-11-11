@@ -303,7 +303,51 @@
     .language-switch button:hover,.language-switch a:hover{opacity:1;transform:translateY(-1px)}
     .language-switch button.is-active,.language-switch a.is-active{opacity:1;background:color-mix(in srgb,var(--primary) 16%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 35%,transparent)}
     @media(max-width:560px){.language-switch{gap:0;padding:2px}.language-switch button,.language-switch a{width:24px;height:24px;font-size:14px}}
-  </style>
+  
+    /* Auditoria mobile — ERP Industrial Analytics */
+    @media(max-width:800px){
+      html,body{width:100%;max-width:100%;overflow-x:clip!important}
+      body{min-width:320px}
+      .topbar-inner{width:100%;padding:10px 16px;gap:10px;flex-wrap:wrap}
+      .brand{font-size:1rem;white-space:nowrap}
+      .top-actions{max-width:100%;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+      .top-link,.theme-button{font-size:.72rem;padding:7px 10px}
+      .wrap{width:100%;max-width:100%;padding-inline:18px}
+      .hero{padding:30px 0 20px}
+      .hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:18px}
+      .hero-grid>*{min-width:0}
+      h1{font-size:clamp(2rem,8vw,2.8rem);line-height:1.08;overflow-wrap:anywhere}
+      .hero-actions{flex-wrap:wrap;gap:9px}
+      .hero-actions>*{max-width:100%;min-width:0}
+      .case-hero-visual-wrap{width:100%;max-width:100%;padding:12px 2px}
+      .hero-visual{max-width:100%;overflow:hidden}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+      .content-section{padding:30px 0!important}
+      .section-head{max-width:100%;margin-bottom:17px}
+      .section-head h2{font-size:clamp(1.45rem,6vw,1.85rem);line-height:1.18}
+      .model-grid,.analysis-grid,.gallery-grid{grid-template-columns:minmax(0,1fr)!important}
+      .model-card,.analysis-card,.gallery-card,.code-panel,.performance-wrap,.cta-panel{min-width:0;max-width:100%}
+      .table-list{display:flex;flex-wrap:wrap;gap:7px}
+      .table-chip{max-width:100%;overflow-wrap:anywhere}
+      .code-panel{overflow-x:auto}
+      pre,code{max-width:100%;overflow-x:auto;white-space:pre}
+      .gallery-trigger{width:100%;max-width:100%}
+      .gallery-trigger img{width:100%;height:auto;max-height:55vh;object-fit:contain}
+      .final-cta{padding:30px 0!important}
+      .cta-panel{padding:22px 17px!important}
+      footer{padding:22px 18px!important;text-align:center}
+      .wrap>*{min-width:0}
+      p,li,h1,h2,h3{overflow-wrap:anywhere}
+    }
+    @media(max-width:420px){
+      .topbar-inner{align-items:flex-start}
+      .top-actions{width:100%;justify-content:space-between}
+      .stats{gap:8px}
+      .stats>*{min-width:0;padding:12px!important}
+      .table-chip{font-size:.72rem}
+    }
+
+</style>
   <script>
     try {
       if (localStorage.getItem('portfolio-theme') === 'dark') {
