@@ -7,6 +7,11 @@
     ["Português", "Portuguese", "Portugués"],
     ["Español", "Spanish", "Español"],
     ["English", "English", "Inglés"],
+    ["Análise", "Analysis", "Análisis"],
+    ["Modelagem", "Modeling", "Modelado"],
+    ["ERP desktop", "Desktop ERP", "ERP de escritorio"],
+    ["Ampliar imagem de", "Enlarge image of", "Ampliar imagen de"],
+    ["Ampliar evidência:", "Enlarge evidence:", "Ampliar evidencia:"],
     ["Eficiência", "Efficiency", "Eficiencia"],
     ["Logística", "Logistics", "Logística"],
     ["Gestão", "Management", "Gestión"],
@@ -502,14 +507,14 @@
     if (dictionary[core]) return leading + dictionary[core] + trailing;
 
     const dynamicPrefixes = [
-      ["Ampliar imagem de ", "Ampliar imagem de"],
-      ["Ampliar evidência: ", "Ampliar evidência:"],
-      ["Ver ", "Ver"]
+      ["Ampliar imagem de ", dictionary["Ampliar imagem de"]],
+      ["Ampliar evidência: ", dictionary["Ampliar evidência:"]],
+      ["Ver ", language === "en" ? "View" : "Ver"]
     ];
     for (let i = 0; i < dynamicPrefixes.length; i++) {
       const prefix = dynamicPrefixes[i][0];
-      if (core.indexOf(prefix) === 0) {
-        const translatedPrefix = dictionary[dynamicPrefixes[i][1]] || dynamicPrefixes[i][1];
+      if (prefix && core.indexOf(prefix) === 0) {
+        const translatedPrefix = dynamicPrefixes[i][1] || prefix.trim();
         const remainder = core.slice(prefix.length);
         return leading + translatedPrefix + " " + translateString(remainder, language) + trailing;
       }
