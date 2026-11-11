@@ -689,7 +689,7 @@
         background:var(--card-color);
         box-shadow:0 4px 14px var(--shadow-color);
     }
-    .language-switch button{
+    .language-switch button,.language-switch a{
         display:inline-grid;
         place-items:center;
         width:29px;
@@ -703,15 +703,15 @@
         opacity:.65;
         transition:background .2s ease,opacity .2s ease,transform .2s ease;
     }
-    .language-switch button:hover{opacity:1;transform:translateY(-1px)}
-    .language-switch button.is-active{
+    .language-switch button:hover,.language-switch a:hover{opacity:1;transform:translateY(-1px)}
+    .language-switch button.is-active,.language-switch a.is-active{
         opacity:1;
         background:color-mix(in srgb,var(--primary-color) 16%,var(--card-color));
         box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary-color) 35%,transparent);
     }
     @media(max-width:420px){
         .language-switch{gap:0;padding:2px}
-        .language-switch button{width:25px;height:25px;font-size:15px}
+        .language-switch button,.language-switch a{width:25px;height:25px;font-size:15px}
     }
 
     </style>
@@ -723,12 +723,12 @@
     <meta name="twitter:title" content="Bárbara Cabral Paschoalin | Portfólio de Análise de Dados">
     <meta name="twitter:description" content="Portfólio de Bárbara Cabral Paschoalin, Analista de Dados e Business Intelligence com foco em indicadores estratégicos.">
     <meta name="twitter:image" content="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/8b9a4e85-f999-4c76-a7e1-f65aaa5ea75a.png">
-    <script src="portfolio-i18n.js?v=20261111-head-init"></script>
+    <script src="portfolio-i18n.js?v=20261111-url-fallback"></script>
 </head>
 
 <body>
     <div id="root"></div>
-    <script type="text/babel" src="components/Header.js?v=20261111-direct-language"></script>
+    <script type="text/babel" src="components/Header.js?v=20261111-url-fallback"></script>
     <script type="text/babel" src="components/Hero.js?v=20261111-name-style"></script>
     <script type="text/babel" src="components/Highlights.js"></script>
     <script type="text/babel" src="components/About.js"></script>
