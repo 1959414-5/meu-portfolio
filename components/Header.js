@@ -61,11 +61,28 @@ function Header() {
             }
         };
 
+        const changeLanguage = (language) => {
+            if (typeof window.setPortfolioLanguage === "function") {
+                window.setPortfolioLanguage(language);
+                return;
+            }
+
+            // Fallback: carrega o tradutor no próprio clique, caso o navegador ainda não o tenha executado.
+            const script = document.createElement("script");
+            script.src = new URL("./portfolio-i18n.js?v=20261111-click-fix", window.location.href).href;
+            script.onload = () => {
+                if (typeof window.setPortfolioLanguage === "function") {
+                    window.setPortfolioLanguage(language);
+                }
+            };
+            document.head.appendChild(script);
+        };
+
         const languageSwitcher = (
             <div className="language-switch" role="group" aria-label="Idioma do site">
-                <button type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button>
-                <button type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button>
-                <button type="button" data-language="en" aria-label="English" title="English" aria-pressed="false">🇺🇸</button>
+                <button type="button" data-language="pt" onClick={() => changeLanguage("pt")} aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button>
+                <button type="button" data-language="es" onClick={() => changeLanguage("es")} aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button>
+                <button type="button" data-language="en" onClick={() => changeLanguage("en")} aria-label="English" title="English" aria-pressed="false">🇺🇸</button>
             </div>
         );
 
