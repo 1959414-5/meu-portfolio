@@ -714,7 +714,121 @@
         .language-switch button,.language-switch a{width:25px;height:25px;font-size:15px}
     }
 
-    </style>
+    
+    
+    /* Ajustes responsivos explícitos: não dependem das classes utilitárias do CDN */
+    @media (max-width: 1023px) {
+        header .desktop-nav,
+        header .desktop-actions { display: none !important; }
+        header .mobile-actions { display: flex !important; }
+        header > .container {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 10px !important;
+            min-height: 44px;
+        }
+        header .language-switch { flex: 0 0 auto; }
+        header .theme-toggle { flex: 0 0 40px; }
+        header .mobile-navigation { display: flex !important; }
+        #hero .hero-visual { display: none !important; }
+    }
+    @media (min-width: 1024px) {
+        header .desktop-nav,
+        header .desktop-actions { display: flex !important; }
+        header .mobile-actions,
+        header .mobile-navigation { display: none !important; }
+        #hero .hero-visual { display: flex !important; }
+    }
+    @media (max-width: 760px) {
+        header { padding-top: 12px !important; padding-bottom: 12px !important; }
+        header > .container { padding-left: 18px !important; padding-right: 18px !important; }
+        header .mobile-actions { gap: 7px !important; }
+        header .language-switch { padding: 4px 7px !important; gap: 4px !important; }
+        header .language-switch a { width: 30px; height: 30px; }
+        #hero {
+            min-height: auto !important;
+            padding-top: 104px !important;
+            padding-bottom: 44px !important;
+        }
+        #hero .container.mx-auto {
+            display: block !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        #hero .container.mx-auto > div:first-child {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 15px !important;
+            margin-top: 0 !important;
+        }
+        #hero .container.mx-auto > div:first-child > div:first-child {
+            width: fit-content !important;
+            max-width: 100% !important;
+            text-align: center !important;
+            line-height: 1.4 !important;
+            padding: 8px 12px !important;
+        }
+        #hero h1 { font-size: clamp(2rem, 8vw, 2.65rem) !important; line-height: 1.12 !important; }
+        #hero p { font-size: 1rem !important; line-height: 1.65 !important; }
+        #hero .hero-actions {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            width: 100% !important;
+            gap: 10px !important;
+            padding-top: 6px !important;
+        }
+        #hero .hero-actions > * {
+            width: 100% !important;
+            min-width: 0 !important;
+            min-height: 46px;
+            white-space: normal !important;
+            padding: 11px 8px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            font-size: .88rem !important;
+        }
+        #hero .hero-actions > a:last-child { grid-column: 1 / -1; }
+        #hero .hero-tech-strip {
+            width: 100% !important;
+            min-height: 0 !important;
+            margin-top: 8px !important;
+            padding-top: 18px !important;
+            padding-bottom: 0 !important;
+            justify-content: center !important;
+            gap: 10px !important;
+        }
+        #hero .tech-logo { width: 42px !important; height: 42px !important; }
+        main > section:not(#hero) { padding-top: 48px !important; padding-bottom: 48px !important; }
+        #sobre .section-title { display: block !important; width: 100%; }
+        #sobre .glass-panel { padding: 22px !important; }
+        #sobre .about-orbit-decoration { opacity: .45; transform: scale(.72); }
+        #sobre h3 { padding-right: 48px !important; text-align: left; }
+        #sobre .glass-panel .space-y-4 { text-align: left !important; }
+        #sobre .glass-panel p { font-size: .98rem !important; line-height: 1.7 !important; }
+        section[aria-label="Destaques profissionais"] .grid {
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr) !important;
+            gap: 12px !important;
+        }
+        section[aria-label="Destaques profissionais"] article {
+            display: flex !important;
+            padding: 17px !important;
+            gap: 13px !important;
+            min-width: 0 !important;
+        }
+        .glass-panel { overflow-wrap: break-word; }
+    }
+    @media (max-width: 390px) {
+        header .language-switch a { width: 27px; height: 27px; }
+        header .mobile-actions { gap: 5px !important; }
+        #hero .hero-actions { grid-template-columns: 1fr 1fr !important; }
+        #hero .hero-actions > * { font-size: .82rem !important; }
+    }
+
+</style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
     <meta property="og:title" content="Bárbara Cabral Paschoalin | Portfólio de Análise de Dados">
