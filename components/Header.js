@@ -64,18 +64,9 @@ function Header() {
         const changeLanguage = (language) => {
             if (typeof window.setPortfolioLanguage === "function") {
                 window.setPortfolioLanguage(language);
-                return;
+            } else {
+                console.error("Tradutor de idiomas ainda não foi carregado.");
             }
-
-            // Fallback: carrega o tradutor no próprio clique, caso o navegador ainda não o tenha executado.
-            const script = document.createElement("script");
-            script.src = new URL("./portfolio-i18n.js?v=20261111-click-fix", window.location.href).href;
-            script.onload = () => {
-                if (typeof window.setPortfolioLanguage === "function") {
-                    window.setPortfolioLanguage(language);
-                }
-            };
-            document.head.appendChild(script);
         };
 
         const languageSwitcher = (
