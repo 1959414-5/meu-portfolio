@@ -47,7 +47,7 @@
     ["Visualização ampliada das imagens", "Enlarged image viewer", "Visualización ampliada de imágenes"],
     ["Idioma do site", "Site language", "Idioma del sitio"],
     ["Visualizar", "View", "Ver"],
-    ["Voltar ao portfólio", "Back to portfolio", "Volver al portafolio"]
+    ["Voltar ao portfólio", "Back to portfolio", "Volver al portafolio"],
     ["Habilidades", "Skills", "Habilidades"],
     ["Projetos", "Projects", "Proyectos"],
     ["Experiência", "Experience", "Experiencia"],
