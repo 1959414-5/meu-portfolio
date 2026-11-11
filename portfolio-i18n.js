@@ -513,7 +513,7 @@
     ["2 de 5", "2 of 5", "2 de 5"],
     ["3 de 5", "3 of 5", "3 de 5"],
     ["4 de 5", "4 of 5", "4 de 5"],
-    ["5 de 5", "5 of 5", "5 de 5"]
+    ["5 de 5", "5 of 5", "5 de 5"],
     ["Fechar ✕", "Close ✕", "Cerrar ✕"],
     ["Visualização ampliada da evidência", "Enlarged evidence view", "Vista ampliada de la evidencia"],
     ["Amostra", "Sample", "Muestra"],
