@@ -73,7 +73,7 @@ function Hero() {
                         <p className="text-lg text-[var(--text-muted)] max-w-lg leading-relaxed">
                             Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais à análise de dados, desenvolvendo dashboards e indicadores com Power BI e SQL.
                         </p>
-                        <div className="flex flex-wrap md:flex-nowrap gap-2 pt-4 justify-center md:justify-start">
+                        <div className="hero-actions flex flex-wrap md:flex-nowrap gap-2 pt-4 justify-center md:justify-start">
                             <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-sm px-4 py-3">
                                 <div className="icon-chart-bar"></div>Ver Projetos
                             </button>
@@ -108,7 +108,7 @@ function Hero() {
                         </div>
                     </div>
 
-                    <div className="relative z-10 hidden md:flex items-center justify-center w-full py-10">
+                    <div className="hero-visual relative z-10 hidden md:flex items-center justify-center w-full py-10">
                         <div className="hero-floating-layer" aria-hidden="true">
                             <span className="hero-float-item hero-float-item--sql"><span className="icon-database"></span><span>SQL</span></span>
                             <span className="hero-float-item hero-float-item--bi"><span className="icon-chart-no-axes-combined"></span><span>BI</span></span>
