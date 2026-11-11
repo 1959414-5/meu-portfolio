@@ -61,6 +61,14 @@ function Header() {
             }
         };
 
+        const languageSwitcher = (
+            <div className="language-switch" role="group" aria-label="Idioma do site">
+                <button type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button>
+                <button type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button>
+                <button type="button" data-language="en" aria-label="English" title="English" aria-pressed="false">🇺🇸</button>
+            </div>
+        );
+
         const themeToggle = (
             <button
                 type="button"
@@ -99,6 +107,7 @@ function Header() {
                     </nav>
 
                     <div className="hidden lg:flex items-center gap-3">
+                        {languageSwitcher}
                         {themeToggle}
                         <button onClick={() => scrollToSection("contato")} className="btn-primary py-2.5 px-5 text-sm">
                             Falar comigo
@@ -106,6 +115,7 @@ function Header() {
                     </div>
 
                     <div className="flex lg:hidden items-center gap-2">
+                        {languageSwitcher}
                         {themeToggle}
                         <button
                             type="button"
