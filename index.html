@@ -901,6 +901,115 @@
         #hero .hero-actions > * { font-size: .82rem !important; }
     }
 
+
+    /* Auditoria mobile completa — página principal */
+    @media (max-width: 760px) {
+      html, body, #root { width:100%; max-width:100%; overflow-x:clip !important; }
+      body { min-width:320px; }
+      main, main > section, footer { min-width:0; max-width:100%; }
+      main > section:not(#hero) { padding:48px 0 !important; }
+      .section-title {
+        display:inline-block !important;
+        width:auto !important;
+        max-width:100% !important;
+        padding:0 !important;
+        margin:0 0 1.5rem !important;
+        background-color:transparent !important;
+        background-image:linear-gradient(110deg,#fff7fb 0%,#f3c7df 48%,#f15aa7 100%) !important;
+        background-repeat:no-repeat !important;
+        -webkit-background-clip:text !important;
+        background-clip:text !important;
+        -webkit-text-fill-color:transparent !important;
+        color:transparent !important;
+        line-height:1.15 !important;
+        box-shadow:none !important;
+      }
+      html[data-theme="light"] .section-title {
+        background-image:linear-gradient(110deg,#311626 0%,#a92c70 55%,#e34b9b 100%) !important;
+      }
+      #hero h1 span,
+      #hero h1 .text-transparent {
+        background-image:linear-gradient(110deg,var(--primary-color) 0%,#c084fc 52%,#60a5fa 100%) !important;
+        background-repeat:no-repeat !important;
+        -webkit-background-clip:text !important;
+        background-clip:text !important;
+        -webkit-text-fill-color:transparent !important;
+        color:transparent !important;
+      }
+      #hero { min-height:0 !important; height:auto !important; }
+      #hero .container.mx-auto,
+      #hero .container.mx-auto > div:first-child { min-width:0 !important; }
+      #hero .hero-name-tag { max-width:100%; white-space:normal; }
+      #hero p { max-width:100% !important; }
+      #hero .hero-actions { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+      #hero .hero-actions > * { min-width:0 !important; overflow-wrap:anywhere; }
+      #hero .hero-tech-strip { flex-wrap:wrap !important; }
+      section[aria-label="Destaques profissionais"] .grid {
+        grid-template-columns:minmax(0,1fr) !important;
+      }
+      #sobre .grid { grid-template-columns:minmax(0,1fr) !important; gap:18px !important; }
+      #sobre .glass-panel { min-width:0 !important; }
+      #habilidades .skills-groups-grid {
+        display:grid !important;
+        grid-template-columns:minmax(0,1fr) !important;
+        gap:14px !important;
+      }
+      #habilidades .skills-groups-grid > article { min-width:0 !important; height:auto !important; }
+      #habilidades .skills-icon-grid {
+        display:grid !important;
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+        align-content:start !important;
+        gap:12px 6px !important;
+      }
+      #habilidades .skill-icon-item { min-width:0 !important; overflow:visible !important; }
+      #habilidades .skill-icon-frame { width:48px !important; height:48px !important; flex:0 0 48px !important; }
+      #habilidades .skill-icon-caption { min-height:28px !important; overflow-wrap:anywhere !important; }
+      #habilidades .mt-7 .grid { grid-template-columns:minmax(0,1fr) !important; }
+      #projetos .grid,
+      #projetos [class*="grid-cols-"] {
+        min-width:0 !important;
+      }
+      #projetos .grid.lg\:grid-cols-\[1\.2fr_0\.8fr\],
+      #projetos .grid.lg\:grid-cols-\[1\.05fr_0\.95fr\],
+      #projetos .grid.lg\:grid-cols-\[1fr_1fr\] {
+        grid-template-columns:minmax(0,1fr) !important;
+      }
+      #projetos article, #projetos .glass-panel,
+      #projetos .inner-card { min-width:0 !important; }
+      #projetos h3, #projetos h4, #projetos p,
+      #projetos li { overflow-wrap:anywhere; }
+      #projetos .aspect-\[16\/9\],
+      #projetos .aspect-\[4\/3\] { max-width:100%; }
+      #projetos .grid.grid-cols-2 > * { min-width:0 !important; }
+      #projetos .project-details summary { align-items:flex-start !important; }
+      #experiencia .grid.lg\:grid-cols-2 {
+        grid-template-columns:minmax(0,1fr) !important;
+        gap:30px !important;
+      }
+      #experiencia h2 { font-size:clamp(1.45rem,6vw,1.8rem) !important; line-height:1.2 !important; }
+      #experiencia article { min-width:0 !important; }
+      #experiencia article h3 { overflow-wrap:anywhere; }
+      #experiencia .skills-icon-grid { max-width:100% !important; }
+      #contato .container.mx-auto { padding-inline:18px !important; }
+      #contato .glass-panel { padding:24px 18px !important; }
+      #contato h2 { font-size:clamp(1.5rem,6vw,2rem) !important; line-height:1.2 !important; }
+      #contato .flex.flex-col.sm\:flex-row { align-items:stretch !important; }
+      #contato a { width:100% !important; min-width:0 !important; }
+      footer .container.mx-auto { flex-direction:column !important; text-align:center !important; }
+      .container.mx-auto { min-width:0 !important; }
+      img, svg, video { max-width:100%; }
+    }
+    @media (max-width: 420px) {
+      header > .container { padding-inline:12px !important; }
+      header > .container > button:first-child { font-size:15px !important; }
+      header .mobile-actions { gap:4px !important; }
+      header .language-switch a { width:25px !important; height:25px !important; }
+      #hero h1 { font-size:clamp(1.9rem,8vw,2.35rem) !important; }
+      #hero .hero-actions { gap:8px !important; }
+      #projetos .grid.grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+      #habilidades .skill-icon-caption { font-size:9.5px !important; }
+    }
+
 </style>
 
     <link rel="icon" href="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/e1204f79-c426-4403-b193-25cbc2483cb1.png">
