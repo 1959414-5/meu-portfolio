@@ -543,6 +543,11 @@
 
   function readSavedLanguage() {
     try {
+      const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+      if (languages.indexOf(queryLanguage) >= 0) {
+        localStorage.setItem("portfolio-language", queryLanguage);
+        return queryLanguage;
+      }
       const saved = localStorage.getItem("portfolio-language");
       return languages.indexOf(saved) >= 0 ? saved : "pt";
     } catch (error) {
