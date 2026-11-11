@@ -151,7 +151,11 @@
     .analysis-card .index { font-size: .73rem; font-weight: 800; color: var(--primary); letter-spacing: .13em; margin-bottom: 14px; }
     .analysis-card ul { padding-left: 17px; margin: 12px 0 0; color: var(--muted); font-size: .85rem; }
     .analysis-card li { margin: 6px 0; }
-    .skill-cloud { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .skill-cloud{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px 8px;margin-top:22px;max-width:560px}
+    .skill-cloud-item{display:flex;min-width:0;flex-direction:column;align-items:center;gap:8px;padding:5px 2px;color:var(--muted);font-size:.68rem;font-weight:750;line-height:1.25;text-align:center}
+    .skill-cloud-icon{display:grid;place-items:center;width:48px;height:48px;padding:9px;border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));border-radius:50%;background:radial-gradient(circle at 32% 24%,color-mix(in srgb,var(--primary) 14%,var(--surface)),color-mix(in srgb,var(--surface) 94%,transparent) 72%);box-shadow:0 8px 20px var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);color:var(--primary);font-size:1.35rem;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .skill-cloud-icon img{display:block;width:100%;height:100%;object-fit:contain}
+    .skill-cloud-item:hover .skill-cloud-icon{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 10px 24px color-mix(in srgb,var(--primary) 18%,var(--shadow))}
     .tag { padding: 8px 12px; color: var(--text); font-size: .79rem; }
     .performance-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
     table { width: 100%; border-collapse: collapse; min-width: 570px; font-size: .88rem; }
@@ -203,6 +207,9 @@
       section.content-section { padding-top: 43px; }
       .panel { padding: 20px; }
       .hero-actions .btn { flex: 1 1 100%; }
+      .skill-cloud{grid-template-columns:repeat(3,minmax(0,1fr));max-width:420px;gap:12px 6px}
+      .skill-cloud-icon{width:44px;height:44px;font-size:1.25rem}
+      .skill-cloud-item{font-size:.65rem}
     }
     body { width: 100%; min-width: 320px; overflow-x: clip; }
     .wrap > *, .hero-grid > *, .two-col > *, .flow > *, .model-grid > *, .analysis-grid > * { min-width: 0; }
@@ -294,12 +301,27 @@
             <div class="eyebrow">Estudo de caso · SQL &amp; Data Analytics</div>
             <h1>ERP Industrial <span class="gradient-text">Analytics</span></h1>
             <p class="lead">Da estrutura do banco à análise dos indicadores: um projeto demonstrativo em MySQL que simula a operação de uma indústria e conecta informações comerciais, compras, estoque e produção.</p>
-            <div class="skill-cloud">
-              <span class="tag">MySQL 8.4.13</span>
-              <span class="tag">MySQL Workbench</span>
-              <span class="tag">SQL</span>
-              <span class="tag">InnoDB</span>
-              <span class="tag">GitHub</span>
+            <div class="skill-cloud" role="list" aria-label="Tecnologias e ferramentas utilizadas">
+              <div class="skill-cloud-item" role="listitem">
+                <span class="skill-cloud-icon"><img src="./images/technologies/mysql.svg" alt=""></span>
+                <span>MySQL 8.4.13</span>
+              </div>
+              <div class="skill-cloud-item" role="listitem">
+                <span class="skill-cloud-icon"><i class="icon icon-monitor-cog" aria-hidden="true"></i></span>
+                <span>MySQL Workbench</span>
+              </div>
+              <div class="skill-cloud-item" role="listitem">
+                <span class="skill-cloud-icon"><i class="icon icon-code" aria-hidden="true"></i></span>
+                <span>SQL</span>
+              </div>
+              <div class="skill-cloud-item" role="listitem">
+                <span class="skill-cloud-icon"><i class="icon icon-database" aria-hidden="true"></i></span>
+                <span>InnoDB</span>
+              </div>
+              <div class="skill-cloud-item" role="listitem">
+                <span class="skill-cloud-icon"><i class="icon icon-github" aria-hidden="true"></i></span>
+                <span>GitHub</span>
+              </div>
             </div>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://github.com/1959414-5/erp-industrial-analytics" target="_blank" rel="noopener noreferrer"><span class="icon-github" aria-hidden="true"></span> Acessar código no GitHub</a>
