@@ -74,7 +74,7 @@
 <body>
   <header class="topbar"><div class="topbar-inner">
     <a class="brand" href="./index.html">Bárbara<span>.BI</span></a>
-    <div class="actions"><a class="pill" href="./index.html#projetos"><i class="icon icon-arrow-left"></i> Voltar aos projetos</a><div class="language-switch" role="group" aria-label="Idioma do site"><button type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button><button type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button><button type="button" data-language="en" aria-label="English" title="English" aria-pressed="false">🇺🇸</button></div><button class="theme" id="themeToggle" type="button" aria-label="Alternar tema"><i class="icon icon-moon"></i></button></div>
+    <div class="actions"><a class="pill" href="./index.html#projetos"><i class="icon icon-arrow-left"></i> Voltar aos projetos</a><div class="language-switch" role="group" aria-label="Idioma do site"><button type="button" data-language="pt" onclick="window.changePortfolioLanguage('pt')" aria-label="Português" title="Português" aria-pressed="true">🇧🇷</button><button type="button" data-language="es" onclick="window.changePortfolioLanguage('es')" aria-label="Español" title="Español" aria-pressed="false">🇪🇸</button><button type="button" data-language="en" onclick="window.changePortfolioLanguage('en')" aria-label="English" title="English" aria-pressed="false">🇺🇸</button></div><button class="theme" id="themeToggle" type="button" aria-label="Alternar tema"><i class="icon icon-moon"></i></button></div>
   </div></header>
   <main>
     <section class="hero"><div class="wrap">
@@ -321,6 +321,21 @@
     })();
 
   </script>
-  <script src="portfolio-i18n.js?v=20261111-i18n-clean"></script>
+  <script>
+    window.changePortfolioLanguage = function(language) {
+      if (typeof window.setPortfolioLanguage === "function") {
+        window.setPortfolioLanguage(language);
+        return;
+      }
+      var fallback = document.createElement("script");
+      fallback.src = "./portfolio-i18n.js?v=20261111-click-fix";
+      fallback.onload = function() {
+        if (typeof window.setPortfolioLanguage === "function") window.setPortfolioLanguage(language);
+      };
+      fallback.onerror = function() { console.error("Não foi possível carregar o tradutor de idiomas."); };
+      document.head.appendChild(fallback);
+    };
+  </script>
+  <script src="portfolio-i18n.js?v=20261111-click-fix"></script>
 </body>
 </html>
