@@ -3,6 +3,10 @@
 
   const entries = [
     ["Sobre", "About", "Acerca de"],
+    ["Idioma do site", "Site language", "Idioma del sitio"],
+    ["Português", "Portuguese", "Portugués"],
+    ["Español", "Spanish", "Español"],
+    ["English", "English", "Inglés"],
     ["Habilidades", "Skills", "Habilidades"],
     ["Projetos", "Projects", "Proyectos"],
     ["Experiência", "Experience", "Experiencia"],
@@ -454,8 +458,8 @@
   function translateString(value, language) {
     if (language === "pt" || !value) return value;
     const dictionary = dictionaries[language];
-    const leading = (value.match(/^\\s*/) || [""])[0];
-    const trailing = (value.match(/\\s*$/) || [""])[0];
+    const leading = (value.match(/^\s*/) || [""])[0];
+    const trailing = (value.match(/\s*$/) || [""])[0];
     const core = value.slice(leading.length, value.length - trailing.length);
     if (!core) return value;
 
@@ -545,6 +549,8 @@
         records.forEach(function (record) {
           if (record.type === "childList") {
             record.addedNodes.forEach(translateTree);
+          } else if (record.type === "characterData") {
+            translateTextNode(record.target);
           } else if (record.type === "attributes") {
             translateAttribute(record.target, record.attributeName);
           }
@@ -553,6 +559,7 @@
       });
       observer.observe(document.body, {
         childList: true,
+        characterData: true,
         subtree: true,
         attributes: true,
         attributeFilter: attributeNames
