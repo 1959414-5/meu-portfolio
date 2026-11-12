@@ -483,10 +483,16 @@ function Projects() {
                                 </div>
                                 <p className="text-xs text-[var(--text-muted)] mb-5">30 minutos economizados por execução · redução média de 75% no tempo.</p>
                                 {renderTagIcons(["Python", "PyAutoGUI", "Tkinter", "Pyperclip", "CSV / JSON", "RPA"], "mb-5")}
-                                <a href="projeto-automacao-relatorios.html" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline">
-                                    <span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo
-                                    <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
-                                </a>
+                                <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                                    <a href="projeto-automacao-relatorios.html" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline">
+                                        <span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo
+                                        <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="https://github.com/1959414-5/automacao-relatorios-python" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline">
+                                        <span className="icon-github" aria-hidden="true"></span>Ver repositório no GitHub
+                                        <span className="icon-arrow-up-right text-xs" aria-hidden="true"></span>
+                                    </a>
+                                </div>
                             </div>
                             <div className="bg-[var(--bg-color)]/55 border-t lg:border-t-0 lg:border-l border-[var(--surface-border)] p-5 md:p-6 flex flex-col justify-center">
                                 <div className="flex items-center justify-between gap-3 mb-3">
