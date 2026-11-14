@@ -4,6 +4,7 @@ function Projects() {
         const [dashboardIndex, setDashboardIndex] = React.useState(0);
         const [sqlEvidenceIndex, setSqlEvidenceIndex] = React.useState(0);
         const [automationEvidenceIndex, setAutomationEvidenceIndex] = React.useState(0);
+        const [erp3dIndex, setErp3dIndex] = React.useState(0);
         const [modalImageIndex, setModalImageIndex] = React.useState(0);
 
         // Controles do visualizador ampliado: mantêm índice e imagem sincronizados.
@@ -146,6 +147,22 @@ function Projects() {
 
 
 
+        const erp3dEvidence = [
+            { title: "Aba Produção", image: "images/erp3d/01-producao.jpg" },
+            { title: "Aba Estoque", image: "images/erp3d/02-estoque.jpg" },
+            { title: "Aba Comercial", image: "images/erp3d/03-comercial.jpg" },
+            { title: "Assistente: máquinas", image: "images/erp3d/04-assistente-maquinas.jpg" },
+            { title: "Assistente: vendedores", image: "images/erp3d/05-assistente-vendedores.jpg" }
+        ];
+
+        const erp3dProject = {
+            title: "ERP Industrial 3D com IA",
+            pageUrl: "projeto-erp-industrial-3d.html",
+            repoUrl: "https://github.com/1959414-5/erp-industrial-3d",
+            demoUrl: "https://1959414-5.github.io/erp-industrial-3d/",
+            tags: ["TypeScript", "Three.js", "Node.js", "API REST", "MySQL", "IA com function calling"]
+        };
+
         const sqlProjects = [
             {
                 id: "erp-industrial-analytics",
@@ -168,6 +185,7 @@ function Projects() {
         const modalImages = [...new Map([
             ...dashboardProjects,
             ...sqlEvidence,
+            ...erp3dEvidence,
             ...automationEvidence,
             ...additionalProjects
         ].map((project) => [project.image, { image: project.image, title: project.title }])).values()];
@@ -205,6 +223,12 @@ function Projects() {
             "Window Functions": { icon: "icon-braces" },
             "Performance": { icon: "icon-gauge" },
             "Python": { image: "python.svg" },
+            "TypeScript": { image: "typescript.svg" },
+            "Node.js": { image: "nodejs.svg" },
+            "Three.js": { icon: "icon-box" },
+            "API REST": { image: "api-rest.svg" },
+            "MySQL": { image: "mysql.svg" },
+            "IA com function calling": { icon: "icon-sparkles" },
             "PyAutoGUI": { icon: "icon-mouse-pointer-click" },
             "Tkinter": { icon: "icon-monitor" },
             "Pyperclip": { icon: "icon-clipboard" },
@@ -442,6 +466,62 @@ function Projects() {
                                     <a href={sqlProjects[0].pageUrl} className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo</a>
                                     <a href={sqlProjects[0].repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-github" aria-hidden="true"></span>Explorar repositório no GitHub</a>
                                 </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Aplicação full stack com IA</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Painel 3D, API Node e assistente de IA sobre dados em MySQL</p>
+                    </div>
+
+                    <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
+                        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
+                            <div className="relative bg-[var(--inner-card-color)] p-3 md:p-4 flex flex-col justify-center">
+                                <button type="button" className="w-full aspect-[16/10] relative group" onClick={() => openImage(erp3dEvidence[erp3dIndex].image)} aria-label={"Ampliar evidência: " + erp3dEvidence[erp3dIndex].title}>
+                                    <img src={erp3dEvidence[erp3dIndex].image} alt={erp3dEvidence[erp3dIndex].title} className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.015]" />
+                                    <span className="absolute bottom-3 left-3 rounded-lg px-3 py-2 text-xs md:text-sm font-semibold shadow-lg" style={{ backgroundColor: "rgba(15, 23, 42, 0.92)", color: "#ffffff" }}>{erp3dEvidence[erp3dIndex].title}</span>
+                                    <span className="absolute bottom-3 right-3 rounded-full bg-white/95 text-slate-800 p-3 shadow-md"><span className="icon-maximize text-lg" aria-hidden="true"></span></span>
+                                </button>
+                                <button type="button" onClick={() => setErp3dIndex((erp3dIndex - 1 + erp3dEvidence.length) % erp3dEvidence.length)} className="absolute left-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Evidência anterior"><span className="icon-chevron-left text-xl" aria-hidden="true"></span></button>
+                                <button type="button" onClick={() => setErp3dIndex((erp3dIndex + 1) % erp3dEvidence.length)} className="absolute right-5 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-lg p-3" aria-label="Próxima evidência"><span className="icon-chevron-right text-xl" aria-hidden="true"></span></button>
+                                <div className="flex justify-center items-center gap-2 mt-2">
+                                    {erp3dEvidence.map((item, index) => <button key={item.title} type="button" onClick={() => setErp3dIndex(index)} className={"h-2.5 rounded-full transition-all " + (erp3dIndex === index ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-[var(--surface-border)]")} aria-label={"Ver " + item.title} aria-current={erp3dIndex === index ? "true" : undefined} />)}
+                                    <span className="ml-2 text-xs text-[var(--text-muted)] tabular-nums">{erp3dIndex + 1} / {erp3dEvidence.length}</span>
+                                </div>
+                            </div>
+
+                            <div className="p-5 md:p-7 lg:p-8 flex flex-col justify-start">
+                                <div className="flex flex-wrap items-center gap-2 mb-2">
+                                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary-color)]">Projeto prático · Full stack e IA</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 text-xs text-[var(--text-muted)]">Dados fictícios</span>
+                                </div>
+                                <h4 className="text-2xl md:text-3xl font-bold text-[var(--text-main)] mb-3">{erp3dProject.title}</h4>
+                                <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed mb-4">
+                                    Painel industrial em 3D alimentado por uma API Node/Express e por um banco MySQL. Um assistente de IA responde em português usando function calling sobre consultas fixas e somente leitura, e leva a câmera até a máquina, o lote ou o vendedor citado.
+                                </p>
+                                <div className="grid grid-cols-2 gap-3 mb-4">
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">15</div><div className="text-xs text-[var(--text-muted)] mt-1">máquinas na planta 3D</div></div>
+                                    <div className="rounded-xl border border-[var(--surface-border)] inner-card p-4"><div className="text-2xl font-bold text-[var(--primary-color)]">10</div><div className="text-xs text-[var(--text-muted)] mt-1">ferramentas expostas à IA</div></div>
+                                </div>
+                                <p className="text-sm font-semibold text-[var(--text-main)] mb-2">O que foi desenvolvido</p>
+                                <ul className="space-y-2 mb-4">
+                                    {[
+                                        "Banco MySQL com scripts idempotentes e cenários variados de demonstração.",
+                                        "API Node/Express com consultas fixas, limites de uso e proteção das chaves.",
+                                        "Cena 3D com Three.js e TypeScript, com abas de Produção, Estoque e Comercial.",
+                                        "Assistente com function calling, motor local offline e deploy gratuito."
+                                    ].map((item, index) => (
+                                        <li key={index} className="flex gap-2 items-start text-sm text-[var(--text-muted)] leading-relaxed"><span className="icon-check text-[var(--primary-color)] mt-1 flex-shrink-0" aria-hidden="true"></span><span>{item}</span></li>
+                                    ))}
+                                </ul>
+                                {renderTagIcons(erp3dProject.tags, "mb-4")}
+                                <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                                    <a href={erp3dProject.pageUrl} className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-book-open" aria-hidden="true"></span>Ver estudo de caso completo</a>
+                                    <a href={erp3dProject.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-external-link" aria-hidden="true"></span>Abrir demonstração ao vivo</a>
+                                    <a href={erp3dProject.repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary-color)] hover:underline"><span className="icon-github" aria-hidden="true"></span>Ver código-fonte no GitHub</a>
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mt-4 leading-relaxed">A API da demonstração usa plano gratuito e pode levar cerca de 1 minuto para acordar na primeira visita.</p>
                             </div>
                         </div>
                     </article>

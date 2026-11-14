@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>ERP Industrial 3D com IA | Estudo de Caso — Bárbara Cabral Paschoalin</title>
+  <meta name="description" content="Estudo de caso full stack: painel industrial 3D com Three.js, API Node/Express, banco MySQL e assistente de IA com function calling, publicado gratuitamente.">
+  <meta name="keywords" content="Three.js, TypeScript, Node.js, Express, MySQL, TiDB Cloud, IA, function calling, LLM, full stack, ERP industrial">
+  <meta property="og:title" content="ERP Industrial 3D com IA | Estudo de Caso">
+  <meta property="og:description" content="Painel industrial em 3D com API Node, MySQL e assistente de IA que consulta o banco por ferramentas seguras.">
+  <meta property="og:image" content="https://1959414-5.github.io/meu-portfolio/images/erp3d/01-producao.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fff7fa;
+      --surface: rgba(255,255,255,.94);
+      --surface-solid: #ffffff;
+      --border: rgba(194,24,91,.15);
+      --primary: #c2185b;
+      --primary-hover: #a9144c;
+      --text: #2a1522;
+      --muted: #765f6d;
+      --shadow: 0 18px 48px rgba(85,24,54,.08);
+      --glow-a: rgba(236,72,153,.10);
+      --glow-b: rgba(190,24,93,.06);
+      --code-bg: #2a1d29;
+      --code-text: #f8eaf1;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #150f18;
+      --surface: rgba(34,25,39,.84);
+      --surface-solid: #2a1e31;
+      --border: rgba(255,255,255,.09);
+      --primary: #f15aa7;
+      --primary-hover: #dc3f8d;
+      --text: #fbf4fa;
+      --muted: #bbaebb;
+      --shadow: 0 18px 48px rgba(0,0,0,.30);
+      --glow-a: rgba(241,90,167,.12);
+      --glow-b: rgba(124,58,237,.10);
+      --code-bg: #211827;
+      --code-text: #f8eaf1;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; font-size: 14.5px; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      background-image: radial-gradient(ellipse at 12% 4%,var(--glow-a),transparent 42%),radial-gradient(ellipse at 92% 24%,var(--glow-b),transparent 38%);
+      background-attachment: fixed;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 30;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(18px);
+    }
+    .topbar-inner {
+      max-width: 1160px; margin: auto; padding: 13px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { font-weight: 800; letter-spacing: -.05em; font-size: 1.1rem; }
+    .brand span { color: var(--primary); }
+    .top-actions { display: flex; gap: 10px; align-items: center; }
+    .top-link,.theme-button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 1px solid var(--border); border-radius: 999px; padding: 9px 14px;
+      color: var(--text); background: var(--surface); font-size: .84rem; font-weight: 650;
+      transition: .2s ease; cursor: pointer;
+    }
+    .top-link:hover,.theme-button:hover { border-color: var(--primary); color: var(--primary); }
+    .wrap { width: 100%; max-width: 1680px; margin: 0 auto; padding-inline: clamp(22px, 5vw, 88px); }
+    .hero { padding: 66px 0 34px; }
+    .crumb { color: var(--muted); font-size: .82rem; margin-bottom: 24px; }
+    .crumb a { color: var(--primary); font-weight: 650; }
+    .hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 40px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--primary);
+      font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .eyebrow:before { content: ""; width: 23px; height: 2px; border-radius: 2px; background: var(--primary); }
+    h1 { font-size: clamp(2.5rem,6vw,4.4rem); line-height: 1.04; letter-spacing: -.065em; margin: 0 0 20px; }
+    .gradient-text { color: var(--primary); }
+    .lead { max-width: 700px; color: var(--muted); font-size: 1.08rem; line-height: 1.8; margin: 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px 18px; border-radius: 11px; font-size: .9rem; font-weight: 750;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 24px rgba(8,126,164,.18); }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+    .hero-visual {
+      border: 1px solid var(--border); border-radius: 24px; overflow: hidden;
+      background: var(--surface); box-shadow: var(--shadow); padding: 12px;
+      transform: rotate(1deg);
+    }
+    .hero-visual img { width: 100%; display: block; border-radius: 15px; aspect-ratio: 16/10; object-fit: contain; background: #eef3f8; }
+    .hero-visual-caption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 8px 3px; color: var(--muted); font-size: .75rem; }
+    .hero-visual-caption strong { color: var(--text); font-size: .82rem; }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 30px 0 16px; }
+    .stat,.panel,.feature,.analysis-card,.gallery-card,.model-card,.step {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow);
+    }
+    .stat { padding: 19px 20px; }
+    .stat strong { display: block; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.04em; color: var(--primary); }
+    .stat span { display: block; color: var(--muted); font-size: .78rem; margin-top: 7px; }
+    section.content-section { padding: 58px 0 12px; }
+    .section-head { max-width: 760px; margin-bottom: 25px; }
+    .section-kicker { color: var(--primary); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px; }
+    h2 { font-size: clamp(1.75rem,4vw,2.5rem); line-height: 1.15; letter-spacing: -.045em; margin: 0 0 12px; }
+    .section-intro { color: var(--muted); margin: 0; line-height: 1.8; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { padding: 25px; }
+    .panel h3,.feature h3,.analysis-card h3,.model-card h3 { margin: 0 0 9px; font-size: 1.05rem; letter-spacing: -.02em; }
+    .panel p,.feature p,.analysis-card p,.model-card p { margin: 0; color: var(--muted); font-size: .91rem; line-height: 1.75; }
+    .bullets { padding-left: 19px; margin: 14px 0 0; color: var(--muted); font-size: .9rem; }
+    .bullets li { padding: 4px 0 4px 3px; }
+    .bullets li::marker { color: var(--primary); }
+    .flow { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .step { padding: 22px; position: relative; }
+    .step-num { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: var(--primary); background: color-mix(in srgb,var(--primary) 12%,transparent); font-weight: 800; font-size: .82rem; margin-bottom: 17px; }
+    .step h3 { margin: 0 0 8px; font-size: 1rem; }
+    .step p { color: var(--muted); font-size: .87rem; margin: 0; line-height: 1.7; }
+    .model-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .model-card { padding: 21px; }
+    .model-card .table-list { margin-top: 13px; display: flex; flex-wrap: wrap; gap: 7px; }
+    .table-chip,.tag {
+      display: inline-flex; align-items: center; border: 1px solid var(--border);
+      border-radius: 999px; padding: 5px 9px; color: var(--muted); font-size: .72rem;
+      font-weight: 650; background: color-mix(in srgb,var(--surface-solid) 55%,transparent);
+    }
+    .analysis-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .analysis-card { padding: 23px; }
+    .analysis-card .index { font-size: .73rem; font-weight: 800; color: var(--primary); letter-spacing: .13em; margin-bottom: 14px; }
+    .analysis-card ul { padding-left: 17px; margin: 12px 0 0; color: var(--muted); font-size: .85rem; }
+    .analysis-card li { margin: 6px 0; }
+    .skill-cloud{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px 8px;margin-top:22px;max-width:560px}
+    .skill-cloud-item{display:flex;min-width:0;flex-direction:column;align-items:center;gap:8px;padding:5px 2px;color:var(--muted);font-size:.68rem;font-weight:750;line-height:1.25;text-align:center}
+    .skill-cloud-icon{display:grid;place-items:center;width:48px;height:48px;padding:9px;border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));border-radius:50%;background:radial-gradient(circle at 32% 24%,color-mix(in srgb,var(--primary) 14%,var(--surface)),color-mix(in srgb,var(--surface) 94%,transparent) 72%);box-shadow:0 8px 20px var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);color:var(--primary);font-size:1.35rem;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .skill-cloud-icon img{display:block;width:100%;height:100%;object-fit:contain}
+    .skill-cloud-item:hover .skill-cloud-icon{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 10px 24px color-mix(in srgb,var(--primary) 18%,var(--shadow))}
+    .tag { padding: 8px 12px; color: var(--text); font-size: .79rem; }
+    .sql-techniques{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      width:100%;
+      margin-top:0;
+    }
+    .sql-techniques .tag{
+      display:inline-flex;
+      flex:0 0 auto;
+      align-items:center;
+      justify-content:center;
+      width:auto;
+      min-height:40px;
+      max-width:100%;
+      padding:9px 14px;
+      border-radius:999px;
+      white-space:nowrap;
+      line-height:1.2;
+      font-size:.76rem;
+      background:color-mix(in srgb,var(--surface-solid) 55%,transparent);
+    }
+    @media(max-width:580px){
+      .sql-techniques{gap:8px}
+      .sql-techniques .tag{min-height:36px;padding:8px 11px;font-size:.7rem}
+    }
+    .performance-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; min-width: 570px; font-size: .88rem; }
+    th,td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; background: color-mix(in srgb,var(--surface-solid) 45%,transparent); }
+    td { color: var(--text); }
+    tr:last-child td { border-bottom: 0; }
+    .good { color: #0b9871; font-weight: 800; }
+    .note { color: var(--muted); font-size: .82rem; line-height: 1.75; margin: 13px 0 0; }
+    .code-panel { background: var(--code-bg); color: var(--code-text); border-radius: 16px; padding: 21px 23px; overflow-x: auto; margin-top: 20px; border: 1px solid rgba(148,163,184,.18); }
+    .code-label { color: #7dd3fc; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; font-size: .67rem; margin-bottom: 9px; }
+    pre { margin: 0; font-family: Consolas, Monaco, monospace; font-size: .8rem; line-height: 1.7; white-space: pre; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .gallery-card { overflow: hidden; padding: 10px; }
+    .gallery-trigger { border: 0; padding: 0; background: #edf2f7; display: block; width: 100%; border-radius: 12px; cursor: zoom-in; overflow: hidden; }
+    .gallery-trigger img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: contain; display: block; transition: transform .35s ease; }
+    .gallery-trigger:hover img { transform: scale(1.025); }
+    .gallery-caption { display: flex; align-items: flex-start; gap: 12px; padding: 14px 7px 5px; }
+    .gallery-caption .num { color: var(--primary); font-size: .73rem; font-weight: 850; letter-spacing: .1em; padding-top: 2px; }
+    .gallery-caption strong { display: block; font-size: .9rem; }
+    .gallery-caption span:last-child { display: block; color: var(--muted); font-size: .76rem; margin-top: 3px; }
+    .disclaimer { display: flex; gap: 13px; align-items: flex-start; padding: 19px 21px; border-radius: 15px; border: 1px solid color-mix(in srgb,var(--primary) 30%,var(--border)); background: color-mix(in srgb,var(--primary) 6%,var(--surface)); color: var(--muted); font-size: .84rem; line-height: 1.75; margin-top: 25px; }
+    .disclaimer strong { color: var(--text); }
+    .final-cta { padding: 50px 0 68px; }
+    .cta-panel { text-align: center; padding: 38px 25px; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
+    .cta-panel p { color: var(--muted); max-width: 630px; margin: 0 auto 23px; }
+    footer { border-top: 1px solid var(--border); color: var(--muted); font-size: .78rem; padding: 22px 24px; text-align: center; }
+    dialog { width: min(1100px,94vw); max-width: 94vw; max-height: 92vh; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; padding: 12px; background: #0b1121; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.5); }
+    dialog::backdrop { background: rgba(3,8,18,.88); backdrop-filter: blur(7px); }
+    dialog img { display: block; max-width: 100%; max-height: 78vh; object-fit: contain; margin: auto; border-radius: 10px; }
+    .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #dce7f7; padding: 4px 5px 12px; font-size: .85rem; }
+    .dialog-close { border: 1px solid rgba(255,255,255,.2); color: #fff; background: rgba(255,255,255,.1); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { max-width: 680px; transform: none; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .model-grid,.analysis-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .topbar-inner { padding: 11px 16px; }
+      .wrap { padding: 0 17px; }
+      .top-link { padding: 9px 12px; font-size: .76rem; }
+      .top-link .full-label { display: none; }
+      .hero { padding-top: 38px; }
+      .hero-grid,.two-col,.flow,.model-grid,.analysis-grid,.gallery-grid { grid-template-columns: 1fr; }
+      .lead { font-size: .98rem; }
+      .stat { padding: 16px; }
+      .stat strong { font-size: 1.55rem; }
+      section.content-section { padding-top: 43px; }
+      .panel { padding: 20px; }
+      .hero-actions .btn { flex: 1 1 100%; }
+      .skill-cloud{grid-template-columns:repeat(3,minmax(0,1fr));max-width:420px;gap:12px 6px}
+      .skill-cloud-icon{width:44px;height:44px;font-size:1.25rem}
+      .skill-cloud-item{font-size:.65rem}
+    }
+    body { width: 100%; min-width: 320px; overflow-x: clip; }
+    .wrap > *, .hero-grid > *, .two-col > *, .flow > *, .model-grid > *, .analysis-grid > * { min-width: 0; }
+    p, li, h1, h2, h3 { overflow-wrap: break-word; }
+    img, video, canvas, svg { max-width: 100%; }
+    @media (min-width: 1500px) {
+      .wrap { padding-inline: clamp(84px, 5.5vw, 112px); }
+    }
+    @media (max-width: 800px) {
+      html { font-size: 13.8px; }
+      .wrap { padding-inline: 20px; }
+      .hero { padding-top: 42px; }
+      .hero-grid { gap: 24px; }
+      .stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .model-grid, .analysis-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 580px) {
+      html { font-size: 13.5px; }
+      .wrap { padding-inline: 16px; }
+      .topbar-inner { padding: 10px 15px; }
+      .top-actions { gap: 6px; }
+      .top-link, .theme-button { padding: 8px 10px; font-size: .74rem; }
+      .two-col, .model-grid, .analysis-grid, .flow { grid-template-columns: 1fr; }
+      .panel { padding: 19px; }
+      .stats { gap: 9px; }
+      .stat { padding: 14px; }
+      .stat strong { font-size: 1.45rem; }
+    }
+    @media (max-width: 360px) {
+      .wrap { padding-inline: 13px; }
+      .brand { font-size: .98rem; }
+      .top-link { font-size: .68rem; padding: 7px 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+    /* Identidade visual compartilhada com o portfólio principal */
+    .case-hero-visual-wrap{position:relative;isolation:isolate;min-width:0;padding:15px 5px}
+    .case-hero-visual-wrap .hero-panel,.case-hero-visual-wrap .hero-visual{position:relative;z-index:1}
+    .case-float-layer{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
+    .case-float-bubble{
+      position:absolute;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:34px;padding:7px 12px;border:1px solid color-mix(in srgb,var(--primary) 30%,var(--border));
+      border-radius:999px;background:color-mix(in srgb,var(--surface) 94%,transparent);
+      color:var(--muted);box-shadow:0 8px 22px var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      font-size:.68rem;font-weight:750;letter-spacing:.025em;line-height:1;white-space:nowrap;will-change:transform;
+    }
+    .case-float-bubble i{font-size:.92rem;color:var(--primary)}
+    .case-float-bubble--top-left{top:0;left:9%}
+    .case-float-bubble--top-right{top:0;right:8%}
+    .case-float-bubble--bottom-left{bottom:0;left:10%}
+    .case-float-bubble--bottom-right{bottom:0;right:8%}
+    @media(max-width:800px){
+      .case-hero-visual-wrap{padding:14px 3px}
+      .case-float-bubble{min-height:30px;padding:6px 9px;font-size:.62rem}
+      .case-float-bubble--secondary{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .case-float-bubble{animation:none}
+    }
+    .language-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--surface);box-shadow:0 4px 14px var(--shadow)}
+    .language-switch button,.language-switch a{display:inline-grid;place-items:center;width:28px;height:27px;border:0;border-radius:999px;background:transparent;font-size:15px;line-height:1;cursor:pointer;opacity:.65;transition:background .2s ease,opacity .2s ease,transform .2s ease}
+    .language-switch button:hover,.language-switch a:hover{opacity:1;transform:translateY(-1px)}
+    .language-switch button.is-active,.language-switch a.is-active{opacity:1;background:color-mix(in srgb,var(--primary) 16%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 35%,transparent)}
+    @media(max-width:560px){.language-switch{gap:0;padding:2px}.language-switch button,.language-switch a{width:24px;height:24px;font-size:14px}}
+  
+    /* Auditoria mobile — ERP Industrial Analytics */
+    @media(max-width:800px){
+      html,body{width:100%;max-width:100%;overflow-x:clip!important}
+      body{min-width:320px}
+      .topbar-inner{width:100%;padding:10px 16px;gap:10px;flex-wrap:wrap}
+      .brand{font-size:1rem;white-space:nowrap}
+      .top-actions{max-width:100%;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+      .top-link,.theme-button{font-size:.72rem;padding:7px 10px}
+      .wrap{width:100%;max-width:100%;padding-inline:18px}
+      .hero{padding:30px 0 20px}
+      .hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:18px}
+      .hero-grid>*{min-width:0}
+      h1{font-size:clamp(2rem,8vw,2.8rem);line-height:1.08;overflow-wrap:anywhere}
+      .hero-actions{flex-wrap:wrap;gap:9px}
+      .hero-actions>*{max-width:100%;min-width:0}
+      .case-hero-visual-wrap{width:100%;max-width:100%;padding:12px 2px}
+      .hero-visual{max-width:100%;overflow:hidden}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+      .content-section{padding:30px 0!important}
+      .section-head{max-width:100%;margin-bottom:17px}
+      .section-head h2{font-size:clamp(1.45rem,6vw,1.85rem);line-height:1.18}
+      .model-grid,.analysis-grid,.gallery-grid{grid-template-columns:minmax(0,1fr)!important}
+      .model-card,.analysis-card,.gallery-card,.code-panel,.performance-wrap,.cta-panel{min-width:0;max-width:100%}
+      .table-list{display:flex;flex-wrap:wrap;gap:7px}
+      .table-chip{max-width:100%;overflow-wrap:anywhere}
+      .code-panel{overflow-x:auto}
+      pre,code{max-width:100%;overflow-x:auto;white-space:pre}
+      .gallery-trigger{width:100%;max-width:100%}
+      .gallery-trigger img{width:100%;height:auto;max-height:55vh;object-fit:contain}
+      .final-cta{padding:30px 0!important}
+      .cta-panel{padding:22px 17px!important}
+      footer{padding:22px 18px!important;text-align:center}
+      .wrap>*{min-width:0}
+      p,li,h1,h2,h3{overflow-wrap:anywhere}
+    }
+    @media(max-width:420px){
+      .topbar-inner{align-items:flex-start}
+      .top-actions{width:100%;justify-content:space-between}
+      .stats{gap:8px}
+      .stats>*{min-width:0;padding:12px!important}
+      .table-chip{font-size:.72rem}
+    }
+
+</style>
+  <script>
+    try {
+      if (localStorage.getItem('portfolio-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0b1121');
+      }
+    } catch (error) {}
+  </script>
+  <script src="portfolio-i18n.js?v=20261111-translator-deployed"></script>
+
+  <style>
+    /* Estudo de caso ERP Industrial 3D — complementos da página */
+    .arch-wrap { padding: 22px 22px 16px; }
+    .arch-svg { width: 100%; height: auto; display: block; }
+    .arch-svg .box { fill: var(--surface-solid); stroke: var(--border); stroke-width: 1.5; }
+    .arch-svg .box.main { fill: color-mix(in srgb, var(--primary) 9%, var(--surface-solid)); stroke: var(--primary); stroke-width: 2; }
+    .arch-svg .t1 { fill: var(--text); font-weight: 700; font-size: 14.5px; }
+    .arch-svg .t2 { fill: var(--muted); font-size: 12px; }
+    .arch-svg .line { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+    .arch-svg .dash { stroke-dasharray: 5 5; }
+    .arch-svg .arrow { fill: var(--muted); }
+    .arch-svg .foot { fill: var(--muted); font-size: 12px; }
+    .gallery-card.wide { grid-column: 1 / -1; }
+    .gallery-card.wide .gallery-trigger img { max-height: 540px; }
+    .live-note { margin: 16px 0 0; max-width: 700px; }
+    .kind { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px; font-size: .7rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+    .kind.ia { color: var(--primary); border-color: color-mix(in srgb, var(--primary) 40%, var(--border)); }
+    .analysis-card code, .panel code, td code, .bullets code { font-family: Consolas, Monaco, monospace; font-size: .82em; color: var(--text); background: color-mix(in srgb, var(--primary) 8%, transparent); padding: 1px 5px; border-radius: 6px; }
+    .tools-table table { min-width: 640px; }
+    .stack-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 800px) { .stack-three { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .stack-three { grid-template-columns: 1fr; } .arch-wrap { padding: 14px 10px 10px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="Voltar ao portfólio">Bárbara<span>.</span>BI</a>
+      <div class="top-actions">
+        <a class="top-link" href="./#projetos"><span class="icon-arrow-left" aria-hidden="true"></span><span class="full-label">Voltar ao portfólio</span></a>
+        <div class="language-switch" role="group" aria-label="Idioma do site"><a href="?lang=pt" data-language="pt" aria-label="Português" title="Português" aria-pressed="true">🇧🇷</a><a href="?lang=es" data-language="es" aria-label="Español" title="Español" aria-pressed="false">🇪🇸</a><a href="?lang=en" data-language="en" aria-label="English" title="English" aria-pressed="false">🇺🇸</a></div>
+        <button class="theme-button" id="themeToggle" type="button" aria-label="Alternar tema"><span class="icon-moon" id="themeIcon" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="crumb"><a href="./">Portfólio</a> / Projetos / ERP Industrial 3D</div>
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Estudo de caso · Full stack &amp; IA aplicada</div>
+            <h1>ERP Industrial <span class="gradient-text">3D com IA</span></h1>
+            <p class="lead">Um painel industrial em 3D no qual o gestor conversa com os dados da fábrica: uma API Node lê o banco MySQL e um assistente de IA responde em português, consulta o banco por ferramentas seguras e leva a câmera até a máquina, o lote ou o vendedor citado.</p>
+            <div class="skill-cloud" role="list" aria-label="Tecnologias e ferramentas utilizadas">
+              <div class="skill-cloud-item" role="listitem"><span class="skill-cloud-icon"><img src="./images/technologies/typescript.svg" alt=""></span><span>TypeScript</span></div>
+              <div class="skill-cloud-item" role="listitem"><span class="skill-cloud-icon"><i class="icon icon-box" aria-hidden="true"></i></span><span>Three.js</span></div>
+              <div class="skill-cloud-item" role="listitem"><span class="skill-cloud-icon"><img src="./images/technologies/nodejs.svg" alt=""></span><span>Node.js</span></div>
+              <div class="skill-cloud-item" role="listitem"><span class="skill-cloud-icon"><img src="./images/technologies/mysql.svg" alt=""></span><span>MySQL</span></div>
+              <div class="skill-cloud-item" role="listitem"><span class="skill-cloud-icon"><i class="icon icon-sparkles" aria-hidden="true"></i></span><span>IA com function calling</span></div>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://1959414-5.github.io/erp-industrial-3d/" target="_blank" rel="noopener noreferrer"><span class="icon-external-link" aria-hidden="true"></span> Abrir demonstração ao vivo</a>
+              <a class="btn btn-secondary" href="https://github.com/1959414-5/erp-industrial-3d" target="_blank" rel="noopener noreferrer"><span class="icon-github" aria-hidden="true"></span> Código no GitHub</a>
+              <a class="btn btn-secondary" href="#evidencias"><span class="icon-images" aria-hidden="true"></span> Ver as capturas</a>
+            </div>
+            <p class="note live-note">A demonstração usa uma API em plano gratuito: na primeira visita após um período sem acesso, ela pode levar cerca de 1 minuto para acordar.</p>
+          </div>
+          <div class="case-hero-visual-wrap">
+            <div class="case-float-layer" aria-hidden="true">
+              <span class="case-float-bubble case-float-bubble--top-left" data-float-bubble><i class="icon icon-box"></i><span>Three.js</span></span>
+              <span class="case-float-bubble case-float-bubble--top-right" data-float-bubble><i class="icon icon-sparkles"></i><span>Function calling</span></span>
+              <span class="case-float-bubble case-float-bubble--bottom-left case-float-bubble--secondary" data-float-bubble><i class="icon icon-database"></i><span>MySQL</span></span>
+              <span class="case-float-bubble case-float-bubble--bottom-right" data-float-bubble><i class="icon icon-cloud"></i><span>Deploy gratuito</span></span>
+            </div>
+            <div class="hero-visual">
+              <img src="./images/erp3d/01-producao.jpg" alt="Painel de produção em 3D com máquinas, KPIs e evolução diária">
+              <div class="hero-visual-caption"><strong>Painel de produção</strong><span>Dados inteiramente fictícios</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stats" aria-label="Resumo do projeto">
+          <div class="stat"><strong>15</strong><span>máquinas na planta 3D</span></div>
+          <div class="stat"><strong>10</strong><span>ferramentas expostas ao modelo de IA</span></div>
+          <div class="stat"><strong>4</strong><span>provedores de IA suportados</span></div>
+          <div class="stat"><strong>R$ 0</strong><span>de hospedagem, com planos gratuitos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">01 · Visão geral</div>
+          <h2>O problema e a proposta</h2>
+          <p class="section-intro">Painéis de BI mostram números, mas raramente dizem onde está o problema e o que fazer a respeito. O projeto junta contexto espacial, dados de um banco relacional e uma conversa em linguagem natural, sem dar à IA acesso livre ao banco.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel">
+            <h3>Objetivo</h3>
+            <p>Construir uma aplicação completa, do banco ao navegador, que mostre a operação de uma metalúrgica em 3D e responda perguntas do gestor com dados reais da base.</p>
+            <ul class="bullets">
+              <li>Modelar um ERP industrial em MySQL, com vendas, estoque e produção.</li>
+              <li>Expor os dados por uma API Node/Express com consultas fixas.</li>
+              <li>Representar a fábrica em 3D e destacar máquinas, lotes e vendedores.</li>
+              <li>Integrar um LLM por function calling, com limites e alternativa offline.</li>
+              <li>Publicar tudo na nuvem sem custo.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Perguntas que o painel responde</h3>
+            <ul class="bullets">
+              <li>Quais máquinas estão paradas ou com refugo alto?</li>
+              <li>Quais vendedores estão abaixo da meta?</li>
+              <li>Quais lotes de chapas estão abaixo do estoque mínimo e o que repor?</li>
+              <li>Qual é a tendência dos pedidos para os próximos períodos?</li>
+              <li>Como uma máquina se compara às demais?</li>
+            </ul>
+          </article>
+        </div>
+        <div class="disclaimer"><span class="icon-shield-check" aria-hidden="true"></span><div><strong>Escopo e confidencialidade:</strong> este é um projeto independente de portfólio, com clientes, pedidos, máquinas, vendedores e estoque fictícios gerados por scripts SQL públicos. Não utiliza dados, marcas ou documentos de nenhuma empresa real.</div></div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">02 · Arquitetura</div>
+          <h2>Quatro camadas e uma rede de segurança</h2>
+          <p class="section-intro">O navegador nunca fala direto com o banco nem recebe chaves: tudo passa pela API. Se a IA ficar indisponível, o painel continua respondendo com um motor local.</p>
+        </div>
+        <div class="panel arch-wrap">
+          <svg class="arch-svg" viewBox="0 0 760 345" role="img" aria-label="Diagrama da arquitetura: o painel 3D no navegador consulta a API Node, que acessa o banco MySQL e os provedores de IA; sem API, o painel usa o motor local.">
+            <defs><marker id="arch-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+            <path class="line" d="M224 88H252V150H280" marker-end="url(#arch-arrow)"/>
+            <path class="line" d="M480 150H508V82H536" marker-end="url(#arch-arrow)"/>
+            <path class="line" d="M480 200H508V238H536" marker-end="url(#arch-arrow)"/>
+            <path class="line dash" d="M124 138V196" marker-end="url(#arch-arrow)"/>
+            <rect class="box" x="24" y="40" width="200" height="98" rx="12"/>
+            <text class="t1" x="40" y="68">Painel 3D</text>
+            <text class="t2" x="40" y="90">Vite · TypeScript · Three.js</text>
+            <text class="t2" x="40" y="108">Navegador · GitHub Pages</text>
+            <rect class="box" x="24" y="198" width="200" height="84" rx="12"/>
+            <text class="t1" x="40" y="226">Motor local</text>
+            <text class="t2" x="40" y="248">Estatística e regras</text>
+            <text class="t2" x="40" y="266">Funciona offline</text>
+            <text class="t2" x="134" y="172">sem API ou chave</text>
+            <rect class="box main" x="280" y="100" width="200" height="128" rx="12"/>
+            <text class="t1" x="296" y="128">API Node/Express</text>
+            <text class="t2" x="296" y="152">Consultas SQL fixas</text>
+            <text class="t2" x="296" y="170">Ferramentas de IA</text>
+            <text class="t2" x="296" y="188">Limites e validação</text>
+            <text class="t2" x="296" y="206">Render · plano gratuito</text>
+            <rect class="box" x="536" y="40" width="200" height="84" rx="12"/>
+            <text class="t1" x="552" y="68">Banco MySQL</text>
+            <text class="t2" x="552" y="90">TiDB Cloud Starter</text>
+            <text class="t2" x="552" y="108">Conexão com TLS</text>
+            <rect class="box" x="536" y="198" width="200" height="84" rx="12"/>
+            <text class="t1" x="552" y="226">Provedores de IA</text>
+            <text class="t2" x="552" y="248">Groq · Gemini</text>
+            <text class="t2" x="552" y="266">Anthropic · Ollama</text>
+            <text class="foot" x="24" y="324">Todo acesso ao banco passa pela API: o navegador e o modelo de IA nunca recebem SQL livre.</text>
+          </svg>
+        </div>
+        <div class="flow" style="margin-top:18px">
+          <article class="step"><div class="step-num">01</div><h3>Banco de dados</h3><p>MySQL 8 localmente e TiDB Cloud na nuvem. Scripts SQL idempotentes criam vendedores, chapas, máquinas, ordens e pedidos, com cenários variados para a demonstração.</p></article>
+          <article class="step"><div class="step-num">02</div><h3>API Node/Express</h3><p>Rotas de dados, de saúde e de IA com mysql2, consultas SQL fixas, CORS configurável e limites de uso por IP e por dia.</p></article>
+          <article class="step"><div class="step-num">03</div><h3>Painel 3D</h3><p>Vite, TypeScript e Three.js. Cena da fábrica, três abas (Produção, Estoque e Comercial), KPIs, gráficos e painéis arrastáveis.</p></article>
+          <article class="step"><div class="step-num">04</div><h3>Assistente de IA</h3><p>LLM com function calling sobre 10 ferramentas. A resposta vem em português, com as ferramentas consultadas e ações como "Ver no 3D".</p></article>
+          <article class="step"><div class="step-num">05</div><h3>Alternativa offline</h3><p>Motor local no navegador, com estatística e regras. Entra em ação sem API, sem chave, sem cota ou com erro do provedor.</p></article>
+          <article class="step"><div class="step-num">06</div><h3>Deploy gratuito</h3><p>GitHub Pages com GitHub Actions para o painel, Render para a API e TiDB Cloud para o banco, todos em plano gratuito.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">03 · Banco de dados</div>
+          <h2>Um ERP industrial modelado em MySQL</h2>
+          <p class="section-intro">O schema erp_industrial_analytics cobre vendas, estoque e produção. Este projeto acrescentou a entidade de vendedores e scripts de carga que geram cenários realistas, em vez de um painel "todo verde".</p>
+        </div>
+        <div class="model-grid">
+          <article class="model-card"><h3>Comercial</h3><p>Pedidos de venda ligados a vendedores com meta mensal.</p><div class="table-list"><span class="table-chip">clientes</span><span class="table-chip">pedidos_venda</span><span class="table-chip">itens_pedido_venda</span><span class="table-chip">vendedores</span><span class="table-chip">vw_faturamento_pedidos</span></div></article>
+          <article class="model-card"><h3>Estoque de chapas</h3><p>Lotes de chapas calculados pelo saldo (entradas menos saídas) e comparados ao mínimo.</p><div class="table-list"><span class="table-chip">produtos</span><span class="table-chip">movimentacoes_estoque</span><span class="table-chip">vw_saldo_estoque</span></div></article>
+          <article class="model-card"><h3>Produção</h3><p>Apontamentos por máquina: produzido, aprovado e refugo. Base do status e do OEE estimados.</p><div class="table-list"><span class="table-chip">ordens_producao</span><span class="table-chip">apontamentos_producao</span></div></article>
+        </div>
+        <div class="two-col" style="margin-top:18px">
+          <article class="panel">
+            <h3>Scripts idempotentes</h3>
+            <p>Os scripts podem ser reexecutados sem duplicar dados. Os ajustes que alteram registros existentes rodam uma única vez, controlados pela tabela <code>seed_log</code>.</p>
+            <ul class="bullets">
+              <li><strong>01</strong> cria vendedores, liga aos pedidos e cadastra as chapas.</li>
+              <li><strong>02</strong> corrige o que as restrições CHECK barraram.</li>
+              <li><strong>03</strong> expande para uma empresa de médio porte.</li>
+              <li><strong>04</strong> cria os cenários variados de demonstração.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Cenários de demonstração</h3>
+            <ul class="bullets">
+              <li>Máquinas: 10 operando, 2 com falha (refugo alto) e 3 paradas.</li>
+              <li>Vendedores: de 36% a 165% da meta.</li>
+              <li>Estoque: lotes cheios, equilibrados, abaixo do mínimo, críticos e sem estoque.</li>
+              <li>Cerca de 60 dias de apontamentos de produção.</li>
+              <li>Cumprimento do plano ajustado para um valor realista, perto de 94%.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="code-panel">
+          <div class="code-label">Trecho real · status estimado da máquina (api/queries.js)</div>
+<pre>const horas = r.ultimo ? (ref - new Date(r.ultimo).getTime()) / 3.6e6 : Infinity;
+let status = 'idle';                              // parada
+if (prod &gt; 0 &amp;&amp; horas &lt;= janela)
+  status = refugo / (prod || 1) &gt; 0.15 ? 'down'   // com falha: refugo acima de 15%
+                                         : 'run';   // operando</pre>
+        </div>
+        <p class="note">O banco não tem sensores de chão de fábrica, então status e OEE são estimativas feitas a partir dos apontamentos, e a interface e o assistente deixam isso claro. A referência de tempo é o apontamento mais recente da base, não a data de hoje, e a janela é configurável.</p>
+        <div class="two-col" style="margin-top:18px">
+          <article class="panel">
+            <h3>Compatibilidade entre MySQL e TiDB</h3>
+            <p>Dois detalhes funcionavam no MySQL local e falharam no TiDB Cloud. Os scripts foram ajustados para rodar nos dois e a correção foi reproduzida localmente antes de ser aplicada.</p>
+            <ul class="bullets">
+              <li><code>INTERVAL (expr) DAY</code> deu erro 1582; <code>INTERVAL ROUND(expr) DAY</code> funciona nos dois.</li>
+              <li>Subtração com chaves <code>BIGINT UNSIGNED</code> deu erro 1690; a solução foi <code>CAST(... AS SIGNED)</code>.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Modelo de dados</h3>
+            <p>Chaves primárias e estrangeiras, restrições UNIQUE e CHECK, e duas views para consultas recorrentes. As chapas são produtos da categoria "Chapas", e a ocupação de cada lote é o saldo dividido pelo estoque máximo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">04 · API e segurança</div>
+          <h2>Uma camada fina, com limites claros</h2>
+          <p class="section-intro">A API em Node/Express entrega os dados do painel, protege as chaves e serve de ponte entre o modelo de IA e o banco.</p>
+        </div>
+        <div class="analysis-grid">
+          <article class="analysis-card"><div class="index">01 / ROTAS</div><h3>Endpoints</h3><p>Rotas pequenas e com uma responsabilidade cada.</p><ul><li><code>GET /api/data</code> dados das três abas.</li><li><code>GET /api/health</code> conexão com o banco.</li><li><code>GET /api/ping</code> verificação de disponibilidade.</li><li><code>POST /api/ai/chat</code> pergunta ao assistente.</li><li><code>GET /api/ai/models</code> modelos e cota.</li><li><code>GET /api/ai/selftest</code> diagnóstico dos provedores.</li></ul></article>
+          <article class="analysis-card"><div class="index">02 / SEGURANÇA</div><h3>Camadas de proteção</h3><p>A IA não recebe acesso livre ao banco nem às credenciais.</p><ul><li>Chaves e senha apenas no servidor.</li><li>SQL fixo, parametrizado e somente leitura.</li><li>Defesa contra prompt injection: dados do banco são tratados como dados.</li><li>Limite de 20 perguntas por minuto por IP e teto diário de 300.</li><li>CORS restringível e HTML escapado na resposta.</li><li>Banco em nuvem com TLS.</li></ul></article>
+          <article class="analysis-card"><div class="index">03 / RESILIÊNCIA</div><h3>Nada fica sem resposta</h3><p>Cada falha tem um caminho alternativo.</p><ul><li>Sem API: o painel usa um snapshot estático e, depois, dados de exemplo.</li><li>Sem chave, sem cota ou com erro: responde o motor local.</li><li>Modelo aposentado pelo provedor: a API descobre outro disponível.</li><li>Modelo fixado pelo usuário: o painel mostra o erro real, sem troca silenciosa.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">05 · Assistente de IA</div>
+          <h2>Function calling em vez de SQL gerado pelo modelo</h2>
+          <p class="section-intro">O modelo não escreve SQL nem inventa números: ele escolhe, entre um conjunto fechado de ferramentas, qual chamar e com quais parâmetros. Cada ferramenta executa uma consulta fixa e somente leitura, e os cálculos pesados são feitos em código.</p>
+        </div>
+        <div class="performance-wrap tools-table">
+          <table>
+            <thead><tr><th>Ferramenta (tool)</th><th>O que entrega</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td><code>visao_geral</code></td><td>KPIs das três abas, contagens e máquinas por status.</td><td><span class="kind">Consulta</span></td></tr>
+              <tr><td><code>listar_maquinas</code></td><td>Status, OEE, refugo, produção e ordem atual de cada máquina.</td><td><span class="kind">Consulta</span></td></tr>
+              <tr><td><code>listar_vendedores</code></td><td>Faturamento, percentual da meta, pedidos, ticket médio e principal cliente.</td><td><span class="kind">Consulta</span></td></tr>
+              <tr><td><code>listar_lotes</code></td><td>Saldo, mínimo, déficit, valor, ocupação e localização dos lotes de chapas.</td><td><span class="kind">Consulta</span></td></tr>
+              <tr><td><code>serie_temporal</code></td><td>Série diária ou mensal com tendência e projeção linear já calculadas em código.</td><td><span class="kind">Consulta</span></td></tr>
+              <tr><td><code>top_clientes</code></td><td>Clientes com maior valor em pedidos.</td><td><span class="kind">Consulta ao banco</span></td></tr>
+              <tr><td><code>pedidos_por_status</code></td><td>Quantidade e valor de pedidos por status.</td><td><span class="kind">Consulta ao banco</span></td></tr>
+              <tr><td><code>historico_maquina</code></td><td>Produção e refugo diários de uma máquina, com SQL parametrizado.</td><td><span class="kind">Consulta ao banco</span></td></tr>
+              <tr><td><code>focar_no_3d</code></td><td>Move a câmera e seleciona o item citado na cena.</td><td><span class="kind ia">Interface</span></td></tr>
+              <tr><td><code>abrir_aba</code></td><td>Troca a aba do painel (Produção, Estoque ou Comercial).</td><td><span class="kind ia">Interface</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="two-col" style="margin-top:18px">
+          <article class="panel">
+            <h3>Como uma pergunta é respondida</h3>
+            <ul class="bullets">
+              <li>O navegador envia a pergunta, o histórico curto e o contexto da tela.</li>
+              <li>A API valida o corpo e aplica os limites de uso.</li>
+              <li>O modelo escolhe uma ferramenta e a API executa a consulta fixa.</li>
+              <li>O resultado volta ao modelo, em um laço de até 6 voltas.</li>
+              <li>A resposta chega com texto, ações, sugestões e as ferramentas consultadas.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Recursos do assistente</h3>
+            <ul class="bullets">
+              <li>Briefing automático ao abrir, com atalhos "Ver no 3D".</li>
+              <li>Respostas que levam a câmera até a máquina, o lote ou o vendedor.</li>
+              <li>Gráficos de barras e projeção linear com indicação de confiança (R²).</li>
+              <li>Seletor de modelos com status e cota. Nenhum provedor expõe o saldo em dinheiro, então a cota combina os limites devolvidos pelo provedor com o uso medido pelo servidor.</li>
+              <li>Sugestões de perguntas geradas pela própria IA.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="performance-wrap" style="margin-top:18px">
+          <table>
+            <thead><tr><th>Provedor</th><th>Custo</th><th>Papel no projeto</th></tr></thead>
+            <tbody>
+              <tr><td>Groq (gpt-oss-120b)</td><td>Gratuito, com limites</td><td>Usado na demonstração publicada</td></tr>
+              <tr><td>Gemini (2.5 Flash)</td><td>Gratuito, com limites</td><td>Reserva automática</td></tr>
+              <tr><td>Anthropic (Claude)</td><td>Pago</td><td>Suportado, exige crédito na conta</td></tr>
+              <tr><td>Ollama</td><td>Gratuito, local</td><td>Modelo rodando no próprio computador</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="code-panel">
+          <div class="code-label">Trecho real · definição de uma ferramenta (api/ai.js)</div>
+<pre>{ name: 'listar_maquinas',
+  description: 'Lista máquinas com OEE (%), status (run, idle, down),
+                refugo (%), produção e ordem atual. ...',
+  input_schema: { type: 'object', properties: {
+    status:       { type: 'string', enum: ['run', 'idle', 'down'] },
+    ordenar_por:  { type: 'string', enum: ['oee_asc', 'oee_desc', 'refugo_desc', 'producao_desc'] },
+    limite:       { type: 'integer', minimum: 1, maximum: 30 } } } }</pre>
+        </div>
+        <p class="note">O motor local não é IA generativa: é estatística e regras (z-score, médias e regressão linear). A parte generativa é o modo com provedor, e o selo do chat mostra qual dos dois está ativo.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="evidencias">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">06 · Evidências</div>
+          <h2>O painel em funcionamento</h2>
+          <p class="section-intro">Capturas das três abas e do assistente, com dados fictícios. Nas capturas do assistente, a resposta vem do motor local (modo offline). Clique em qualquer imagem para ampliar.</p>
+        </div>
+        <div class="gallery-grid">
+          <article class="gallery-card wide">
+            <button class="gallery-trigger" type="button" data-image="./images/erp3d/01-producao.jpg" data-caption="01 — Aba Produção"><img loading="lazy" src="./images/erp3d/01-producao.jpg" alt="Aba Produção"></button>
+            <div class="gallery-caption"><span class="num">01</span><div><strong>Aba Produção</strong><span>Planta 3D, KPIs, evolução diária e máquinas por status.</span></div></div>
+          </article>
+          <article class="gallery-card">
+            <button class="gallery-trigger" type="button" data-image="./images/erp3d/02-estoque.jpg" data-caption="02 — Aba Estoque"><img loading="lazy" src="./images/erp3d/02-estoque.jpg" alt="Aba Estoque"></button>
+            <div class="gallery-caption"><span class="num">02</span><div><strong>Aba Estoque</strong><span>Lotes de chapas por ocupação, saldo e mínimo.</span></div></div>
+          </article>
+          <article class="gallery-card">
+            <button class="gallery-trigger" type="button" data-image="./images/erp3d/03-comercial.jpg" data-caption="03 — Aba Comercial"><img loading="lazy" src="./images/erp3d/03-comercial.jpg" alt="Aba Comercial"></button>
+            <div class="gallery-caption"><span class="num">03</span><div><strong>Aba Comercial</strong><span>Faturamento, pedidos e vendedores por percentual da meta.</span></div></div>
+          </article>
+          <article class="gallery-card">
+            <button class="gallery-trigger" type="button" data-image="./images/erp3d/04-assistente-maquinas.jpg" data-caption="04 — Assistente: máquinas"><img loading="lazy" src="./images/erp3d/04-assistente-maquinas.jpg" alt="Assistente: máquinas"></button>
+            <div class="gallery-caption"><span class="num">04</span><div><strong>Assistente: máquinas</strong><span>Máquinas paradas ou com refugo alto, com atalhos para o 3D.</span></div></div>
+          </article>
+          <article class="gallery-card">
+            <button class="gallery-trigger" type="button" data-image="./images/erp3d/05-assistente-vendedores.jpg" data-caption="05 — Assistente: vendedores"><img loading="lazy" src="./images/erp3d/05-assistente-vendedores.jpg" alt="Assistente: vendedores"></button>
+            <div class="gallery-caption"><span class="num">05</span><div><strong>Assistente: vendedores</strong><span>Ranking de faturamento com gráfico e atalhos.</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">07 · Problemas reais</div>
+          <h2>O que deu errado e como foi resolvido</h2>
+          <p class="section-intro">Cada caso segue a mesma ordem: sintoma, causa e correção.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel"><h3>Todas as máquinas apareciam paradas</h3><p><strong>Causa:</strong> o status comparava o último apontamento com a data de hoje, mas a base de demonstração era mais antiga.</p><p style="margin-top:10px"><strong>Correção:</strong> a referência passou a ser o apontamento mais recente da base, com janela configurável.</p></article>
+          <article class="panel"><h3>Modelo de IA aposentado pelo provedor</h3><p><strong>Causa:</strong> o plano gratuito retirou o modelo configurado e as chamadas passaram a falhar.</p><p style="margin-top:10px"><strong>Correção:</strong> a API lista os modelos disponíveis na chave e escolhe outro sozinha. Se o usuário fixa um modelo, o painel mostra o erro real.</p></article>
+          <article class="panel"><h3>Nome parcial respondido como inexistente</h3><p><strong>Causa:</strong> perguntar por um primeiro nome não casava com o cadastro completo, e o modelo concluía que não havia registro.</p><p style="margin-top:10px"><strong>Correção:</strong> regra no prompt para resolver nomes pelas ferramentas de listagem antes de concluir, e sugestões com o nome completo.</p></article>
+          <article class="panel"><h3>Diferenças entre MySQL e TiDB Cloud</h3><p><strong>Causa:</strong> INTERVAL com expressão e subtração com chaves sem sinal funcionam no MySQL local, mas falharam no TiDB.</p><p style="margin-top:10px"><strong>Correção:</strong> INTERVAL ROUND e CAST AS SIGNED, reproduzidos localmente antes de aplicar no banco da nuvem.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">08 · Limites e evolução</div>
+          <h2>O que o projeto não faz, e o que viria depois</h2>
+          <p class="section-intro">Declarar os limites faz parte da engenharia: o projeto é uma demonstração, e as simplificações abaixo são conscientes.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel">
+            <h3>Limitações conhecidas</h3>
+            <ul class="bullets">
+              <li>Status e OEE são estimados a partir dos apontamentos, sem sensores. O OEE aqui é aprovado dividido por produzido.</li>
+              <li>"Produzido hoje" é o acumulado do período dos apontamentos, não o total do dia.</li>
+              <li>A projeção é uma regressão linear simples, sem sazonalidade.</li>
+              <li>A IA pode errar. Ferramentas fixas reduzem o risco, mas não o eliminam.</li>
+              <li>A demonstração é somente leitura e não tem login.</li>
+              <li>O plano gratuito da API tem partida a frio de cerca de 1 minuto.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Próximos passos</h3>
+            <ul class="bullets">
+              <li>Autenticação com perfis de gestor e vendedor.</li>
+              <li>Dados em tempo real, a partir de sensores ou eventos das máquinas.</li>
+              <li>Testes automatizados das ferramentas, com perguntas-gabarito avaliadas a cada mudança de prompt.</li>
+              <li>Respostas em streaming.</li>
+              <li>Alertas proativos quando um indicador cruzar um limite.</li>
+              <li>Cache e índices no banco, e uma API sem partida a frio.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">09 · Organização do repositório</div>
+          <h2>Código, banco e documentação no mesmo lugar</h2>
+          <p class="section-intro">O repositório reúne o painel, a API, os scripts SQL e os guias de IA e de deploy, para que outra pessoa consiga executar o projeto.</p>
+        </div>
+        <div class="two-col">
+          <article class="panel"><h3>Principais diretórios</h3><ul class="bullets"><li><strong>src/</strong> painel 3D, interface, chat e motor local de IA.</li><li><strong>api/</strong> servidor Express, consultas SQL e ferramentas de IA.</li><li><strong>db/</strong> scripts SQL de carga, idempotentes.</li><li><strong>docs/</strong> guias do assistente de IA e do deploy, e imagens.</li><li><strong>.github/workflows/</strong> publicação automática no GitHub Pages.</li></ul></article>
+          <article class="panel"><h3>Ambiente e publicação</h3><ul class="bullets"><li>Node.js 18 ou superior.</li><li>MySQL 8 localmente e TiDB Cloud Starter na nuvem.</li><li>Painel no GitHub Pages, API no Render, ambos em plano gratuito.</li><li>Segredos apenas em variáveis de ambiente, nunca no repositório.</li></ul><p class="note">O README do repositório traz o passo a passo para executar localmente e para publicar na nuvem.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap">
+        <div class="cta-panel">
+          <div class="section-kicker">Explore o projeto</div>
+          <h2>Veja o painel funcionando</h2>
+          <p>A demonstração está publicada e o repositório público traz o código, os scripts SQL e a documentação. Na primeira visita, a API gratuita pode levar cerca de 1 minuto para acordar.</p>
+          <div class="hero-actions" style="justify-content:center">
+            <a class="btn btn-primary" href="https://1959414-5.github.io/erp-industrial-3d/" target="_blank" rel="noopener noreferrer"><span class="icon-external-link" aria-hidden="true"></span> Abrir demonstração</a>
+            <a class="btn btn-secondary" href="https://github.com/1959414-5/erp-industrial-3d" target="_blank" rel="noopener noreferrer"><span class="icon-github" aria-hidden="true"></span> Abrir repositório</a>
+            <a class="btn btn-secondary" href="./#projetos"><span class="icon-arrow-left" aria-hidden="true"></span> Voltar aos projetos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Bárbara Cabral Paschoalin · Portfólio de Análise de Dados &amp; BI</footer>
+
+  <dialog id="imageDialog" aria-label="Imagem ampliada">
+    <div class="dialog-bar"><span id="dialogCaption">Evidência do projeto</span><button class="dialog-close" id="dialogClose" type="button">Fechar ✕</button></div>
+    <img id="dialogImage" src="" alt="Imagem ampliada da evidência do projeto">
+  </dialog>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      themeIcon.className = theme === 'dark' ? 'icon-sun' : 'icon-moon';
+      themeMeta.setAttribute('content', theme === 'dark' ? '#0b1121' : '#f4f7fb');
+      try { localStorage.setItem('portfolio-theme', theme); } catch (error) {}
+    }
+
+    applyTheme(root.getAttribute('data-theme') || 'light');
+    themeToggle.addEventListener('click', () => {
+      applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    const imageDialog = document.getElementById('imageDialog');
+    const dialogImage = document.getElementById('dialogImage');
+    const dialogCaption = document.getElementById('dialogCaption');
+
+    document.querySelectorAll('.gallery-trigger').forEach((button) => {
+      button.addEventListener('click', () => {
+        dialogImage.src = button.dataset.image;
+        dialogCaption.textContent = button.dataset.caption;
+        imageDialog.showModal();
+      });
+    });
+
+    document.getElementById('dialogClose').addEventListener('click', () => imageDialog.close());
+    imageDialog.addEventListener('click', (event) => {
+      if (event.target === imageDialog) imageDialog.close();
+    });
+    imageDialog.addEventListener('close', () => { dialogImage.src = ''; });
+    // Movimento orgânico e independente dos elementos flutuantes do estudo de caso.
+    (() => {
+      const items=[...document.querySelectorAll("[data-float-bubble]")];
+      const timers=new Set();
+      const animations=new Set();
+      let disposed=false;
+      const random=(min,max)=>Math.random()*(max-min)+min;
+      const path=()=>{
+        const frames=[{transform:"translate3d(0,0,0) rotate(0deg)",offset:0}];
+        for(let i=1;i<=5;i++){
+          frames.push({
+            transform:"translate3d("+random(-7,7).toFixed(1)+"px,"+random(-6,6).toFixed(1)+"px,0) rotate("+random(-2.5,2.5).toFixed(1)+"deg)",
+            offset:i/6
+          });
+        }
+        frames.push({transform:"translate3d(0,0,0) rotate(0deg)",offset:1});
+        return frames;
+      };
+      const start=(item,delay=random(0,1800))=>{
+        const timer=setTimeout(()=>{
+          timers.delete(timer);
+          if(disposed)return;
+          const animation=item.animate(path(),{duration:random(12000,18000),easing:"ease-in-out",iterations:1,fill:"forwards"});
+          animations.add(animation);
+          animation.onfinish=()=>{
+            animations.delete(animation);
+            animation.cancel();
+            if(!disposed)start(item,random(250,1200));
+          };
+          animation.oncancel=()=>animations.delete(animation);
+        },delay);
+        timers.add(timer);
+      };
+      items.forEach(item=>start(item));
+      window.addEventListener("pagehide",()=>{
+        disposed=true;
+        timers.forEach(clearTimeout);
+        animations.forEach(animation=>animation.cancel());
+        timers.clear();animations.clear();
+      },{once:true});
+    })();
+
+  </script>
+
+</body>
+</html>
