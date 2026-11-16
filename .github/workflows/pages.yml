@@ -28,7 +28,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir site
-          cp index.html app.js portfolio-i18n.js modulos.css modulos.js modulo-dados.html modulo-desenvolvimento.html modulo-automacao.html projeto-erp-industrial-analytics.html projeto-erp-industrial-3d.html projeto-powerbi-perfinorte.html projeto-automacao-relatorios.html curriculo-dados.pdf site/
+          cp index.html app.js portfolio-i18n.js modulos.css modulos.js modulo-dados.html modulo-desenvolvimento.html modulo-automacao.html projeto-erp-industrial-analytics.html projeto-erp-industrial-3d.html projeto-powerbi.html projeto-automacao-relatorios.html curriculo-dados.pdf site/
           cp -R components images site/
 
       - name: Upload Pages artifact
