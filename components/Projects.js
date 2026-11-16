@@ -344,7 +344,7 @@ function Projects() {
                             <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-start">
                                 <div>
                                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-main)] leading-tight mb-5">
-                                        Dados comerciais e operacionais em uma visão integrada
+                                        Dashboard de Produção e Vendas — Power BI
                                     </h3>
                                     <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed max-w-3xl">
                                         Solução de Business Intelligence desenvolvida para consolidar informações de diferentes rotinas do negócio e facilitar o acompanhamento de pedidos, produção, prazos e desempenho comercial.
