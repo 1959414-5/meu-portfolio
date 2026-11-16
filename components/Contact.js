@@ -10,7 +10,7 @@ function Contact() {
                         <div className="icon-briefcase-business text-5xl text-[var(--primary-color)] mb-6 mx-auto" aria-hidden="true"></div>
                         <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">Vamos conversar sobre uma oportunidade?</h2>
                         <p className="text-base md:text-lg text-[var(--text-muted)] mb-8 md:mb-10 max-w-2xl mx-auto">
-                            Estou em busca de uma oportunidade na área de Análise de Dados / Business Intelligence, onde possa aplicar meus conhecimentos em Power BI, SQL e análise de processos para apoiar equipes com informações que contribuam para decisões melhores.
+                            Estou em busca de oportunidades nas áreas de Dados & Business Intelligence, Desenvolvimento de Software e Automação & Integração. Quero contribuir com análise de dados, desenvolvimento de aplicações e automação de processos, conectando tecnologia às necessidades reais do negócio.
                         </p>
                         
                         <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 md:gap-6">
@@ -18,7 +18,7 @@ function Contact() {
                                 <div className="icon-message-circle"></div>
                                 WhatsApp
                             </a>
-                            <a href="mailto:babzinhaa14@gmail.com?subject=Oportunidade%20%7C%20Analista%20de%20Dados%20%2F%20BI" className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2">
+                            <a href="mailto:babzinhaa14@gmail.com?subject=Oportunidade%20%7C%20Dados%2C%20Desenvolvimento%20e%20Automa%C3%A7%C3%A3o" className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2">
                                 <div className="icon-send"></div>
                                 E-mail
                             </a>
