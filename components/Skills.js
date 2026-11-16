@@ -1,19 +1,22 @@
 function Skills() {
  try {
   const skillGroups = [
-   {title:"Business Intelligence",subtitle:"Transformação de dados em indicadores e análises visuais.",icon:"icon-chart-no-axes-combined",skills:[
+   {title:"Dados & Business Intelligence",subtitle:"Preparação, modelagem e análise de dados para indicadores e decisões.",icon:"icon-chart-no-axes-combined",skills:[
     {label:"Power BI",image:"power-bi.svg"},{label:"DAX",image:"dax.svg"},{label:"Power Query",image:"power-query.svg"},
-    {label:"Modelagem de Dados",icon:"icon-network"},{label:"Dashboards",icon:"icon-layout-dashboard"},{label:"Data Visualization",icon:"icon-chart-no-axes-combined"}
-   ],application:"Construção de painéis gerenciais e operacionais, definição de métricas e acompanhamento de indicadores."},
-   {title:"Dados e Automação",subtitle:"Preparação, consulta, organização e integração de dados.",icon:"icon-database",skills:[
-    {label:"SQL / MySQL",image:"mysql.svg"},{label:"Excel",image:"excel.svg"},{label:"Google Sheets",image:"google-sheets.svg"},
-    {label:"Google Apps Script",image:"google-apps-script.svg"},{label:"Python",image:"python.svg"},{label:"JavaScript",image:"javascript.svg"},
-    {label:"HTML",image:"html5.svg"},{label:"CSS",image:"css3.svg"},{label:"API REST",image:"api-rest.svg"},{label:"ETL e Tratamento",icon:"icon-workflow"}
-   ],application:"Consultas e validações, tratamento de bases e automação de rotinas com planilhas, ERP e aplicações."},
-   {title:"Negócio e Processos",subtitle:"Conhecimento dos processos que dão contexto aos dados.",icon:"icon-factory",skills:[
-    {label:"KPIs e Indicadores",icon:"icon-gauge"},{label:"Análise de Processos",icon:"icon-git-branch"},{label:"ERP Industrial",icon:"icon-factory"},
-    {label:"Análise Comercial",icon:"icon-chart-line"},{label:"Produção e Estoque",icon:"icon-boxes"},{label:"Melhoria Contínua",icon:"icon-trending-up"}
-   ],application:"Leitura de processos comerciais e industriais, identificação de gargalos e apoio à tomada de decisão."}
+    {label:"SQL / MySQL",image:"mysql.svg"},{label:"Modelagem de Dados",icon:"icon-network"},{label:"CTEs",icon:"icon-code"},
+    {label:"Window Functions",icon:"icon-braces"},{label:"Views SQL",icon:"icon-table"},{label:"Excel",image:"excel.svg"},{label:"Google Sheets",image:"google-sheets.svg"}
+   ],application:"Modelagem e preparação de bases, consultas SQL, criação de medidas DAX e construção de dashboards para acompanhar pedidos, prazos, produção e desempenho comercial."},
+   {title:"Desenvolvimento de Software",subtitle:"Interfaces web, APIs e aplicações conectadas a bancos de dados.",icon:"icon-code-2",skills:[
+    {label:"TypeScript",image:"typescript.svg"},{label:"JavaScript",image:"javascript.svg"},{label:"React",icon:"icon-atom"},
+    {label:"HTML",image:"html5.svg"},{label:"CSS",image:"css3.svg"},{label:"Node.js",image:"nodejs.svg"},
+    {label:"Express",icon:"icon-server"},{label:"Vite",icon:"icon-zap"},{label:"Three.js",icon:"icon-box"},
+    {label:"API REST",image:"api-rest.svg"},{label:"Git / GitHub",icon:"icon-github"},{label:"Function calling",icon:"icon-bot"}
+   ],application:"Desenvolvimento de interfaces e aplicações web, integração por APIs REST, conexão com bancos de dados e visualização 3D com TypeScript e Three.js."},
+   {title:"Automação & Integração",subtitle:"Automação desktop, ERP, planilhas e processos operacionais.",icon:"icon-workflow",skills:[
+    {label:"Python",image:"python.svg"},{label:"PyAutoGUI",icon:"icon-mouse-pointer-click"},{label:"Tkinter",icon:"icon-monitor"},
+    {label:"Pyperclip",icon:"icon-clipboard"},{label:"Google Apps Script",image:"google-apps-script.svg"},{label:"Google Sheets",image:"google-sheets.svg"},
+    {label:"CSV / JSON",icon:"icon-file-json"},{label:"RPA",icon:"icon-workflow"},{label:"ERP Industrial",icon:"icon-factory"},{label:"Processos Operacionais",icon:"icon-settings"}
+   ],application:"Automação de rotinas no ERP desktop, cálculo e conferência de períodos úteis, gerenciamento de feriados e integração de processos com planilhas."}
   ];
 
   // Anima cada bolha diretamente no navegador e cria um novo percurso ao fim de cada ciclo.
@@ -83,7 +86,7 @@ function Skills() {
     <div className="container mx-auto px-6">
      <div className="text-center mb-12">
       <h2 className="section-title mb-4">Habilidades</h2>
-      <p className="text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">Ferramentas e conhecimentos que utilizo para organizar dados, compreender processos e desenvolver soluções de análise e BI.</p>
+      <p className="text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed">Competências aplicadas nos projetos de Dados & BI, Desenvolvimento de Software e Automação & Integração.</p>
      </div>
      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch skills-groups-grid">
       {skillGroups.map((group,index)=>(
