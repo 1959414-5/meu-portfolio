@@ -16,8 +16,8 @@ function Projects() {
             ],
             image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg",
             icon: "icon-chart-no-axes-combined",
-            href: "projeto-powerbi-perfinorte.html",
-            action: "Ver estudo de caso"
+            href: "modulo-dados.html",
+            action: "Explorar módulo"
         },
         {
             id: "desenvolvimento",
