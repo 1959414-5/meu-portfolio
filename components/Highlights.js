@@ -2,8 +2,8 @@ function Highlights() {
     const highlights = [
         { icon: "icon-factory", value: "8 anos", label: "de experiência na indústria", detail: "Vivência em processos comerciais e operacionais" },
         { icon: "icon-graduation-cap", value: "ADS · 2024", label: "graduação concluída", detail: "Análise e Desenvolvimento de Sistemas" },
-        { icon: "icon-chart-no-axes-combined", value: "Power BI", label: "projetos de Business Intelligence", detail: "Dashboards, indicadores, DAX e Power Query" },
-        { icon: "icon-database", value: "SQL / MySQL", label: "projeto prático de banco de dados", detail: "Modelagem relacional e consultas analíticas" }
+        { icon: "icon-chart-no-axes-combined", value: "Dados & BI", label: "análise e inteligência de dados", detail: "SQL, modelagem, dashboards e indicadores" },
+        { icon: "icon-code", value: "Desenvolvimento", label: "software, automação e integração", detail: "Aplicações web, APIs, Python e ERP" }
     ];
     return (
         <section aria-label="Destaques profissionais" className="relative py-8 md:py-12">
