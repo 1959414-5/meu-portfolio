@@ -23,7 +23,7 @@ function Projects() {
             roles: ["Front-end", "Back-end", "Full Stack"],
             image: "images/erp3d/01-producao.jpg",
             icon: "icon-code-2",
-            href: "modulo-desenvolvimento.html",
+            href: "projeto-erp-industrial-3d.html",
             action: "Explorar módulo"
         },
         {
