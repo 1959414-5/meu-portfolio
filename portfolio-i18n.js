@@ -770,6 +770,7 @@
     ["Foco profissional: Desenvolvedora Front-end Júnior · Desenvolvedora Back-end Júnior · Desenvolvedora Full Stack Júnior · Desenvolvedora Web Júnior · Analista de Sistemas Júnior", "Career focus: Junior Front-end Developer · Junior Back-end Developer · Junior Full Stack Developer · Junior Web Developer · Junior Systems Analyst", "Enfoque profesional: Desarrolladora Front-end Júnior · Desarrolladora Back-end Júnior · Desarrolladora Full Stack Júnior · Desarrolladora Web Júnior · Analista de Sistemas Júnior"],
     ["03 · Automação & Integração", "03 · Automation & Integration", "03 · Automatización e Integración"],
     ["Foco profissional: Analista de Automação Júnior · Analista de Sistemas Júnior · Analista de Integração de Sistemas · Desenvolvedora Python Júnior · Analista de Operações e Dados", "Career focus: Junior Automation Analyst · Junior Systems Analyst · Systems Integration Analyst · Junior Python Developer · Operations and Data Analyst", "Enfoque profesional: Analista de Automatización Júnior · Analista de Sistemas Júnior · Analista de Integración de Sistemas · Desarrolladora Python Júnior · Analista de Operaciones y Datos"],
+    ["Dashboard de Produção e Vendas — Power BI", "Production & Sales Dashboard — Power BI", "Dashboard de Producción y Ventas — Power BI"],
   ];
 
   const dictionaries = {
