@@ -94,7 +94,7 @@ function SiteEffects() {
           window.setPortfolioLanguage(language);
         } else {
           const script = document.createElement("script");
-          script.src = "./portfolio-i18n.js?v=20261111-react-mount-fix";
+          script.src = "./portfolio-i18n.js?v=20261116-skills-gallery-2";
           script.onload = () => {
             if (typeof window.setPortfolioLanguage === "function") {
               window.setPortfolioLanguage(language);
