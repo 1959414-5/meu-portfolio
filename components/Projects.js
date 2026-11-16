@@ -9,7 +9,8 @@ function Projects() {
             count: "02 projetos",
             roles: ["Análise de Dados", "Business Intelligence", "SQL"],
             technologies: [
-                { name: "Power BI", image: "images/technologies/power-bi.svg" },
+                { name: "Power BI", image: "images/technologies/power-bi.svg", featured: true },
+                { name: "Power Query", image: "images/technologies/power-query.svg" },
                 { name: "DAX", image: "images/technologies/dax.svg" },
                 { name: "MySQL", image: "images/technologies/mysql.svg" }
             ],
@@ -112,9 +113,9 @@ function Projects() {
                                 <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Principais tecnologias do projeto">
                                     {module.technologies.map((tech) => (
                                         <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]">
-                                            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-white">
+                                            <span className={"grid h-7 w-7 shrink-0 place-items-center rounded-md " + (tech.featured ? "bg-[#303b49] ring-1 ring-[#e6ad10]/60" : "bg-white")}>
                                                 {tech.image
-                                                    ? <img src={tech.image} alt="" className="h-4 w-4 object-contain" />
+                                                    ? <img src={tech.image} alt="" className={tech.featured ? "h-5 w-5 object-contain" : "h-4 w-4 object-contain"} />
                                                     : <span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span>}
                                             </span>
                                             <span>{tech.name}</span>
