@@ -76,6 +76,12 @@ function Projects() {
                             className="glass-panel overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]"
                             aria-label={module.action + ": " + module.title}
                         >
+                            <div className="px-6 md:px-7 pt-6 pb-4">
+                                <h3 className={"text-xl md:text-2xl font-bold mb-0 " + (module.id === "desenvolvimento" ? "bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent" : "text-[var(--text-main)]")}>
+                                    {module.title}
+                                </h3>
+                            </div>
+
                             <div className="relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]">
                                 <img
                                     src={module.image}
@@ -97,9 +103,6 @@ function Projects() {
                             </div>
 
                             <div className="p-6 md:p-7 flex flex-col flex-1">
-                                <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)] mb-2 group-hover:text-[var(--primary-color)] transition-colors">
-                                    {module.title}
-                                </h3>
                                 <p className="text-sm font-semibold text-[var(--primary-color)] mb-3">{module.subtitle}</p>
                                 <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">{module.description}</p>
 
