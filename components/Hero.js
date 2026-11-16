@@ -64,14 +64,15 @@ function Hero() {
             <section id="hero" className="min-h-screen flex flex-col justify-center pt-28 pb-12 md:pt-20 md:pb-10 relative overflow-hidden" data-name="hero" data-file="components/Hero.js">
                 <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center flex-1">
                     <div className="space-y-6 md:space-y-8 z-10 text-center md:text-left mt-8 md:mt-0">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados & Business Intelligence</div>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados · Desenvolvimento · Automação</div>
                         <p className="hero-name-tag">Bárbara Cabral Paschoalin</p>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-                            Analista de Dados <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">& Business Intelligence</span>
+                            Dados & <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">Desenvolvimento</span><br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">& Automação</span>
                         </h1>
                         <p className="text-lg text-[var(--text-muted)] max-w-lg leading-relaxed">
-                            Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais à análise de dados, desenvolvendo dashboards e indicadores com Power BI e SQL.
+                            Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais ao desenvolvimento de soluções em dados, sistemas e automação — de dashboards e consultas SQL a aplicações web, APIs e rotinas automatizadas.
                         </p>
                         <div className="hero-actions flex flex-wrap md:flex-nowrap gap-2 pt-4 justify-center md:justify-start">
                             <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-sm px-4 py-3">
@@ -111,21 +112,21 @@ function Hero() {
                     <div className="hero-visual relative z-10 hidden md:flex items-center justify-center w-full py-10">
                         <div className="hero-floating-layer" aria-hidden="true">
                             <span className="hero-float-item hero-float-item--sql"><span className="icon-database"></span><span>SQL</span></span>
-                            <span className="hero-float-item hero-float-item--bi"><span className="icon-chart-no-axes-combined"></span><span>BI</span></span>
+                            <span className="hero-float-item hero-float-item--bi"><span className="icon-code"></span><span>APIs</span></span>
                             <span className="hero-float-item hero-float-item--python"><span className="icon-code"></span><span>Python</span></span>
-                            <span className="hero-float-item hero-float-item--dax"><span className="icon-chart-pie"></span><span>DAX</span></span>
+                            <span className="hero-float-item hero-float-item--dax"><span className="icon-box"></span><span>Three.js</span></span>
                         </div>
                         <div aria-hidden="true" className="absolute inset-10 rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-blue-500 blur-[90px] opacity-10 pointer-events-none"></div>
                         <div className="glass-panel relative w-full max-w-[600px] p-6 lg:p-8 overflow-hidden">
                             <div className="absolute top-0 right-0 w-56 h-56 bg-gradient-to-bl from-[var(--primary-color)] to-transparent opacity-[0.07] rounded-bl-full pointer-events-none"></div>
                             <div className="relative z-10">
                                 <div className="flex items-center justify-between gap-4 mb-2">
-                                    <span className="text-[10px] font-semibold tracking-[0.2em] text-[var(--primary-color)] uppercase">Fluxo analítico</span>
+                                    <span className="text-[10px] font-semibold tracking-[0.2em] text-[var(--primary-color)] uppercase">Três frentes de tecnologia</span>
                                     <span className="inline-flex items-center gap-2 text-[10px] text-[var(--text-muted)]"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Da informação à ação</span>
                                 </div>
-                                <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-main)] mb-2">Do dado à decisão</h2>
+                                <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-main)] mb-2">Da análise à solução</h2>
                                 <p className="text-sm leading-relaxed text-[var(--text-muted)] mb-6 max-w-md">
-                                    Um processo estruturado para transformar informações dispersas em indicadores claros e úteis para o negócio.
+                                    Projetos que conectam dados, desenvolvimento de software e automação para resolver desafios reais de negócio.
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-3">
@@ -134,38 +135,38 @@ function Hero() {
                                             <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]" style={{ color: "var(--primary-color)" }}><div className="icon-database text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">01</span>
                                         </div>
-                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Fontes de dados</h3>
-                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">ERP, planilhas e bases operacionais</p>
+                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Dados & BI</h3>
+                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">SQL, modelagem e indicadores</p>
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-settings text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">02</span>
                                         </div>
-                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Preparação</h3>
-                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Limpeza, padronização e validação</p>
+                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Desenvolvimento</h3>
+                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Aplicações web, APIs e sistemas</p>
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-chart-pie text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">03</span>
                                         </div>
-                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Análise</h3>
-                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Modelagem, métricas e indicadores</p>
+                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Automação & integração</h3>
+                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Python, ERP e processos</p>
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-target text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">04</span>
                                         </div>
-                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Decisão</h3>
-                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Dashboards e acompanhamento</p>
+                                        <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Negócio</h3>
+                                        <p className="text-xs leading-relaxed text-[var(--text-muted)]">Soluções para desafios operacionais</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center gap-2 mt-6 pt-5 border-t border-[var(--surface-border)] text-[var(--text-muted)]">
                                     <div className="icon-sparkles text-[var(--primary-color)] text-sm" aria-hidden="true"></div>
-                                    <span className="text-xs">Da coleta à tomada de decisão</span>
+                                    <span className="text-xs">Da compreensão do problema à solução funcionando</span>
                                 </div>
                             </div>
                         </div>
