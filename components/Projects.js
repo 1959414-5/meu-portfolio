@@ -8,10 +8,15 @@ function Projects() {
             description: "Projetos com Power BI, modelagem de dados e SQL, conectando informações comerciais e operacionais a análises úteis para o negócio.",
             count: "02 projetos",
             roles: ["Análise de Dados", "Business Intelligence", "SQL"],
+            technologies: [
+                { name: "Power BI", image: "images/technologies/power-bi.svg" },
+                { name: "DAX", image: "images/technologies/dax.svg" },
+                { name: "MySQL", image: "images/technologies/mysql.svg" }
+            ],
             image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg",
             icon: "icon-chart-no-axes-combined",
-            href: "modulo-dados.html",
-            action: "Explorar módulo"
+            href: "projeto-erp-industrial-analytics.html",
+            action: "Ver estudo de caso"
         },
         {
             id: "desenvolvimento",
@@ -21,10 +26,16 @@ function Projects() {
             description: "Sistemas com interfaces web, APIs, bancos de dados e visualização 3D, incluindo integração de inteligência artificial no ERP Industrial 3D.",
             count: "04 projetos",
             roles: ["Front-end", "Back-end", "Full Stack"],
+            technologies: [
+                { name: "TypeScript", image: "images/technologies/typescript.svg" },
+                { name: "Three.js", icon: "icon-box" },
+                { name: "Node.js", image: "images/technologies/nodejs.svg" },
+                { name: "MySQL", image: "images/technologies/mysql.svg" }
+            ],
             image: "images/erp3d/01-producao.jpg",
             icon: "icon-code-2",
             href: "projeto-erp-industrial-3d.html",
-            action: "Explorar módulo"
+            action: "Ver estudo de caso"
         },
         {
             id: "automacao",
@@ -34,10 +45,15 @@ function Projects() {
             description: "Automação de rotinas administrativas e relatórios com Python, interação com ERP desktop e controles para conferência da execução.",
             count: "01 projeto",
             roles: ["Python", "RPA", "Processos"],
+            technologies: [
+                { name: "Python", image: "images/technologies/python.svg" },
+                { name: "PyAutoGUI", icon: "icon-mouse-pointer-click" },
+                { name: "Tkinter", icon: "icon-monitor" }
+            ],
             image: "images/automacao/01-menu-principal.png?v=20261109",
             icon: "icon-workflow",
-            href: "modulo-automacao.html",
-            action: "Explorar módulo"
+            href: "projeto-automacao-relatorios.html",
+            action: "Ver estudo de caso"
         }
     ];
 
@@ -86,10 +102,22 @@ function Projects() {
                                 <p className="text-sm font-semibold text-[var(--primary-color)] mb-3">{module.subtitle}</p>
                                 <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">{module.description}</p>
 
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2 mb-4">
                                     {module.roles.map((role) => (
                                         <span key={role} className="inline-flex items-center rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">
                                             {role}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Principais tecnologias do projeto">
+                                    {module.technologies.map((tech) => (
+                                        <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]">
+                                            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-white">
+                                                {tech.image
+                                                    ? <img src={tech.image} alt="" className="h-4 w-4 object-contain" />
+                                                    : <span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span>}
+                                            </span>
+                                            <span>{tech.name}</span>
                                         </span>
                                     ))}
                                 </div>
