@@ -100,12 +100,15 @@ h1,h2,h3,h4,.brand { font-family: "Space Grotesk",Inter,sans-serif; letter-spaci
 .project-layout { display: grid; grid-template-columns: .95fr 1.05fr; }
 .project-media { min-width: 0; background: var(--inner-card-color); padding: 14px; display: flex; flex-direction: column; justify-content: center; }
 .project-carousel { width: 100%; min-width: 0; }
-.project-carousel-stage { position: relative; overflow: hidden; border-radius: 13px; background: var(--bg-color); }
+.project-carousel-stage { position: relative; overflow: hidden; border-radius: 13px; background: var(--bg-color); touch-action: pan-y; user-select: none; }
 .project-carousel-slide { width: 100%; display: block; object-fit: contain; aspect-ratio: 16/10; border-radius: 13px; background: var(--bg-color); }
-.project-carousel-slide[hidden] { display: none !important; }
+.project-carousel-slide[hidden], .project-carousel-arrow[hidden] { display: none !important; }
 .project-carousel-controls[hidden] { display: none !important; }
 .project-carousel-arrow { position: absolute; top: 50%; z-index: 2; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: rgba(255,255,255,.94); color: #342034; box-shadow: 0 6px 18px rgba(20,10,20,.18); cursor: pointer; transition: .2s ease; }
 .project-carousel-arrow:hover { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.project-carousel-arrow:active { transform: translateY(-50%) scale(.94); }
+.project-carousel[data-gallery-ready="true"] .project-carousel-slide:not([hidden]) { animation: gallerySlideIn .22s ease both; }
+@keyframes gallerySlideIn { from { opacity: .55; transform: scale(.99); } to { opacity: 1; transform: scale(1); } }
 .project-carousel-arrow:focus-visible,.project-carousel-dot:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; }
 .project-carousel-prev { left: 12px; }
 .project-carousel-next { right: 12px; }
@@ -117,6 +120,8 @@ h1,h2,h3,h4,.brand { font-family: "Space Grotesk",Inter,sans-serif; letter-spaci
 .mini-project .project-carousel { padding: 0; }
 .mini-project .project-carousel-stage { border-radius: 0; }
 .mini-project .project-carousel-slide { aspect-ratio: 16/10; border-radius: 0; }
+.mini-project .project-carousel-arrow { width: 36px; height: 36px; }
+.mini-project .project-carousel-controls { padding: 0 12px 8px; }
 .project-body { min-width: 0; padding: 26px clamp(20px,3vw,34px); }
 .project-badge { display: inline-flex; align-items: center; gap: 7px; color: var(--primary-color); font-size: .7rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 10px; }
 .project-body h3 { margin: 0 0 11px; font-size: clamp(1.35rem,2.3vw,1.8rem); line-height: 1.12; }
