@@ -325,10 +325,11 @@ function Projects() {
                 <div className="container mx-auto px-6">
                     <h2 className="section-title">Projetos em Destaque</h2>
 
-                    <div data-portfolio-module="data-business-intelligence" className="mb-5">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">01 · Dados &amp; Business Intelligence</h3>
-                        <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">Foco profissional: Analista de Dados Júnior · Analista de BI Júnior · Analista de Governança de Dados · Analista de Banco de Dados · Data Operations</p>
-                    </div>
+                    <div data-portfolio-module="data-business-intelligence">
+                        <div className="mb-5">
+                            <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">01 · Dados &amp; Business Intelligence</h3>
+                            <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">Foco profissional: Analista de Dados Júnior · Analista de BI Júnior · Analista de Governança de Dados · Analista de Banco de Dados · Data Operations</p>
+                        </div>
                     
                     <div className="glass-panel overflow-hidden mb-14 border border-[var(--surface-border)]">
                         <div className="p-6 md:p-8 lg:p-10">
