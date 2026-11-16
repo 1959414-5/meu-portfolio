@@ -108,10 +108,34 @@ function SiteEffects() {
     };
     applyInitialLanguage();
 
+    // O React cria a seção #projetos depois que o navegador já tentou resolver a âncora.
+    // Reposiciona após a montagem para que links vindos dos módulos cheguem ao local correto.
+    const scrollToHashTarget = () => {
+      const rawHash = window.location.hash;
+      if (!rawHash || rawHash.length < 2) return;
+      const targetId = decodeURIComponent(rawHash.slice(1));
+      const target = document.getElementById(targetId);
+      if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+    };
+
+    const scheduleHashScroll = () => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(scrollToHashTarget);
+        });
+      });
+    };
+
+    scheduleHashScroll();
+    window.addEventListener("hashchange", scheduleHashScroll);
+    window.addEventListener("pageshow", scheduleHashScroll);
+
     return () => {
       if (observer) observer.disconnect();
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("hashchange", scheduleHashScroll);
+      window.removeEventListener("pageshow", scheduleHashScroll);
     };
   }, []);
 
