@@ -9,7 +9,7 @@ function About() {
                             <div className="about-orbit-decoration" aria-hidden="true">
                                 <span className="about-orbit-ring"></span>
                                 <span className="about-orbit-dot"></span>
-                                <div className="icon-database about-floating-database"></div>
+                                <div className="icon-workflow about-floating-database"></div>
                                 <div className="icon-sparkles about-floating-sparkle"></div>
                             </div>
                             <h3 className="relative z-10 text-2xl font-bold mb-6 text-[var(--text-main)] pr-16">Da indústria à tecnologia</h3>
@@ -32,7 +32,7 @@ function About() {
                         <div className="space-y-4 order-1 md:order-2">
                             <div className="glass-panel p-5 flex gap-4 items-start group hover:border-[var(--primary-color)] transition-colors duration-300">
                                 <div className="p-3 rounded-lg bg-[var(--surface-color)] text-[var(--primary-color)] group-hover:scale-110 transition-transform">
-                                    <div className="icon-code text-2xl"></div>
+                                    <div className="icon-chart-no-axes-combined text-2xl"></div>
                                 </div>
                                 <div>
                                     <h4 className="text-base font-bold text-[var(--text-main)] mb-1">Dados & Business Intelligence</h4>
@@ -42,7 +42,7 @@ function About() {
 
                             <div className="glass-panel p-5 flex gap-4 items-start group hover:border-[var(--primary-color)] transition-colors duration-300">
                                 <div className="p-3 rounded-lg bg-[var(--surface-color)] text-[var(--primary-color)] group-hover:scale-110 transition-transform">
-                                    <div className="icon-chart-no-axes-combined text-2xl"></div>
+                                    <div className="icon-code text-2xl"></div>
                                 </div>
                                 <div>
                                     <h4 className="text-base font-bold text-[var(--text-main)] mb-1">Desenvolvimento de Software</h4>
