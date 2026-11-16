@@ -77,7 +77,7 @@ function Projects() {
                             aria-label={module.action + ": " + module.title}
                         >
                             <div className="px-6 md:px-7 pt-6 pb-4">
-                                <h3 className={"text-xl md:text-2xl font-bold mb-0 " + (module.id === "desenvolvimento" ? "bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent" : "text-[var(--text-main)]")}>
+                                <h3 className={"text-xl md:text-2xl font-bold mb-0 " + (module.id === "desenvolvimento" ? "rounded-xl px-4 py-2.5 bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-600 text-white shadow-lg shadow-fuchsia-500/20" : "text-[var(--text-main)]")}>
                                     {module.title}
                                 </h3>
                             </div>
