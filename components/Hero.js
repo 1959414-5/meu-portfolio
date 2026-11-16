@@ -67,12 +67,12 @@ function Hero() {
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm text-[var(--primary-color)] font-semibold mb-2 md:mb-4"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>Maringá – PR · Dados · Desenvolvimento · Automação</div>
                         <p className="hero-name-tag">Bárbara Cabral Paschoalin</p>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-                            Dados & <br />
+                            Dados,<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">Desenvolvimento</span><br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">& Automação</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-blue-400">e Automação</span>
                         </h1>
                         <p className="text-lg text-[var(--text-muted)] max-w-lg leading-relaxed">
-                            Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno conhecimento de processos comerciais e operacionais ao desenvolvimento de soluções em dados, sistemas e automação — de dashboards e consultas SQL a aplicações web, APIs e rotinas automatizadas.
+                            Sou formada em Análise e Desenvolvimento de Sistemas e tenho experiência na indústria desde 2018. Uno meu conhecimento de processos comerciais e operacionais ao desenvolvimento de soluções em dados, sistemas e automação, criando dashboards, consultas SQL, aplicações web, APIs e rotinas automatizadas.
                         </p>
                         <div className="hero-actions flex flex-wrap md:flex-nowrap gap-2 pt-4 justify-center md:justify-start">
                             <button onClick={() => document.getElementById('projetos').scrollIntoView({ behavior: 'smooth' })} className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-sm px-4 py-3">
