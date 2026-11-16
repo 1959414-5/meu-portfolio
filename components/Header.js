@@ -90,7 +90,7 @@ function Header() {
             >
                 <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
                     <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-xl font-bold tracking-tight text-[var(--text-main)]" aria-label="Voltar ao início">
-                        Bárbara<span className="text-[var(--primary-color)]">.</span>BI
+                        Bárbara<span className="text-[var(--primary-color)]">.</span>
                     </button>
 
                     <nav className="desktop-nav hidden lg:flex gap-7" aria-label="Navegação principal">
