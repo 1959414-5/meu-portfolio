@@ -12,11 +12,11 @@ function Projects() {
                 { name: "Power BI", image: "images/technologies/power-bi.svg", featured: true },
                 { name: "Power Query", image: "images/technologies/power-query.svg" },
                 { name: "DAX", image: "images/technologies/dax.svg" },
-                { name: "MySQL", image: "images/technologies/mysql.svg" }
+                { name: "Google Sheets", image: "images/technologies/google-sheets.svg" }
             ],
             image: "https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg",
             icon: "icon-chart-no-axes-combined",
-            href: "projeto-erp-industrial-analytics.html",
+            href: "projeto-powerbi-perfinorte.html",
             action: "Ver estudo de caso"
         },
         {
