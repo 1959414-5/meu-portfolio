@@ -210,11 +210,44 @@
     .cta-panel { text-align: center; padding: 38px 25px; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
     .cta-panel p { color: var(--muted); max-width: 630px; margin: 0 auto 23px; }
     footer { border-top: 1px solid var(--border); color: var(--muted); font-size: .78rem; padding: 22px 24px; text-align: center; }
-    dialog { width: min(1100px,94vw); max-width: 94vw; max-height: 92vh; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; padding: 12px; background: #0b1121; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.5); }
-    dialog::backdrop { background: rgba(3,8,18,.88); backdrop-filter: blur(7px); }
-    dialog img { display: block; max-width: 100%; max-height: 78vh; object-fit: contain; margin: auto; border-radius: 10px; }
-    .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #dce7f7; padding: 4px 5px 12px; font-size: .85rem; }
-    .dialog-close { border: 1px solid rgba(255,255,255,.2); color: #fff; background: rgba(255,255,255,.1); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+    dialog#imageDialog {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      max-width: none;
+      height: 100dvh;
+      max-height: none;
+      margin: 0;
+      padding: clamp(12px, 2vw, 26px);
+      border: 0;
+      border-radius: 0;
+      overflow: hidden;
+      background: #0b1121;
+      color: #fff;
+      box-shadow: none;
+    }
+    dialog#imageDialog::backdrop { background: rgba(3,8,18,.94); backdrop-filter: blur(8px); }
+    dialog#imageDialog[open] { display: grid; grid-template-rows: auto minmax(0,1fr); gap: 14px; }
+    .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #dce7f7; padding: 0; font-size: .88rem; }
+    .dialog-close,.dialog-nav {
+      display: inline-flex; align-items: center; justify-content: center;
+      flex: 0 0 auto; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.2);
+      color: #fff; background: rgba(255,255,255,.1); border-radius: 12px; cursor: pointer;
+    }
+    .dialog-close { padding: 7px 12px; width: auto; min-width: 46px; }
+    .dialog-stage { display: grid; grid-template-columns: 54px minmax(0,1fr) 54px; align-items: center; justify-items: center; gap: clamp(8px,1.5vw,22px); min-height: 0; }
+    .dialog-stage img { display: block; width: 100%; height: 100%; max-width: 100%; max-height: calc(100dvh - 112px); object-fit: contain; margin: 0; border-radius: 4px; }
+    .dialog-nav { width: 46px; height: 46px; border-radius: 50%; }
+    .dialog-close:hover,.dialog-nav:hover { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.22); }
+    .dialog-nav:focus-visible,.dialog-close:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+    .dialog-nav[hidden] { display: none !important; }
+    @media (max-width: 600px) {
+      dialog#imageDialog { padding: 12px 9px; }
+      .dialog-stage { grid-template-columns: 40px minmax(0,1fr) 40px; gap: 4px; }
+      .dialog-stage img { max-height: calc(100dvh - 100px); }
+      .dialog-close,.dialog-nav { min-width: 38px; width: 38px; height: 38px; }
+      .dialog-close { width: auto; padding: 6px 10px; }
+    }
     @media (max-width: 800px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero-visual { max-width: 680px; transform: none; }
@@ -663,8 +696,12 @@ ON benchmark_movimentacoes (
   <footer>© 2026 Bárbara Cabral Paschoalin · Portfólio de Análise de Dados &amp; BI</footer>
 
   <dialog id="imageDialog" aria-label="Imagem ampliada">
-    <div class="dialog-bar"><span id="dialogCaption">Evidência do projeto</span><button class="dialog-close" id="dialogClose" type="button">Fechar ✕</button></div>
-    <img id="dialogImage" src="" alt="Imagem ampliada da evidência do projeto">
+    <div class="dialog-bar"><span id="dialogCaption">Evidência do projeto</span><button class="dialog-close" id="dialogClose" type="button" aria-label="Fechar visualização">Fechar ✕</button></div>
+    <div class="dialog-stage">
+      <button class="dialog-nav" id="imagePrev" type="button" aria-label="Imagem anterior" title="Imagem anterior"><span class="icon-chevron-left" aria-hidden="true"></span></button>
+      <img id="dialogImage" src="" alt="Imagem ampliada da evidência do projeto">
+      <button class="dialog-nav" id="imageNext" type="button" aria-label="Próxima imagem" title="Próxima imagem"><span class="icon-chevron-right" aria-hidden="true"></span></button>
+    </div>
   </dialog>
 
   <script>
@@ -689,19 +726,62 @@ ON benchmark_movimentacoes (
     const dialogImage = document.getElementById('dialogImage');
     const dialogCaption = document.getElementById('dialogCaption');
 
-    document.querySelectorAll('.gallery-trigger').forEach((button) => {
+    const galleryImages = Array.from(document.querySelectorAll('.gallery-trigger'));
+    const imagePrev = document.getElementById('imagePrev');
+    const imageNext = document.getElementById('imageNext');
+    let currentGalleryIndex = 0;
+
+    function showGalleryImage(requestedIndex) {
+      if (!galleryImages.length) return;
+      currentGalleryIndex = (requestedIndex + galleryImages.length) % galleryImages.length;
+      const button = galleryImages[currentGalleryIndex];
+      const thumbnail = button.querySelector('img');
+      dialogImage.src = button.dataset.image;
+      dialogImage.alt = thumbnail?.alt || button.dataset.caption || 'Imagem ampliada do projeto';
+      dialogCaption.textContent = button.dataset.caption || 'Imagem do projeto';
+      imagePrev.hidden = galleryImages.length < 2;
+      imageNext.hidden = galleryImages.length < 2;
+    }
+
+    galleryImages.forEach((button, index) => {
       button.addEventListener('click', () => {
-        dialogImage.src = button.dataset.image;
-        dialogCaption.textContent = button.dataset.caption;
+        showGalleryImage(index);
         imageDialog.showModal();
       });
     });
 
+    imagePrev.addEventListener('click', () => showGalleryImage(currentGalleryIndex - 1));
+    imageNext.addEventListener('click', () => showGalleryImage(currentGalleryIndex + 1));
     document.getElementById('dialogClose').addEventListener('click', () => imageDialog.close());
     imageDialog.addEventListener('click', (event) => {
       if (event.target === imageDialog) imageDialog.close();
     });
     imageDialog.addEventListener('close', () => { dialogImage.src = ''; });
+
+    document.addEventListener('keydown', (event) => {
+      if (!imageDialog.open) return;
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showGalleryImage(currentGalleryIndex - 1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        showGalleryImage(currentGalleryIndex + 1);
+      }
+    });
+
+    const dialogStage = imageDialog.querySelector('.dialog-stage');
+    let dialogTouchStartX = null;
+    dialogStage.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') return;
+      dialogTouchStartX = event.clientX;
+    });
+    dialogStage.addEventListener('pointerup', (event) => {
+      if (dialogTouchStartX === null) return;
+      const deltaX = event.clientX - dialogTouchStartX;
+      dialogTouchStartX = null;
+      if (Math.abs(deltaX) >= 42) showGalleryImage(currentGalleryIndex + (deltaX < 0 ? 1 : -1));
+    });
+    dialogStage.addEventListener('pointercancel', () => { dialogTouchStartX = null; });
     // Movimento orgânico e independente dos elementos flutuantes do estudo de caso.
     (() => {
       const items=[...document.querySelectorAll("[data-float-bubble]")];
