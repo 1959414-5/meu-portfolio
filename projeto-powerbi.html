@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#150f18">
+  <title>Dashboard de Produção e Vendas | Estudo de Caso</title>
+  <meta name="description" content="Estudo de caso de um dashboard industrial de Produção e Vendas desenvolvido em Power BI, com indicadores, análise de pedidos, prazos e Curva ABC.">
+  <meta property="og:title" content="Dashboard de Produção e Vendas | Estudo de Caso">
+  <meta property="og:description" content="Dashboard industrial de Produção e Vendas com Power BI, DAX e Power Query.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+  <link rel="stylesheet" href="modulos.css?v=20261116-powerbi-case-1">
+  <style>
+    .case-hero .module-hero-grid{grid-template-columns:1.08fr .92fr;gap:38px}
+    .case-preview{padding:12px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 18px 48px var(--shadow-color);transform:rotate(1deg)}
+    .case-preview img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;border-radius:12px;background:var(--inner-card-color)}
+    .case-preview figcaption{padding:10px 5px 1px;color:var(--text-muted);font-size:.74rem}
+    .case-stats{margin-top:22px}
+    .case-stat-wide{grid-column:1/-1}
+    .case-gallery-card{padding:18px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 16px 42px var(--shadow-color)}
+    .case-gallery .project-carousel-slide{aspect-ratio:16/9;max-height:590px;object-fit:contain;background:#101820}
+    .case-gallery .project-carousel-stage{background:#101820}
+    .case-gallery .project-carousel-controls{margin-top:14px}
+    .case-gallery-caption{margin-top:12px;color:var(--text-muted);font-size:.82rem;line-height:1.65}
+    .views-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+    .view-card{min-width:0;padding:17px;border:1px solid var(--surface-border);border-radius:15px;background:var(--card-color)}
+    .view-card .view-number{display:grid;place-items:center;width:32px;height:32px;margin-bottom:12px;border-radius:10px;background:color-mix(in srgb,var(--primary-color) 14%,var(--card-color));color:var(--primary-color);font-size:.75rem;font-weight:850}
+    .view-card h3{margin:0 0 7px;font-size:.95rem}
+    .view-card p{margin:0;color:var(--text-muted);font-size:.78rem;line-height:1.65}
+    .process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .process-card{padding:20px;border:1px solid var(--surface-border);border-radius:17px;background:var(--card-color)}
+    .process-card .process-icon{display:grid;place-items:center;width:40px;height:40px;margin-bottom:13px;border-radius:12px;background:color-mix(in srgb,var(--primary-color) 12%,var(--card-color));color:var(--primary-color);font-size:1.1rem}
+    .process-card h3{margin:0 0 7px;font-size:1rem}
+    .process-card p{margin:0;color:var(--text-muted);font-size:.84rem;line-height:1.7}
+    .case-note{margin-top:18px;padding:15px 17px;border-left:3px solid var(--primary-color);border-radius:0 12px 12px 0;background:color-mix(in srgb,var(--primary-color) 7%,var(--card-color));color:var(--text-muted);font-size:.82rem;line-height:1.7}
+    .case-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:34px 0 60px;padding:24px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 16px 42px var(--shadow-color)}
+    .case-cta h2{margin:0 0 6px;font-size:1.3rem}
+    .case-cta p{margin:0;color:var(--text-muted);font-size:.87rem}
+    @media(max-width:980px){.case-hero .module-hero-grid{grid-template-columns:1fr}.case-preview{transform:none}.views-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:650px){.views-grid,.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.case-gallery-card{padding:10px}.case-cta{padding:18px}}
+    @media(max-width:420px){.views-grid,.process-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./index.html">Bárbara<span>.BI</span></a>
+      <div class="top-actions">
+        <a class="top-link" href="./modulo-dados.html"><span class="icon-arrow-left" aria-hidden="true"></span> Voltar ao módulo Dados &amp; BI</a>
+        <div class="language-switch" role="group" aria-label="Idioma do site">
+          <a href="?lang=pt" data-language="pt" aria-label="Português" title="Português">🇧🇷</a>
+          <a href="?lang=es" data-language="es" aria-label="Español" title="Español">🇪🇸</a>
+          <a href="?lang=en" data-language="en" aria-label="English" title="English">🇺🇸</a>
+        </div>
+        <button class="theme-button" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema"><i class="icon-moon" id="themeIcon" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="module-hero case-hero">
+      <div class="page-wrap">
+        <div class="breadcrumb"><a href="./index.html#projetos">Portfólio</a><span>/</span><a href="./modulo-dados.html">Dados &amp; BI</a><span>/</span><span>Power BI · Dashboard industrial</span></div>
+        <div class="module-hero-grid">
+          <div>
+            <div class="eyebrow">Estudo de caso · Business Intelligence</div>
+            <h1>Dashboard de Produção e Vendas <span class="gradient-text">em Power BI</span></h1>
+            <p class="module-lead">Projeto desenvolvido para reunir informações comerciais e operacionais em um painel de acompanhamento. O dashboard conecta pedidos, produção, prazos e análise de concentração em uma visão estruturada para apoiar a leitura da operação industrial.</p>
+            <div class="tag-list" aria-label="Tecnologias utilizadas">
+              <span class="tag-chip tech-chip"><span class="tech-mark"><img src="images/technologies/power-bi.svg" alt=""></span>Power BI</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><img src="images/technologies/dax.svg" alt=""></span>DAX</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><img src="images/technologies/power-query.svg" alt=""></span>Power Query</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><img src="images/technologies/google-sheets.svg" alt=""></span>Google Sheets</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-database" aria-hidden="true"></i></span>Modelagem de dados</span>
+            </div>
+          </div>
+          <figure class="case-preview">
+            <img src="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg" alt="Captura do dashboard de produção e vendas em Power BI" loading="eager">
+            <figcaption>Dashboard de Produção e Vendas · Power BI</figcaption>
+          </figure>
+        </div>
+        <div class="hero-stat-grid case-stats">
+          <div class="hero-stat"><strong>5</strong><span>páginas do relatório</span></div>
+          <div class="hero-stat"><strong>184</strong><span>medidas DAX</span></div>
+          <div class="hero-stat"><strong>~40</strong><span>tabelas de negócio</span></div>
+          <div class="hero-stat"><strong>72</strong><span>tabelas calculadas em DAX</span></div>
+          <div class="hero-stat case-stat-wide"><strong>327</strong><span>colunas calculadas no modelo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section" id="galeria">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div class="section-kicker">Imagens do projeto</div>
+          <h2>O dashboard em funcionamento</h2>
+          <p>Capturas das visões de produção, pedidos, indicadores e Curva ABC. Use as setas, os marcadores ou clique na imagem para ampliar.</p>
+        </div>
+        <div class="case-gallery-card">
+          <div class="project-carousel case-gallery" data-project-gallery aria-label="Galeria do Dashboard de Produção e Vendas">
+            <div class="project-carousel-stage">
+              <img class="project-carousel-slide" data-gallery-slide src="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/fe673bf6-ded4-4441-b90d-e823371b2ca2.jpeg" alt="Visão geral do dashboard de produção e vendas" loading="eager">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/253c27b1-7f7e-4cd5-aa89-dffd459fb73f.jpeg" alt="Dashboard de pedidos e atrasos" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="https://app.trickle.so/storage/public/images/usr_1f3f54a390000001/1c3e9195-11dc-4974-912a-8b3275054126.jpeg" alt="Indicadores de produção" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/curva-abc.png" alt="Análise de Curva ABC" loading="lazy">
+              <button class="project-carousel-arrow project-carousel-prev" type="button" data-gallery-prev aria-label="Imagem anterior" title="Imagem anterior"><span class="icon-chevron-left" aria-hidden="true"></span></button>
+              <button class="project-carousel-arrow project-carousel-next" type="button" data-gallery-next aria-label="Próxima imagem" title="Próxima imagem"><span class="icon-chevron-right" aria-hidden="true"></span></button>
+            </div>
+            <div class="project-carousel-controls" data-gallery-controls>
+              <div class="project-carousel-dots" data-gallery-dots role="group" aria-label="Selecionar imagem da galeria"></div>
+              <span class="project-carousel-counter" data-gallery-counter>01 / 04</span>
+            </div>
+          </div>
+          <p class="case-gallery-caption">Galeria do painel: visão geral, acompanhamento de pedidos, indicadores de produção e Curva ABC. As imagens são apresentadas sem aplicação de logotipo da empresa.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div class="section-kicker">Estrutura do relatório</div>
+          <h2>Cinco páginas, cada uma com uma perspectiva</h2>
+          <p>O relatório foi organizado para sair da visão consolidada e chegar a análises específicas do fluxo comercial e produtivo.</p>
+        </div>
+        <div class="views-grid">
+          <article class="view-card"><span class="view-number">01</span><h3>Início</h3><p>Visão geral dos indicadores para leitura rápida do cenário.</p></article>
+          <article class="view-card"><span class="view-number">02</span><h3>Pedidos</h3><p>Acompanhamento da carteira e da situação dos pedidos.</p></article>
+          <article class="view-card"><span class="view-number">03</span><h3>Indicadores</h3><p>Indicadores comerciais e de produção em um só relatório.</p></article>
+          <article class="view-card"><span class="view-number">04</span><h3>Prazos</h3><p>Análise de vencimentos e acompanhamento de atrasos.</p></article>
+          <article class="view-card"><span class="view-number">05</span><h3>Curva ABC</h3><p>Classificação para observar concentração e apoiar prioridades comerciais.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div class="section-kicker">Construção do BI</div>
+          <h2>Da fonte ao indicador</h2>
+          <p>O trabalho envolveu preparação de dados, modelagem e construção das medidas necessárias para transformar registros operacionais em informações de acompanhamento.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><span class="process-icon"><i class="icon-file-spreadsheet" aria-hidden="true"></i></span><h3>Fontes e preparação</h3><p>Dados organizados em Google Sheets e disponibilizados ao Power BI por arquivos CSV, com preparação e padronização no Power Query.</p></article>
+          <article class="process-card"><span class="process-icon"><i class="icon-network" aria-hidden="true"></i></span><h3>Modelagem</h3><p>Modelo com aproximadamente 40 tabelas de negócio, tabelas calculadas e colunas calculadas para organizar as análises.</p></article>
+          <article class="process-card"><span class="process-icon"><i class="icon-calculator" aria-hidden="true"></i></span><h3>Medidas e indicadores</h3><p>184 medidas DAX para compor indicadores, apoiar filtros e apresentar recortes comerciais e operacionais.</p></article>
+        </div>
+        <div class="case-note">O relatório também utiliza botões de navegação e bookmarks para organizar a experiência entre as cinco páginas. Os indicadores refletem a estrutura do modelo e as regras implementadas no projeto.</div>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div class="section-kicker">Aplicação no contexto industrial</div>
+          <h2>O que a solução permite acompanhar</h2>
+          <p>A proposta é aproximar informações de áreas diferentes e facilitar a identificação dos pontos que precisam de atenção.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><span class="process-icon"><i class="icon-shopping-cart" aria-hidden="true"></i></span><h3>Carteira de pedidos</h3><p>Consultar pedidos e acompanhar sua situação para apoiar o alinhamento entre comercial e operação.</p></article>
+          <article class="process-card"><span class="process-icon"><i class="icon-calendar-clock" aria-hidden="true"></i></span><h3>Prazos e atrasos</h3><p>Identificar pedidos próximos do vencimento ou atrasados e direcionar a atenção para as pendências.</p></article>
+          <article class="process-card"><span class="process-icon"><i class="icon-chart-no-axes-combined" aria-hidden="true"></i></span><h3>Desempenho e prioridade</h3><p>Relacionar indicadores produtivos e comerciais e analisar a concentração com a Curva ABC.</p></article>
+        </div>
+        <div class="case-cta">
+          <div><h2>Conheça os outros projetos de dados</h2><p>O portfólio também apresenta um estudo separado de modelagem relacional e análises SQL com MySQL.</p></div>
+          <a class="btn-primary" href="./projeto-erp-industrial-analytics.html"><span class="icon-database" aria-hidden="true"></span> Ver estudo ERP Industrial Analytics · SQL</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-wrap page-footer-inner">
+      <strong>Bárbara<span style="color:var(--primary-color)">.</span></strong>
+      <span>© 2026 · Estudo de caso Power BI</span>
+      <a href="./modulo-dados.html">Voltar a Dados &amp; BI ↑</a>
+    </div>
+  </footer>
+  <script src="modulos.js?v=20261116-powerbi-case-1"></script>
+  <script src="portfolio-i18n.js?v=20261116-skills-gallery-2"></script>
+</body>
+</html>
