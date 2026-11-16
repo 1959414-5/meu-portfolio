@@ -97,11 +97,11 @@ function Hero() {
                             <div className="tech-logo tech-logo--javascript" role="img" aria-label="JavaScript" title="JavaScript">
                                 <span className="javascript-mark" aria-hidden="true">JS</span>
                             </div>
-                            <div className="tech-logo tech-logo--html" role="img" aria-label="HTML5" title="HTML">
-                                <img src="./images/technologies/html5.svg" alt="" />
+                            <div className="tech-logo tech-logo--nodejs" role="img" aria-label="Node.js" title="Node.js">
+                                <img src="./images/technologies/nodejs.svg" alt="" />
                             </div>
-                            <div className="tech-logo tech-logo--css" role="img" aria-label="CSS3" title="CSS">
-                                <img src="./images/technologies/css3.svg" alt="" />
+                            <div className="tech-logo tech-logo--apps-script" role="img" aria-label="Google Apps Script" title="Google Apps Script">
+                                <img src="./images/technologies/google-apps-script.svg" alt="" />
                             </div>
                             <div className="tech-logo tech-logo--api" role="img" aria-label="API REST" title="API REST">
                                 <img src="./images/technologies/api-rest.svg" alt="" />
@@ -113,7 +113,7 @@ function Hero() {
                         <div className="hero-floating-layer" aria-hidden="true">
                             <span className="hero-float-item hero-float-item--sql"><span className="icon-database"></span><span>SQL</span></span>
                             <span className="hero-float-item hero-float-item--bi"><span className="icon-code"></span><span>APIs</span></span>
-                            <span className="hero-float-item hero-float-item--python"><span className="icon-code"></span><span>Python</span></span>
+                            <span className="hero-float-item hero-float-item--python"><span className="icon-terminal"></span><span>Python</span></span>
                             <span className="hero-float-item hero-float-item--dax"><span className="icon-box"></span><span>Three.js</span></span>
                         </div>
                         <div aria-hidden="true" className="absolute inset-10 rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-blue-500 blur-[90px] opacity-10 pointer-events-none"></div>
@@ -140,7 +140,7 @@ function Hero() {
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-settings text-lg"></div></div>
+                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-code text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">02</span>
                                         </div>
                                         <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Desenvolvimento</h3>
@@ -148,7 +148,7 @@ function Hero() {
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-chart-pie text-lg"></div></div>
+                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-workflow text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">03</span>
                                         </div>
                                         <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Automação & integração</h3>
@@ -156,7 +156,7 @@ function Hero() {
                                     </div>
                                     <div className="glass-panel inner-card rounded-xl p-4 border border-[var(--surface-border)] shadow-none">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-target text-lg"></div></div>
+                                            <div className="w-9 h-9 rounded-lg bg-[var(--primary-color)]/10 flex items-center justify-center text-[var(--primary-color)]"><div className="icon-briefcase-business text-lg"></div></div>
                                             <span className="text-[10px] font-mono text-[var(--text-muted)]">04</span>
                                         </div>
                                         <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">Negócio</h3>
