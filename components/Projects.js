@@ -324,6 +324,11 @@ function Projects() {
             <section id="projetos" className="py-24 relative" data-name="projects" data-file="components/Projects.js">
                 <div className="container mx-auto px-6">
                     <h2 className="section-title">Projetos em Destaque</h2>
+
+                    <div data-portfolio-module="data-business-intelligence" className="mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">01 · Dados &amp; Business Intelligence</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">Foco profissional: Analista de Dados Júnior · Analista de BI Júnior · Analista de Governança de Dados · Analista de Banco de Dados · Data Operations</p>
+                    </div>
                     
                     <div className="glass-panel overflow-hidden mb-14 border border-[var(--surface-border)]">
                         <div className="p-6 md:p-8 lg:p-10">
@@ -470,11 +475,13 @@ function Projects() {
                         </div>
                     </article>
 
-                    <div className="mt-16 mb-5">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Aplicação full stack com IA</h3>
-                        <p className="text-sm text-[var(--text-muted)] mt-1">Painel 3D, API Node e assistente de IA sobre dados em MySQL</p>
-                    </div>
+                </div>
 
+                <div data-portfolio-module="software-development">
+                    <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">02 · Desenvolvimento de Software</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">Foco profissional: Desenvolvedora Front-end Júnior · Desenvolvedora Back-end Júnior · Desenvolvedora Full Stack Júnior · Desenvolvedora Web Júnior · Analista de Sistemas Júnior</p>
+                    </div>
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)]">
                         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-0">
                             <div className="relative bg-[var(--inner-card-color)] p-3 md:p-4 flex flex-col justify-center">
@@ -527,8 +534,20 @@ function Projects() {
                     </article>
 
                     <div className="mt-16 mb-5">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Automação e RPA</h3>
-                        <p className="text-sm text-[var(--text-muted)] mt-1">Automação desktop com Python para rotinas recorrentes de relatórios</p>
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-1">Aplicações e automações desenvolvidas para necessidades operacionais</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {additionalProjects.map(renderProjectCard)}
+                    </div>
+
+
+                </div>
+
+                <div data-portfolio-module="automation-integration">
+                    <div className="mt-16 mb-5">
+                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">03 · Automação &amp; Integração</h3>
+                        <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">Foco profissional: Analista de Automação Júnior · Analista de Sistemas Júnior · Analista de Integração de Sistemas · Desenvolvedora Python Júnior · Analista de Operações e Dados</p>
                     </div>
                     <article className="glass-panel overflow-hidden border border-[var(--surface-border)] mb-16">
                         <div className="grid lg:grid-cols-[1fr_1fr] gap-0">
@@ -595,14 +614,8 @@ function Projects() {
                             </div>
                         </div>
                     </article>
+                </div>
 
-                    <div className="mt-16 mb-5">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--text-main)]">Outras soluções digitais</h3>
-                        <p className="text-sm text-[var(--text-muted)] mt-1">Aplicações e automações desenvolvidas para necessidades operacionais</p>
-                    </div>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        {additionalProjects.map(renderProjectCard)}
-                    </div>
                 </div>
 
                 {/* Fullscreen Image Modal */}
