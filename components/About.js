@@ -18,7 +18,7 @@ function About() {
                                     Sou formada em <strong>Análise e Desenvolvimento de Sistemas</strong> pela UniCesumar (2024). Minha trajetória profissional começou na indústria, em 2018, como Jovem Aprendiz.
                                 </p>
                                 <p>
-                                    Passei por rotinas administrativas, programação CNC e, desde 2021, atuo como Auxiliar Administrativa de Vendas. Essa vivência me deu contato direto com processos de produção, pedidos, orçamentos e informações de um ERP industrial — contexto que hoje levo para meus projetos de tecnologia.
+                                    Passei por rotinas administrativas, programação CNC e, desde 2021, atuo como Auxiliar Administrativa de Vendas. Essa vivência me deu contato direto com processos de produção, pedidos, orçamentos e informações de um ERP industrial. Hoje, levo essa experiência para meus projetos de tecnologia.
                                 </p>
                                 <p>
                                     Em paralelo ao trabalho, desenvolvi dashboards e indicadores em Power BI, consultas e modelagem SQL, aplicações web e integrações com APIs. Também criei automações em Python para apoiar rotinas administrativas e processos de ERP.
