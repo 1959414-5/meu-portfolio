@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#150f18">
+  <title>Bloomio | Estudo de Caso — Plataforma SaaS de Gestão</title>
+  <meta name="description" content="Estudo de caso do Bloomio, plataforma SaaS de gestão para salões, barbearias e clínicas de estética, com agenda, financeiro, estoque, portal de agendamento e integrações serverless.">
+  <meta property="og:title" content="Bloomio | Estudo de Caso — Plataforma SaaS de Gestão">
+  <meta property="og:description" content="Estudo de caso do Bloomio, plataforma SaaS de gestão para salões, barbearias e clínicas de estética, com agenda, financeiro, estoque, portal de agendamento e integrações serverless.">
+  <meta property="og:image" content="https://1959414-5.github.io/meu-portfolio/images/bloomio/dashboard.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+  <link rel="stylesheet" href="modulos.css?v=20261123-project-cases">
+  <style>
+    .case-preview{padding:12px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 18px 48px var(--shadow-color);transform:rotate(1deg)}
+    .case-preview img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;border-radius:12px;background:#f4f2eb}
+    .case-preview figcaption{padding:10px 5px 1px;color:var(--text-muted);font-size:.74rem}
+    .case-stats{margin-top:22px}
+    .case-gallery-card,.case-card{padding:18px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 16px 42px var(--shadow-color)}
+    .case-gallery .project-carousel-slide{aspect-ratio:16/10;max-height:560px;object-fit:contain;background:#f4f2eb}
+    .case-gallery .project-carousel-stage{background:#f4f2eb}
+    .case-gallery .project-carousel-controls{margin-top:14px}
+    .case-gallery-caption{margin-top:12px;color:var(--text-muted);font-size:.82rem;line-height:1.65}
+    .case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .case-card{padding:20px}
+    .case-card .case-icon{display:grid;place-items:center;width:40px;height:40px;margin-bottom:12px;border-radius:12px;background:color-mix(in srgb,var(--primary-color) 12%,var(--card-color));color:var(--primary-color);font-size:1.15rem}
+    .case-card h3{margin:0 0 7px;font-size:1rem}
+    .case-card p{margin:0;color:var(--text-muted);font-size:.84rem;line-height:1.7}
+    .case-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .case-flow-step{padding:16px;border:1px solid var(--surface-border);border-radius:14px;background:var(--inner-card-color)}
+    .case-flow-step b{display:block;color:var(--primary-color);font-size:.82rem;margin-bottom:6px}
+    .case-flow-step span{display:block;color:var(--text-muted);font-size:.78rem;line-height:1.55}
+    .case-note{margin-top:18px;padding:15px 17px;border-left:3px solid var(--primary-color);border-radius:0 12px 12px 0;background:color-mix(in srgb,var(--primary-color) 7%,var(--card-color));color:var(--text-muted);font-size:.82rem;line-height:1.7}
+    .case-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:34px 0 60px;padding:24px;border:1px solid var(--surface-border);border-radius:20px;background:var(--card-color);box-shadow:0 16px 42px var(--shadow-color)}
+    .case-cta h2{margin:0 0 6px;font-size:1.3rem}
+    .case-cta p{margin:0;color:var(--text-muted);font-size:.87rem}
+    .case-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    @media(max-width:980px){.module-hero-grid{grid-template-columns:1fr}.case-preview{transform:none}.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.case-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:650px){.case-gallery-card{padding:10px}.case-cta{padding:18px}.case-grid,.case-flow{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./index.html">Bárbara<span>.</span></a>
+      <div class="top-actions">
+        <a class="top-link" href="./modulo-desenvolvimento.html"><span class="icon-arrow-left" aria-hidden="true"></span> Voltar a Desenvolvimento</a>
+        <div class="language-switch" role="group" aria-label="Idioma do site">
+          <a href="?lang=pt" data-language="pt" aria-label="Português" title="Português">🇧🇷</a>
+          <a href="?lang=es" data-language="es" aria-label="Español" title="Español">🇪🇸</a>
+          <a href="?lang=en" data-language="en" aria-label="English" title="English">🇺🇸</a>
+        </div>
+        <button class="theme-button" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema"><i class="icon-moon" id="themeIcon" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="module-hero case-hero">
+      <div class="page-wrap">
+        <div class="breadcrumb"><a href="./index.html#projetos">Portfólio</a><span>/</span><a href="./modulo-desenvolvimento.html">Desenvolvimento</a><span>/</span><span>Bloomio</span></div>
+        <div class="module-hero-grid">
+          <div>
+            <div class="eyebrow">Estudo de caso · Produto SaaS</div>
+            <h1>Bloomio <span class="gradient-text">gestão integrada para negócios de beleza.</span></h1>
+            <p class="module-lead">Plataforma SaaS multiestabelecimento criada para salões, barbearias e clínicas de estética. O produto reúne agenda, clientes, serviços, estoque, financeiro, comissões, relatórios e portal público de agendamento em uma mesma experiência.</p>
+            <div class="tag-list" aria-label="Tecnologias utilizadas">
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-code" aria-hidden="true"></i></span>React 18</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-zap" aria-hidden="true"></i></span>Vite 5</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-database" aria-hidden="true"></i></span>Supabase</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-shield-check" aria-hidden="true"></i></span>PostgreSQL · RLS</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-cloud" aria-hidden="true"></i></span>Edge Functions</span>
+              <span class="tag-chip tech-chip"><span class="tech-mark"><i class="icon icon-file-code" aria-hidden="true"></i></span>TypeScript · Deno</span>
+            </div>
+            <div class="case-actions">
+              <a class="btn-primary" href="https://bloomio.com.br/" target="_blank" rel="noopener noreferrer"><span class="icon-external-link" aria-hidden="true"></span> Acessar site do produto</a>
+              <a class="btn-secondary" href="#galeria"><span class="icon-images" aria-hidden="true"></span> Ver telas do sistema</a>
+            </div>
+          </div>
+          <figure class="case-preview">
+            <img src="images/bloomio/dashboard.webp" alt="Tela real do painel principal do Bloomio" loading="eager">
+            <figcaption>Bloomio · Painel principal de gestão</figcaption>
+          </figure>
+        </div>
+        <div class="hero-stat-grid case-stats">
+          <div class="hero-stat"><strong>Multi</strong><span>estabelecimentos isolados por tenant</span></div>
+          <div class="hero-stat"><strong>360°</strong><span>gestão de rotina, equipe e financeiro</span></div>
+          <div class="hero-stat"><strong>Serverless</strong><span>regras e integrações no Supabase</span></div>
+          <div class="hero-stat"><strong>Web</strong><span>portal público de agendamento</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="module-section" id="galeria">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div class="section-kicker">Imagens reais do produto</div>
+          <h2>Áreas do Bloomio</h2>
+          <p>Capturas da interface de gestão e do portal público. Use as setas ou clique nas imagens para ampliar.</p>
+        </div>
+        <div class="case-gallery-card">
+          <div class="project-carousel case-gallery" data-project-gallery aria-label="Galeria de telas do Bloomio">
+            <div class="project-carousel-stage">
+              <img class="project-carousel-slide" data-gallery-slide src="images/bloomio/dashboard.webp" alt="Painel principal do Bloomio" loading="eager">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/agenda.webp" alt="Agenda diária com profissionais, horários e resumo de atendimentos" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/estoque.webp" alt="Controle de produtos, itens, alertas de reposição e valores em estoque" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/financeiro.webp" alt="Financeiro com receitas, despesas, lucro e movimentações" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/relatorios.webp" alt="Relatórios avançados com indicadores e gráficos" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/portal-agendamento.webp" alt="Portal público de agendamento de serviços" loading="lazy">
+              <img class="project-carousel-slide" data-gallery-slide hidden src="images/bloomio/repasse.webp" alt="Repasse e comissões por profissional" loading="lazy">
+              <button class="project-carousel-arrow project-carousel-prev" type="button" data-gallery-prev aria-label="Imagem anterior" title="Imagem anterior"><span class="icon-chevron-left" aria-hidden="true"></span></button>
+              <button class="project-carousel-arrow project-carousel-next" type="button" data-gallery-next aria-label="Próxima imagem" title="Próxima imagem"><span class="icon-chevron-right" aria-hidden="true"></span></button>
+            </div>
+            <div class="project-carousel-controls" data-gallery-controls>
+              <div class="project-carousel-dots" data-gallery-dots role="group" aria-label="Selecionar imagem da galeria"></div>
+              <span class="project-carousel-counter" data-gallery-counter>01 / 07</span>
+            </div>
+          </div>
+          <p class="case-gallery-caption">Capturas da aplicação: visão geral, agenda, estoque, financeiro, relatórios, portal público e repasse de comissões.</p>
+        </div>
+      </div>
+    </section>
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading"><div class="section-kicker">Domínio do produto</div><h2>Uma rotina de negócio conectada</h2><p>Os módulos foram organizados para que o estabelecimento gerencie atendimento, equipe e caixa sem depender de controles isolados.</p></div>
+        <div class="case-grid">
+          <article class="case-card"><span class="case-icon"><i class="icon-calendar-days" aria-hidden="true"></i></span><h3>Agenda e atendimento</h3><p>Visão diária e semanal, profissionais, disponibilidade, confirmações, cancelamentos e portal de agendamento público.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-users" aria-hidden="true"></i></span><h3>Clientes e equipe</h3><p>Cadastro, histórico de atendimento, fichas, serviços, profissionais, comissões e repasses.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-package" aria-hidden="true"></i></span><h3>Estoque</h3><p>Produtos, movimentações, custo, preço, quantidade disponível e alertas de reposição.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-wallet" aria-hidden="true"></i></span><h3>Financeiro</h3><p>Receitas, despesas, lucro, saldo realizado, ticket médio e filtros por período.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-chart-no-axes-combined" aria-hidden="true"></i></span><h3>Relatórios</h3><p>Indicadores de faturamento, margem, serviços, profissionais, clientes e comissões.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-message-circle" aria-hidden="true"></i></span><h3>Relacionamento</h3><p>Estrutura de integrações para mensagens, lembretes, respostas e automações com provedores externos.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading"><div class="section-kicker">Arquitetura</div><h2>Frontend, dados e integrações serverless</h2><p>A aplicação separa a experiência no navegador, o armazenamento multi-tenant e as operações que exigem validação ou segredos no servidor.</p></div>
+        <div class="case-flow">
+          <div class="case-flow-step"><b>01 · Interface</b><span>React 18, Vite, componentes e gráficos com Recharts.</span></div>
+          <div class="case-flow-step"><b>02 · Identidade e dados</b><span>Supabase Auth e PostgreSQL com Row Level Security por tenant.</span></div>
+          <div class="case-flow-step"><b>03 · Regras serverless</b><span>Edge Functions em TypeScript/Deno para pagamentos, IA, mensagens, documentos e webhooks.</span></div>
+          <div class="case-flow-step"><b>04 · Provedores externos</b><span>Stripe, Mercado Pago, Resend, Anthropic, Meta e serviços fiscais conforme configuração.</span></div>
+        </div>
+        <div class="case-note">Segredos de provedores ficam no ambiente server-side. O isolamento entre estabelecimentos é apoiado por políticas RLS, funções protegidas e validações de webhook. As integrações externas dependem das credenciais e da homologação de cada provedor.</div>
+      </div>
+    </section>
+    <section class="module-section">
+      <div class="page-wrap">
+        <div class="section-heading"><div class="section-kicker">Engenharia e decisões</div><h2>Desafios técnicos trabalhados</h2></div>
+        <div class="case-grid">
+          <article class="case-card"><span class="case-icon"><i class="icon-building-2" aria-hidden="true"></i></span><h3>Multi-tenant</h3><p>Estrutura para manter dados e operações de cada estabelecimento separados por identidade e tenant.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-shield-check" aria-hidden="true"></i></span><h3>Segurança de dados</h3><p>Políticas RLS, validação de sessão, controle de permissões e armazenamento de segredos fora do navegador.</p></article>
+          <article class="case-card"><span class="case-icon"><i class="icon-workflow" aria-hidden="true"></i></span><h3>Integrações assíncronas</h3><p>Webhooks idempotentes, tarefas agendadas e funções serverless para conectar o produto a serviços externos.</p></article>
+        </div>
+        <div class="case-note"><strong>Confidencialidade:</strong> Bloomio é um produto proprietário. O repositório e o código-fonte permanecem privados; esta página apresenta somente a descrição técnica e capturas da interface, sem expor o código do ERP.</div>
+        <div class="case-cta"><div><h2>Conheça o Bloomio</h2><p>Abra a página pública do produto para conhecer a proposta e a experiência disponível.</p></div><a class="btn-primary" href="https://bloomio.com.br/" target="_blank" rel="noopener noreferrer"><span class="icon-external-link" aria-hidden="true"></span> Acessar Bloomio</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="page-footer"><div class="page-wrap page-footer-inner"><strong>Bárbara<span style="color:var(--primary-color)">.</span></strong><span>© 2026 · Estudo de caso Bloomio</span><a href="./modulo-desenvolvimento.html">Voltar a Desenvolvimento ↑</a></div></footer>
+  <script src="modulos.js?v=20261123-project-cases"></script>
+  <script src="portfolio-i18n.js?v=20261116-skills-gallery-2"></script>
+</body>
+</html>
