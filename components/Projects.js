@@ -171,7 +171,7 @@ function Projects() {
 
                         <article className="glass-panel overflow-hidden flex flex-col">
                             <a href="projeto-aprova.html" className="block relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]" aria-label="Ver estudo de caso do Aprova">
-                                <img src="images/aprova/simulados.webp" alt="Tela de simulados da plataforma Aprova" loading="lazy" className="w-full h-full object-cover" />
+                                <img src="images/aprova/visao-geral.webp" alt="Tela de simulados da plataforma Aprova" loading="lazy" className="w-full h-full object-cover" />
                                 <span className="absolute top-4 left-4 rounded-full px-3 py-1.5 bg-[var(--card-color)]/90 border border-[var(--surface-border)] text-xs font-bold text-[var(--text-main)]">Plataforma educacional</span>
                             </a>
                             <div className="p-6 flex flex-col flex-1">
