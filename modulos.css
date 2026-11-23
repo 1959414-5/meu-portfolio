@@ -110,6 +110,7 @@ h1,h2,h3,h4,.brand { font-family: "Space Grotesk",Inter,sans-serif; letter-spaci
 .project-carousel-stage { position: relative; overflow: hidden; border-radius: 13px; background: var(--bg-color); touch-action: pan-y; user-select: none; }
 .project-carousel-slide { width: 100%; display: block; object-fit: contain; aspect-ratio: 16/10; border-radius: 13px; background: var(--bg-color); }
 .project-carousel-slide[hidden], .project-carousel-arrow[hidden] { display: none !important; }
+.aprova-gallery .project-carousel-slide { aspect-ratio: 1200/526; object-fit: contain; background: var(--bg-color); }
 .project-carousel-controls[hidden] { display: none !important; }
 .project-carousel-arrow { position: absolute; top: 50%; z-index: 2; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: rgba(255,255,255,.94); color: #342034; box-shadow: 0 6px 18px rgba(20,10,20,.18); cursor: pointer; transition: .2s ease; }
 .project-carousel-arrow:hover { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
