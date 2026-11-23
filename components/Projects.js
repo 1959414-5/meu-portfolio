@@ -24,8 +24,8 @@ function Projects() {
             number: "02",
             title: "Desenvolvimento de Software",
             subtitle: "Aplicações web e soluções para operações reais.",
-            description: "Sistemas com interfaces web, APIs, bancos de dados e visualização 3D, incluindo integração de inteligência artificial no ERP Industrial 3D.",
-            count: "04 projetos",
+            description: "Aplicações web, plataformas SaaS e sistemas com APIs, bancos de dados, automações e inteligência artificial, incluindo Bloomio e Aprova.",
+            count: "06 projetos",
             roles: ["Front-end", "Back-end", "Full Stack"],
             technologies: [
                 { name: "TypeScript", image: "images/technologies/typescript.svg" },
@@ -35,8 +35,8 @@ function Projects() {
             ],
             image: "images/erp3d/01-producao.jpg",
             icon: "icon-code-2",
-            href: "projeto-erp-industrial-3d.html",
-            action: "Ver estudo de caso"
+            href: "modulo-desenvolvimento.html",
+            action: "Explorar módulo"
         },
         {
             id: "automacao",
@@ -135,6 +135,63 @@ function Projects() {
                             </div>
                         </a>
                     ))}
+                </div>
+
+                <div className="mt-16">
+                    <div className="max-w-3xl mb-8">
+                        <h3 className="section-title">Projetos em destaque</h3>
+                        <p className="text-base text-[var(--text-muted)] leading-relaxed">
+                            Conheça duas aplicações completas, com estudos de caso, demonstrações e tecnologias utilizadas.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6 items-stretch">
+                        <article className="glass-panel overflow-hidden flex flex-col">
+                            <a href="projeto-bloomio.html" className="block relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]" aria-label="Ver estudo de caso do Bloomio">
+                                <img src="images/bloomio/dashboard.webp" alt="Painel principal do Bloomio" loading="lazy" className="w-full h-full object-cover" />
+                                <span className="absolute top-4 left-4 rounded-full px-3 py-1.5 bg-[var(--card-color)]/90 border border-[var(--surface-border)] text-xs font-bold text-[var(--text-main)]">SaaS · Produto proprietário</span>
+                            </a>
+                            <div className="p-6 flex flex-col flex-1">
+                                <h4 className="text-xl font-bold mb-2">Bloomio · Gestão para negócios de beleza</h4>
+                                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
+                                    Plataforma SaaS para salões, barbearias e clínicas de estética, com agenda, clientes, estoque, financeiro, comissões, relatórios e portal público de agendamento.
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-5">
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">React · Vite</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">Supabase · PostgreSQL</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">RLS · Edge Functions</span>
+                                </div>
+                                <div className="mt-auto pt-4 border-t border-[var(--surface-border)] flex flex-wrap items-center gap-4">
+                                    <a href="projeto-bloomio.html" className="text-sm font-bold text-[var(--primary-color)] hover:underline">Estudo de caso</a>
+                                    <a href="https://bloomio.com.br/" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[var(--primary-color)] hover:underline">Site do produto ↗</a>
+                                </div>
+                                <p className="text-xs text-[var(--text-muted)] mt-3">Código-fonte privado por se tratar de produto proprietário.</p>
+                            </div>
+                        </article>
+
+                        <article className="glass-panel overflow-hidden flex flex-col">
+                            <a href="projeto-aprova.html" className="block relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]" aria-label="Ver estudo de caso do Aprova">
+                                <img src="images/aprova/simulados.webp" alt="Tela de simulados da plataforma Aprova" loading="lazy" className="w-full h-full object-cover" />
+                                <span className="absolute top-4 left-4 rounded-full px-3 py-1.5 bg-[var(--card-color)]/90 border border-[var(--surface-border)] text-xs font-bold text-[var(--text-main)]">Plataforma educacional</span>
+                            </a>
+                            <div className="p-6 flex flex-col flex-1">
+                                <h4 className="text-xl font-bold mb-2">Aprova · Plataforma de estudos</h4>
+                                <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">
+                                    Ambiente de preparação para concursos com trilhas de estudo, diagnóstico, simulados, flashcards, redação, acompanhamento de progresso e professor com IA.
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-5">
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">React · Vite</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">Supabase · PostgreSQL</span>
+                                    <span className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-3 py-1.5 text-xs font-semibold text-[var(--text-muted)]">TypeScript · Playwright</span>
+                                </div>
+                                <div className="mt-auto pt-4 border-t border-[var(--surface-border)] flex flex-wrap items-center gap-4">
+                                    <a href="projeto-aprova.html" className="text-sm font-bold text-[var(--primary-color)] hover:underline">Estudo de caso</a>
+                                    <a href="https://1959414-5.github.io/Aprova/" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[var(--primary-color)] hover:underline">Demonstração ↗</a>
+                                    <a href="https://github.com/1959414-5/Aprova" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[var(--primary-color)] hover:underline">GitHub ↗</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
