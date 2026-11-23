@@ -148,7 +148,7 @@ function Projects() {
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         <article className="glass-panel overflow-hidden flex flex-col">
                             <a href="projeto-bloomio.html" className="block relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]" aria-label="Ver estudo de caso do Bloomio">
-                                <img src="images/bloomio/dashboard.webp" alt="Painel principal do Bloomio" loading="lazy" className="w-full h-full object-cover" />
+                                <img src="images/bloomio/dashboard.webp" alt="Painel principal do Bloomio" loading="lazy" className="w-full h-full object-contain" />
                                 <span className="absolute top-4 left-4 rounded-full px-3 py-1.5 bg-[var(--card-color)]/90 border border-[var(--surface-border)] text-xs font-bold text-[var(--text-main)]">SaaS · Produto proprietário</span>
                             </a>
                             <div className="p-6 flex flex-col flex-1">
