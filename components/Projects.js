@@ -107,6 +107,9 @@ function Projects() {
         if (item.type === "project") {
             return (
                 <article key={item.id} className="portfolio-carousel-card glass-panel overflow-hidden flex flex-col h-full group">
+                    <div className="px-5 md:px-6 pt-5 pb-4">
+                        <h3 className="text-lg md:text-xl font-bold leading-snug text-[var(--text-main)]">{item.title}</h3>
+                    </div>
                     <a href={item.caseHref} className="block relative aspect-[16/9] overflow-hidden bg-[var(--inner-card-color)]" aria-label={"Ver estudo de caso: " + item.title}>
                         <img src={item.image} alt={item.title} loading="lazy" className={"w-full h-full " + (item.imageFit === "contain" ? "object-contain" : "object-cover") + " transition-transform duration-500 group-hover:scale-[1.025]"} />
                         <span className="absolute top-4 left-4 rounded-full px-3 py-1.5 bg-[var(--card-color)]/90 border border-[var(--surface-border)] text-xs font-bold text-[var(--text-main)]">{item.badge}</span>
@@ -114,7 +117,7 @@ function Projects() {
                     </a>
                     <div className="p-5 md:p-6 flex flex-col flex-1">
                         <p className="text-xs font-bold uppercase tracking-[.14em] text-[var(--primary-color)] mb-2">{item.subtitle}</p>
-                        <h3 className="text-lg md:text-xl font-bold mb-3 leading-snug">{item.title}</h3>
+                        
                         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{item.description}</p>
                         <div className="flex flex-wrap gap-2 mb-5">
                             {item.tags.map(tag => <span key={tag} className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-muted)]">{tag}</span>)}
@@ -170,11 +173,11 @@ function Projects() {
                     <div className="portfolio-carousel-viewport" ref={viewportRef}>
                         <div className="portfolio-carousel-track" ref={trackRef}>{items.map(renderCard)}</div>
                     </div>
-                    <div className="flex items-center justify-between gap-4 mt-5">
-                        <div className="flex items-center gap-2">
-                            <button type="button" onClick={() => goTo(index <= 0 ? maxIndex : index - 1)} aria-label="Projeto anterior" className="w-10 h-10 rounded-full border border-[var(--surface-border)] bg-[var(--card-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors"><span className="icon-arrow-left" aria-hidden="true"></span></button>
-                            <button type="button" onClick={() => goTo(index >= maxIndex ? 0 : index + 1)} aria-label="Próximo projeto" className="w-10 h-10 rounded-full border border-[var(--surface-border)] bg-[var(--card-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white transition-colors"><span className="icon-arrow-right" aria-hidden="true"></span></button>
-                        </div>
+                    <div className="portfolio-carousel-controls" aria-label="Controles do carrossel">
+                        <button type="button" onClick={() => goTo(index <= 0 ? maxIndex : index - 1)} aria-label="Projeto anterior" className="portfolio-carousel-arrow portfolio-carousel-arrow-left"><span className="icon-arrow-left" aria-hidden="true"></span></button>
+                        <button type="button" onClick={() => goTo(index >= maxIndex ? 0 : index + 1)} aria-label="Próximo projeto" className="portfolio-carousel-arrow portfolio-carousel-arrow-right"><span className="icon-arrow-right" aria-hidden="true"></span></button>
+                    </div>
+                    <div className="flex items-center justify-center gap-3 mt-5">
                         <div className="flex items-center gap-1.5" aria-label="Paginação do carrossel">
                             {Array.from({ length: maxIndex + 1 }, (_, page) => <button key={page} type="button" onClick={() => goTo(page)} aria-label={"Ir para posição " + (page + 1)} className={"h-2.5 rounded-full transition-all duration-300 " + (index === page ? "w-7 bg-[var(--primary-color)]" : "w-2.5 bg-[var(--text-muted)]/40 hover:bg-[var(--primary-color)]/60")} />)}
                         </div>
@@ -183,7 +186,14 @@ function Projects() {
                 </div>
             </div>
             <style>{`
+                 .portfolio-carousel { position: relative; }
                 .portfolio-carousel-viewport { overflow: hidden; width: 100%; }
+                .portfolio-carousel-controls { pointer-events: none; position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+                .portfolio-carousel-arrow { pointer-events: auto; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 9999px; border: 1px solid var(--surface-border); color: var(--primary-color); background: var(--card-color); box-shadow: 0 8px 24px var(--shadow-color); transition: transform 180ms ease, background 180ms ease, color 180ms ease; }
+                .portfolio-carousel-arrow:hover { transform: scale(1.06); background: var(--primary-color); color: white; }
+                .portfolio-carousel-arrow-left { margin-left: 8px; }
+                .portfolio-carousel-arrow-right { margin-right: 8px; }
+                @media (max-width: 760px) { .portfolio-carousel-arrow { width: 38px; height: 38px; } }
                 .portfolio-carousel-track { display: flex; gap: 24px; align-items: stretch; transition: transform 900ms cubic-bezier(.22,.61,.36,1); will-change: transform; }
                 .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; }
                 @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2); } }
