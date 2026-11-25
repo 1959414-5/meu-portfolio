@@ -106,7 +106,7 @@ function Projects() {
     const renderCard = (item) => {
         if (item.type === "project") {
             return (
-                <article key={item.id} className="portfolio-carousel-card glass-panel overflow-hidden flex flex-col h-full group">
+                <article key={item.id} className="portfolio-carousel-card project-card glass-panel overflow-hidden flex flex-col group">
                     <div className="px-5 md:px-6 pt-5 pb-4">
                         <h3 className="text-lg md:text-xl font-bold leading-snug text-[var(--text-main)]">{item.title}</h3>
                     </div>
@@ -122,24 +122,21 @@ function Projects() {
                         <div className="flex flex-wrap gap-2 mb-5">
                             {item.tags.map(tag => <span key={tag} className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-muted)]">{tag}</span>)}
                         </div>
-                        <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias do Aprova">
-                            {[
-                                { name: "React", icon: "icon-code-2" },
-                                { name: "TypeScript", icon: "icon-code" },
-                                { name: "Supabase", icon: "icon-database" },
-                                { name: "PostgreSQL", icon: "icon-database" },
-                                { name: "Playwright", icon: "icon-check-circle" },
-                                { name: "IA", icon: "icon-brain" }
-                            ].map(tech => <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white"><span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span></span><span>{tech.name}</span></span>)}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias do Bloomio">
-                            {[
-                                { name: "React", icon: "icon-code-2" },
-                                { name: "Vite", icon: "icon-zap" },
-                                { name: "Supabase", icon: "icon-database" },
-                                { name: "PostgreSQL", icon: "icon-database" },
-                                { name: "Edge Functions", icon: "icon-workflow" }
-                            ].map(tech => <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white"><span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span></span><span>{tech.name}</span></span>)}
+                        <div className="project-tech-icons flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias principais">
+                            {(item.id === "bloomio" ? [
+                                { name: "React", mark: "R" },
+                                { name: "Vite", mark: "V" },
+                                { name: "Supabase", mark: "S" },
+                                { name: "PostgreSQL", mark: "PG" },
+                                { name: "Edge Functions", mark: "EF" }
+                            ] : [
+                                { name: "React", mark: "R" },
+                                { name: "TypeScript", mark: "TS" },
+                                { name: "Supabase", mark: "S" },
+                                { name: "PostgreSQL", mark: "PG" },
+                                { name: "Playwright", mark: "P" },
+                                { name: "IA", mark: "AI" }
+                            ]).map(tech => <span key={tech.name} className="inline-flex items-center gap-2 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="project-tech-mark grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white text-[#303b49] font-extrabold text-[10px]">{tech.mark}</span><span>{tech.name}</span></span>)}
                         </div>
                         <div className="mt-auto pt-4 border-t border-[var(--surface-border)] flex flex-wrap items-center gap-x-4 gap-y-2">
                             <a href={item.caseHref} className="text-sm font-bold text-[var(--primary-color)] hover:underline">Estudo de caso</a>
@@ -152,7 +149,7 @@ function Projects() {
             );
         }
         return (
-            <a key={item.id} href={item.href} className="portfolio-carousel-card glass-panel overflow-hidden flex flex-col h-full group transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]" aria-label={item.action + ": " + item.title}>
+            <a key={item.id} href={item.href} className="portfolio-carousel-card project-card glass-panel overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]" aria-label={item.action + ": " + item.title}>
                 <div className={"px-5 md:px-6 pt-5 pb-4 " + (item.id === "desenvolvimento" ? "bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-600" : "")}>
                     <h3 className={"text-lg md:text-xl font-bold mb-0 " + (item.id === "desenvolvimento" ? "text-white" : "text-[var(--text-main)]")}>{item.title}</h3>
                 </div>
@@ -214,9 +211,9 @@ function Projects() {
                 .portfolio-carousel-arrow-right { margin-right: 8px; }
                 @media (max-width: 760px) { .portfolio-carousel-arrow { width: 38px; height: 38px; } }
                 .portfolio-carousel-track { display: flex; gap: 24px; align-items: stretch; transition: transform 900ms cubic-bezier(.22,.61,.36,1); will-change: transform; }
-                .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; }
-                @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2); } }
-                @media (max-width: 760px) { .portfolio-carousel-track { gap: 16px; } .portfolio-carousel-card { flex-basis: 100%; } }
+                .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; height: 560px; }\n                .project-card > div:last-of-type { flex: 1; min-height: 0; }\n                .project-tech-icons { min-height: 74px; align-content: flex-start; }\n                .project-tech-mark { letter-spacing: -.04em; }
+                @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2); height: 590px; } }
+                @media (max-width: 760px) { .portfolio-carousel-track { gap: 16px; } .portfolio-carousel-card { flex-basis: 100%; height: auto; min-height: 620px; } }
                 @media (prefers-reduced-motion: reduce) { .portfolio-carousel-track { transition: none; } }
             `}</style>
         </section>
