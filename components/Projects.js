@@ -211,9 +211,9 @@ function Projects() {
                 .portfolio-carousel-arrow-right { margin-right: 8px; }
                 @media (max-width: 760px) { .portfolio-carousel-arrow { width: 38px; height: 38px; } }
                 .portfolio-carousel-track { display: flex; gap: 24px; align-items: stretch; transition: transform 900ms cubic-bezier(.22,.61,.36,1); will-change: transform; }
-                .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; height: 560px; }\n                .project-card > div:last-of-type { flex: 1; min-height: 0; }\n                .project-tech-icons { min-height: 74px; align-content: flex-start; }\n                .project-tech-mark { letter-spacing: -.04em; }
-                @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2); height: 590px; } }
-                @media (max-width: 760px) { .portfolio-carousel-track { gap: 16px; } .portfolio-carousel-card { flex-basis: 100%; height: auto; min-height: 620px; } }
+                .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; align-self: stretch; }\n                .project-card > div:last-of-type { flex: 1; min-height: 0; }\n                .project-tech-icons { min-height: 74px; align-content: flex-start; }\n                .project-tech-mark { letter-spacing: -.04em; }
+                @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2);  } }
+                @media (max-width: 760px) { .portfolio-carousel-track { gap: 16px; } .portfolio-carousel-card { flex-basis: 100%; height: auto;  } }
                 @media (prefers-reduced-motion: reduce) { .portfolio-carousel-track { transition: none; } }
             `}</style>
         </section>
