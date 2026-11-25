@@ -49,7 +49,7 @@ function Projects() {
     const featuredProjects = [
         {
             id: "bloomio", number: "04", type: "project",
-            title: "Bloomio · Gestão para negócios de beleza",
+            title: "Bloomio · Plataforma SaaS",
             subtitle: "Produto SaaS proprietário",
             description: "Plataforma para salões, barbearias e clínicas de estética, com agenda, clientes, estoque, financeiro, comissões, relatórios e portal público de agendamento.",
             image: "images/bloomio/dashboard.webp", imageFit: "contain",
@@ -121,6 +121,25 @@ function Projects() {
                         <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4">{item.description}</p>
                         <div className="flex flex-wrap gap-2 mb-5">
                             {item.tags.map(tag => <span key={tag} className="rounded-full border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2.5 py-1.5 text-xs font-semibold text-[var(--text-muted)]">{tag}</span>)}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias do Aprova">
+                            {[
+                                { name: "React", icon: "icon-code-2" },
+                                { name: "TypeScript", icon: "icon-code" },
+                                { name: "Supabase", icon: "icon-database" },
+                                { name: "PostgreSQL", icon: "icon-database" },
+                                { name: "Playwright", icon: "icon-check-circle" },
+                                { name: "IA", icon: "icon-brain" }
+                            ].map(tech => <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white"><span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span></span><span>{tech.name}</span></span>)}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias do Bloomio">
+                            {[
+                                { name: "React", icon: "icon-code-2" },
+                                { name: "Vite", icon: "icon-zap" },
+                                { name: "Supabase", icon: "icon-database" },
+                                { name: "PostgreSQL", icon: "icon-database" },
+                                { name: "Edge Functions", icon: "icon-workflow" }
+                            ].map(tech => <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white"><span className={tech.icon + " text-base text-[#303b49]"} aria-hidden="true"></span></span><span>{tech.name}</span></span>)}
                         </div>
                         <div className="mt-auto pt-4 border-t border-[var(--surface-border)] flex flex-wrap items-center gap-x-4 gap-y-2">
                             <a href={item.caseHref} className="text-sm font-bold text-[var(--primary-color)] hover:underline">Estudo de caso</a>
