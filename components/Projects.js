@@ -124,19 +124,19 @@ function Projects() {
                         </div>
                         <div className="project-tech-icons flex flex-wrap items-center gap-2 mb-5" aria-label="Tecnologias principais">
                             {(item.id === "bloomio" ? [
-                                { name: "React", mark: "R" },
-                                { name: "Vite", mark: "V" },
-                                { name: "Supabase", mark: "S" },
-                                { name: "PostgreSQL", mark: "PG" },
-                                { name: "Edge Functions", mark: "EF" }
+                                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                                { name: "Vite", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
+                                { name: "Supabase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+                                { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                                { name: "Edge Functions", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" }
                             ] : [
-                                { name: "React", mark: "R" },
-                                { name: "TypeScript", mark: "TS" },
-                                { name: "Supabase", mark: "S" },
-                                { name: "PostgreSQL", mark: "PG" },
-                                { name: "Playwright", mark: "P" },
-                                { name: "IA", mark: "AI" }
-                            ]).map(tech => <span key={tech.name} className="inline-flex items-center gap-2 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="project-tech-mark grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white text-[#303b49] font-extrabold text-[10px]">{tech.mark}</span><span>{tech.name}</span></span>)}
+                                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                                { name: "TypeScript", logo: "images/technologies/typescript.svg" },
+                                { name: "Supabase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+                                { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                                { name: "Playwright", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg" },
+                                { name: "IA", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg" }
+                            ]).map(tech => <span key={tech.name} className="inline-flex items-center gap-2 rounded-lg border border-[var(--surface-border)] bg-[var(--inner-card-color)] px-2 py-1.5 text-[11px] font-semibold text-[var(--text-muted)]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white"><img src={tech.logo} alt="" className="h-5 w-5 object-contain" loading="lazy" /></span><span>{tech.name}</span></span>)}
                         </div>
                         <div className="mt-auto pt-4 border-t border-[var(--surface-border)] flex flex-wrap items-center gap-x-4 gap-y-2">
                             <a href={item.caseHref} className="text-sm font-bold text-[var(--primary-color)] hover:underline">Estudo de caso</a>
