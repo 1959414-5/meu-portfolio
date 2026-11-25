@@ -152,7 +152,7 @@ function App() {
         <Header />
         <main>
           <Hero />
-          <Highlights />
+
           <About />
           <Skills />
           <Projects />
