@@ -202,14 +202,14 @@ function Projects() {
                 </div>
             </div>
             <style>{`
-                 .portfolio-carousel { position: relative; }
+                 .portfolio-carousel { position: relative; margin-inline: 52px; }
                 .portfolio-carousel-viewport { overflow: hidden; width: 100%; }
-                .portfolio-carousel-controls { pointer-events: none; position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+                .portfolio-carousel-controls { pointer-events: none; position: absolute; top: 0; bottom: 48px; left: -52px; right: -52px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
                 .portfolio-carousel-arrow { pointer-events: auto; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 9999px; border: 1px solid var(--surface-border); color: var(--primary-color); background: var(--card-color); box-shadow: 0 8px 24px var(--shadow-color); transition: transform 180ms ease, background 180ms ease, color 180ms ease; }
                 .portfolio-carousel-arrow:hover { transform: scale(1.06); background: var(--primary-color); color: white; }
-                .portfolio-carousel-arrow-left { margin-left: 8px; }
-                .portfolio-carousel-arrow-right { margin-right: 8px; }
-                @media (max-width: 760px) { .portfolio-carousel-arrow { width: 38px; height: 38px; } }
+                .portfolio-carousel-arrow-left { margin-left: 0; }
+                .portfolio-carousel-arrow-right { margin-right: 0; }
+                @media (max-width: 760px) { .portfolio-carousel { margin-inline: 36px; } .portfolio-carousel-controls { left: -36px; right: -36px; } .portfolio-carousel-arrow { width: 38px; height: 38px; } }
                 .portfolio-carousel-track { display: flex; gap: 24px; align-items: stretch; transition: transform 900ms cubic-bezier(.22,.61,.36,1); will-change: transform; }
                 .portfolio-carousel-card { flex: 0 0 calc((100% - 48px) / 3); min-width: 0; align-self: stretch; }\n                .project-card > div:last-of-type { flex: 1; min-height: 0; }\n                .project-tech-icons { min-height: 74px; align-content: flex-start; }\n                .project-tech-mark { letter-spacing: -.04em; }
                 @media (max-width: 1050px) and (min-width: 761px) { .portfolio-carousel-card { flex-basis: calc((100% - 24px) / 2);  } }
